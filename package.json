@@ -1,6 +1,6 @@
 {
   "name": "@arianee/ts-contracts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "typescript typings for arianee contracts",
   "main": "",
   "dependencies": {
