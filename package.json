@@ -1,0 +1,16 @@
+{
+  "name": "@arianee/ts-contracts",
+  "version": "0.0.1",
+  "description": "typescript typings for arianee contracts",
+  "main": "",
+  "dependencies": {
+    "express": "^4.17.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
