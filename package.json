@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "typescript typings for arianee contracts",
   "main": "",
-  "dependencies": {
-    "express": "^4.17.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "publish":"npm run build && git add . && git commit --amend --no-edit && git push --force",
+    "build": "./node_modules/.bin/typechain --target=web3-1.0.0 './src/abi/*.json' --outDir=./src"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typechain": "^0.3.21"
+  }
 }
-

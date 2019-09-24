@@ -6,7 +6,7 @@ import { ArianeeSmartAsset } from "./src/ArianeeSmartAsset";
 import { ArianeeStaking } from "./src/ArianeeStaking";
 import { ArianeeStore } from "./src/ArianeeStore";
 import { ArianeeWhitelist } from "./src/ArianeeWhitelist";
-
+import {ArianeeEvent} from './src/ArianeeEvent'
 export {
   Aria,
   ArianeeIdentity,
@@ -14,5 +14,6 @@ export {
   ArianeeStaking,
   ArianeeStore,
   ArianeeWhitelist,
-  ArianeeCreditHistory
+  ArianeeCreditHistory,
+  ArianeeEvent
 };
