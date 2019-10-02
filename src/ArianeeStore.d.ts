@@ -96,6 +96,14 @@ export class ArianeeStore extends Contract {
       _signature: string | number[]
     ): TransactionObject<void>;
 
+    createEvent(
+      _eventId: number | string,
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _uri: string,
+      _providerBrand: string
+    ): TransactionObject<void>;
+
     hydrateToken(
       _tokenId: number | string,
       _imprint: string | number[],
@@ -105,13 +113,6 @@ export class ArianeeStore extends Contract {
       _initialKeyIsRequestKey: boolean,
       _providerBrand: string
     ): TransactionObject<void>;
-
-    createEvent(
-      _tokenId: number | string,
-      _imprint: string | number[],
-      _uri: string,
-      _providerBrand: string
-    ): TransactionObject<BN>;
 
     transferOwnership(_newOwner: string): TransactionObject<void>;
 
