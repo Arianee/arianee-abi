@@ -1,7 +1,14 @@
 {
-  "name": "@arianee/ts-contracts",
-  "version": "1.0.0",
-  "description": "typescript typings for arianee contracts",
+  "name": "@arianee/arianee-abi",
+  "version": "0.0.1",
+  "description": "abi definition of Arianee and typescript declaration files",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arianee/arianee-abi"
+  },
   "main": "",
   "scripts": {
     "publish": "npm run build && git add . && git commit --amend --no-edit && git push --force",
@@ -13,6 +20,7 @@
     "typechain": "^0.3.21"
   },
   "dependencies": {
-    "@types/web3": "^1.0.19"
+    "@types/web3": "^1.0.19",
+    "bn": "^1.0.5"
   }
 }

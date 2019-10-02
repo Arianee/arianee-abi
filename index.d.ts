@@ -1,12 +1,13 @@
-import { Aria } from "./src/Aria";
+import { Aria } from "./@types/Aria";
 
-import { ArianeeCreditHistory } from "./src/ArianeeCreditHistory";
-import { ArianeeIdentity } from "./src/ArianeeIdentity";
-import { ArianeeSmartAsset } from "./src/ArianeeSmartAsset";
-import { ArianeeStaking } from "./src/ArianeeStaking";
-import { ArianeeStore } from "./src/ArianeeStore";
-import { ArianeeWhitelist } from "./src/ArianeeWhitelist";
-import {ArianeeEvent} from './src/ArianeeEvent'
+import { ArianeeCreditHistory } from "./@types/ArianeeCreditHistory";
+import { ArianeeIdentity } from "./@types/ArianeeIdentity";
+import { ArianeeSmartAsset } from "./@types/ArianeeSmartAsset";
+import { ArianeeStaking } from "./@types/ArianeeStaking";
+import { ArianeeStore } from "./@types/ArianeeStore";
+import { ArianeeWhitelist } from "./@types/ArianeeWhitelist";
+import {ArianeeEvent} from './@types/ArianeeEvent';
+
 export {
   Aria,
   ArianeeIdentity,
