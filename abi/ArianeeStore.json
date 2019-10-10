@@ -450,6 +450,36 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_eventId",
+				"type": "uint256"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"name": "_uri",
+				"type": "string"
+			},
+			{
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "createEvent",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_tokenId",
 				"type": "uint256"
 			},
@@ -480,37 +510,6 @@
 		],
 		"name": "hydrateToken",
 		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_uri",
-				"type": "string"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "createEvent",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"

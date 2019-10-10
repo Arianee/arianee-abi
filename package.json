@@ -1,6 +1,6 @@
 {
   "name": "@arianee/arianee-abi",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "abi definition of Arianee and typescript declaration files",
   "publishConfig": {
     "access": "public"

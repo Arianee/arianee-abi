@@ -10,7 +10,6 @@
         "es2017",
         "dom"
       ],
-      "baseUrl": "types",
       "module": "commonjs",
       "esModuleInterop": true
     }
