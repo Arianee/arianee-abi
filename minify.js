@@ -26,7 +26,7 @@ fs.readdirSync(testFolder).forEach(file => {
     
     // Write jsFile
     const jsfileName = file.substr(0, file.lastIndexOf(".")) + ".js";
-    const jsContent="export default" + minified;
+    const jsContent="module.exports = " + minified;
     fs.writeFileSync(dir.js + jsfileName, jsContent);
 
     // write json content
