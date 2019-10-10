@@ -1,4 +1,3 @@
-const UglifyJS = require("uglify-js");
 const fs = require('fs');
 var path = require('path')
 
