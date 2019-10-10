@@ -1,6 +1,6 @@
 {
   "name": "@arianee/arianee-abi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "abi definition of Arianee and typescript declaration files",
   "publishConfig": {
     "access": "public"
@@ -11,8 +11,9 @@
   },
   "main": "",
   "scripts": {
-    "publish": "npm run build && git add . && git commit --amend --no-edit && git push --force",
-    "build": "./node_modules/.bin/typechain --target=web3-1.0.0 './src/abi/*.json' --outDir=./src"
+    "generate": "./node_modules/.bin/typechain --target=web3-1.0.0 './abi/*.json' --outDir=./types",
+    "minify": "node ./minify.js",
+    "build": "npm run generate && npm run minify"
   },
   "author": "",
   "license": "ISC",

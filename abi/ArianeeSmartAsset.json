@@ -104,6 +104,24 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_target",
+				"type": "address"
+			},
+			{
+				"name": "_abilities",
+				"type": "uint256"
+			}
+		],
+		"name": "grantAbilities",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_tokenId",
 				"type": "uint256"
 			}
@@ -112,6 +130,20 @@
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "arianeeWhitelist",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -262,6 +294,25 @@
 		"constant": true,
 		"inputs": [
 			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "addressToAbility",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
 				"name": "_index",
 				"type": "uint256"
 			}
@@ -349,29 +400,6 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_target",
-				"type": "address"
-			},
-			{
-				"name": "_ability",
-				"type": "uint8"
-			}
-		],
-		"name": "isAble",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
@@ -421,24 +449,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_target",
-				"type": "address"
-			},
-			{
-				"name": "_abilities",
-				"type": "uint8[]"
-			}
-		],
-		"name": "assignAbilities",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -502,18 +512,28 @@
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "store",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_target",
-				"type": "address"
-			},
-			{
-				"name": "_abilities",
-				"type": "uint8[]"
+				"name": "_tokenId",
+				"type": "uint256"
 			}
 		],
-		"name": "revokeAbilities",
+		"name": "destroy",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -568,6 +588,28 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_target",
+				"type": "address"
+			},
+			{
+				"name": "_abilities",
+				"type": "uint256"
+			},
+			{
+				"name": "_allowSuperRevoke",
+				"type": "bool"
+			}
+		],
+		"name": "revokeAbilities",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -634,6 +676,29 @@
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_target",
+				"type": "address"
+			},
+			{
+				"name": "_abilities",
+				"type": "uint256"
+			}
+		],
+		"name": "isAble",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -745,10 +810,6 @@
 			{
 				"name": "reward",
 				"type": "uint256"
-			},
-			{
-				"name": "message",
-				"type": "bytes32"
 			}
 		],
 		"payable": false,
@@ -1026,7 +1087,31 @@
 				"type": "uint256"
 			}
 		],
-		"name": "tokenAccessAdded",
+		"name": "TokenAccessAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "TokenDestroyed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_newUriBase",
+				"type": "string"
+			}
+		],
+		"name": "SetNewUriBase",
 		"type": "event"
 	},
 	{
@@ -1068,11 +1153,11 @@
 			},
 			{
 				"indexed": true,
-				"name": "_ability",
-				"type": "uint8"
+				"name": "_abilities",
+				"type": "uint256"
 			}
 		],
-		"name": "AssignAbility",
+		"name": "GrantAbilities",
 		"type": "event"
 	},
 	{
@@ -1085,11 +1170,11 @@
 			},
 			{
 				"indexed": true,
-				"name": "_ability",
-				"type": "uint8"
+				"name": "_abilities",
+				"type": "uint256"
 			}
 		],
-		"name": "RevokeAbility",
+		"name": "RevokeAbilities",
 		"type": "event"
 	},
 	{

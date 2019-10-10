@@ -10,9 +10,9 @@
         "es2017",
         "dom"
       ],
-      "baseUrl": "@types",
-      "resolveJsonModule": true,
-      "module": "commonjs"
-    },
+      "baseUrl": "types",
+      "module": "commonjs",
+      "esModuleInterop": true
+    }
   }
   
