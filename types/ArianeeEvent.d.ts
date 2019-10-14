@@ -28,20 +28,18 @@ export class ArianeeEvent extends Contract {
       arg1: number | string
     ): TransactionObject<BN>;
 
-    events(
-      arg0: number | string
+    pendingEventsLength(_tokenId: number | string): TransactionObject<BN>;
+
+    getEvent(
+      _eventId: number | string
     ): TransactionObject<{
-      URI: string;
-      imprint: string;
-      provider: string;
-      destroyLimitTimestamp: BN;
       0: string;
       1: string;
       2: string;
       3: BN;
     }>;
 
-    pendingEventsLength(arg0: number | string): TransactionObject<BN>;
+    eventsLength(_tokenId: number | string): TransactionObject<BN>;
 
     eventIdToToken(arg0: number | string): TransactionObject<BN>;
 
@@ -53,6 +51,15 @@ export class ArianeeEvent extends Contract {
     ): TransactionObject<BN>;
 
     rewards(arg0: number | string): TransactionObject<BN>;
+
+    create(
+      _eventId: number | string,
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _uri: string,
+      _reward: number | string,
+      _provider: string
+    ): TransactionObject<void>;
 
     unpause(): TransactionObject<void>;
 
@@ -68,14 +75,6 @@ export class ArianeeEvent extends Contract {
     pause(): TransactionObject<void>;
 
     destroy(_eventId: number | string): TransactionObject<void>;
-
-    create(
-      _tokenId: number | string,
-      _imprint: string | number[],
-      _uri: string,
-      _reward: number | string,
-      _provider: string
-    ): TransactionObject<BN>;
 
     validDestroyRequest(_eventId: number | string): TransactionObject<void>;
 
@@ -96,10 +95,12 @@ export class ArianeeEvent extends Contract {
       _eventId: BN;
       _imprint: string;
       _uri: string;
+      _provider: string;
       0: BN;
       1: BN;
       2: string;
       3: string;
+      4: string;
     }>;
     EventAccepted: ContractEvent<{
       _eventId: BN;

@@ -42,41 +42,44 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "",
+				"name": "_eventId",
 				"type": "uint256"
-			}
-		],
-		"name": "events",
-		"outputs": [
-			{
-				"name": "URI",
-				"type": "string"
 			},
 			{
-				"name": "imprint",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "_imprint",
 				"type": "bytes32"
 			},
 			{
-				"name": "provider",
-				"type": "address"
+				"name": "_uri",
+				"type": "string"
 			},
 			{
-				"name": "destroyLimitTimestamp",
+				"name": "_reward",
 				"type": "uint256"
+			},
+			{
+				"name": "_provider",
+				"type": "address"
 			}
 		],
+		"name": "create",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"constant": true,
 		"inputs": [
 			{
-				"name": "",
+				"name": "_tokenId",
 				"type": "uint256"
 			}
 		],
@@ -170,6 +173,56 @@
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_eventId",
+				"type": "uint256"
+			}
+		],
+		"name": "getEvent",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "eventsLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "pause",
@@ -242,41 +295,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_uri",
-				"type": "string"
-			},
-			{
-				"name": "_reward",
-				"type": "uint256"
-			},
-			{
-				"name": "_provider",
-				"type": "address"
-			}
-		],
-		"name": "create",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -405,17 +423,17 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_tokenId",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_eventId",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_imprint",
 				"type": "bytes32"
 			},
@@ -423,6 +441,11 @@
 				"indexed": false,
 				"name": "_uri",
 				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_provider",
+				"type": "address"
 			}
 		],
 		"name": "EventCreated",
@@ -432,12 +455,12 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_eventId",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_sender",
 				"type": "address"
 			}
@@ -449,12 +472,12 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_eventId",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_sender",
 				"type": "address"
 			}
@@ -466,7 +489,7 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_eventId",
 				"type": "uint256"
 			}
@@ -478,7 +501,7 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"name": "_eventId",
 				"type": "uint256"
 			},
