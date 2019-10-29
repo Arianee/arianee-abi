@@ -58,22 +58,5 @@ export class ArianeeCreditHistory extends Contract {
     owner(): TransactionObject<string>;
     arianeeStoreAddress(): TransactionObject<string>;
   };
-  events: {
-    SetAddress: ContractEvent<{
-      _addressType: string;
-      _newAddress: string;
-      0: string;
-      1: string;
-    }>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

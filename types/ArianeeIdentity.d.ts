@@ -2,22 +2,14 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import {Contract, ContractOptions } from "web3-eth-contract";
+import { TransactionObject } from "./types";
 
 export class ArianeeIdentity extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeIdentity;
   methods: {
@@ -67,51 +59,5 @@ export class ArianeeIdentity extends Contract {
     owner(): TransactionObject<string>;
     bouncerAddress(): TransactionObject<string>;
   };
-  events: {
-    AddressApprovedAdded: ContractEvent<{
-      _newIdentity: string;
-      _addressId: string;
-      0: string;
-      1: string;
-    }>;
-    AddressApprovedRemoved: ContractEvent<string>;
-    URIUpdated: ContractEvent<{
-      _identity: string;
-      _uri: string;
-      _imprint: string;
-      0: string;
-      1: string;
-      2: string;
-    }>;
-    URIValidate: ContractEvent<{
-      _identity: string;
-      _uri: string;
-      _imprint: string;
-      0: string;
-      1: string;
-      2: string;
-    }>;
-    IdentityCompromised: ContractEvent<{
-      _identity: string;
-      _compromiseDate: BN;
-      0: string;
-      1: BN;
-    }>;
-    SetAddress: ContractEvent<{
-      _addressType: string;
-      _newAddress: string;
-      0: string;
-      1: string;
-    }>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

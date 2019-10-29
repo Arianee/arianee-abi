@@ -2,22 +2,15 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
+import {Contract, ContractOptions } from "web3-eth-contract";
+import { TransactionObject } from "./types";
 
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
 
 export class ArianeeStaking extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeStaking;
   methods: {
@@ -105,42 +98,5 @@ export class ArianeeStaking extends Contract {
     token(): TransactionObject<string>;
     totalStaked(): TransactionObject<BN>;
   };
-  events: {
-    newStake: ContractEvent<{
-      _amount: BN;
-      staker: string;
-      0: BN;
-      1: string;
-    }>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    Staked: ContractEvent<{
-      user: string;
-      amount: BN;
-      total: BN;
-      data: string;
-      0: string;
-      1: BN;
-      2: BN;
-      3: string;
-    }>;
-    Unstaked: ContractEvent<{
-      user: string;
-      amount: BN;
-      total: BN;
-      data: string;
-      0: string;
-      1: BN;
-      2: BN;
-      3: string;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

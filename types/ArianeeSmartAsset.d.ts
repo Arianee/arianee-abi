@@ -2,22 +2,14 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import {Contract, ContractOptions } from "web3-eth-contract";
+import { TransactionObject } from "./types";
 
 export class ArianeeSmartAsset extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeSmartAsset;
   methods: {
@@ -184,101 +176,5 @@ export class ArianeeSmartAsset extends Contract {
     store(): TransactionObject<string>;
     uriBase(): TransactionObject<string>;
   };
-  events: {
-    SetAddress: ContractEvent<{
-      _addressType: string;
-      _newAddress: string;
-      0: string;
-      1: string;
-    }>;
-    Hydrated: ContractEvent<{
-      _tokenId: BN;
-      _imprint: string;
-      _uri: string;
-      _initialKey: string;
-      _tokenRecoveryTimestamp: BN;
-      _initialKeyIsRequestKey: boolean;
-      _tokenCreation: BN;
-      0: BN;
-      1: string;
-      2: string;
-      3: string;
-      4: BN;
-      5: boolean;
-      6: BN;
-    }>;
-    RecoveryRequestUpdated: ContractEvent<{
-      _tokenId: BN;
-      _active: boolean;
-      0: BN;
-      1: boolean;
-    }>;
-    TokenRecovered: ContractEvent<BN>;
-    TokenURIUpdated: ContractEvent<{
-      _tokenId: BN;
-      URI: string;
-      0: BN;
-      1: string;
-    }>;
-    TokenAccessAdded: ContractEvent<{
-      _tokenId: BN;
-      _encryptedTokenKey: string;
-      _enable: boolean;
-      _tokenType: BN;
-      0: BN;
-      1: string;
-      2: boolean;
-      3: BN;
-    }>;
-    TokenDestroyed: ContractEvent<BN>;
-    SetNewUriBase: ContractEvent<string>;
-    Pause: ContractEvent<{}>;
-    Unpause: ContractEvent<{}>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    GrantAbilities: ContractEvent<{
-      _target: string;
-      _abilities: BN;
-      0: string;
-      1: BN;
-    }>;
-    RevokeAbilities: ContractEvent<{
-      _target: string;
-      _abilities: BN;
-      0: string;
-      1: BN;
-    }>;
-    Transfer: ContractEvent<{
-      _from: string;
-      _to: string;
-      _tokenId: BN;
-      0: string;
-      1: string;
-      2: BN;
-    }>;
-    Approval: ContractEvent<{
-      _owner: string;
-      _approved: string;
-      _tokenId: BN;
-      0: string;
-      1: string;
-      2: BN;
-    }>;
-    ApprovalForAll: ContractEvent<{
-      _owner: string;
-      _operator: string;
-      _approved: boolean;
-      0: string;
-      1: string;
-      2: boolean;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

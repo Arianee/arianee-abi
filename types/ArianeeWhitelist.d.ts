@@ -67,36 +67,5 @@ export class ArianeeWhitelist extends Contract {
       _activate: boolean
     ): TransactionObject<void>;
   };
-  events: {
-    WhitelistedAddressAdded: ContractEvent<{
-      _tokenId: BN;
-      _address: string;
-      0: BN;
-      1: string;
-    }>;
-    BlacklistedAddresAdded: ContractEvent<{
-      _sender: string;
-      _tokenId: BN;
-      _activate: boolean;
-      0: string;
-      1: BN;
-      2: boolean;
-    }>;
-    GrantAbilities: ContractEvent<{
-      _target: string;
-      _abilities: BN;
-      0: string;
-      1: BN;
-    }>;
-    RevokeAbilities: ContractEvent<{
-      _target: string;
-      _abilities: BN;
-      0: string;
-      1: BN;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

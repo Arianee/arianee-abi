@@ -2,22 +2,15 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
+import {Contract, ContractOptions } from "web3-eth-contract";
 
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import {TransactionObject} from "./types";
 
 export class Aria extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): Aria;
   methods: {
@@ -46,27 +39,7 @@ export class Aria extends Contract {
     totalSupply(): TransactionObject<BN>;
     decimals(): TransactionObject<BN>;
     symbol(): TransactionObject<string>;
+
   };
-  events: {
-    Transfer: ContractEvent<{
-      _from: string;
-      _to: string;
-      _value: BN;
-      0: string;
-      1: string;
-      2: BN;
-    }>;
-    Approval: ContractEvent<{
-      _owner: string;
-      _spender: string;
-      _value: BN;
-      0: string;
-      1: string;
-      2: BN;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

@@ -18,10 +18,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typechain": "^0.3.21"
+    "typechain": "^0.3.21",
+    "web3": "^1.2.2"
   },
   "dependencies": {
-    "@types/web3": "^1.0.19",
     "bn": "^1.0.5"
   }
 }

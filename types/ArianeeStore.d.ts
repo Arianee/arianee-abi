@@ -2,22 +2,14 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import {Contract, ContractOptions } from "web3-eth-contract";
+import { TransactionObject } from "./types";
 
 export class ArianeeStore extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeStore;
   methods: {
@@ -132,59 +124,5 @@ export class ArianeeStore extends Contract {
     arianeeEvent(): TransactionObject<string>;
     authorizedExchangeAddress(): TransactionObject<string>;
   };
-  events: {
-    SetAddress: ContractEvent<{
-      _addressType: string;
-      _newAddress: string;
-      0: string;
-      1: string;
-    }>;
-    NewCreditPrice: ContractEvent<{
-      _creditType: BN;
-      _price: BN;
-      0: BN;
-      1: BN;
-    }>;
-    NewAriaUSDExchange: ContractEvent<BN>;
-    CreditBuyed: ContractEvent<{
-      buyer: string;
-      _receiver: string;
-      _creditType: BN;
-      quantity: BN;
-      0: string;
-      1: string;
-      2: BN;
-      3: BN;
-    }>;
-    NewDispatchPercent: ContractEvent<{
-      _percentInfra: BN;
-      _percentBrandsProvider: BN;
-      _percentOwnerProvider: BN;
-      _arianeeProject: BN;
-      _assetHolder: BN;
-      0: BN;
-      1: BN;
-      2: BN;
-      3: BN;
-      4: BN;
-    }>;
-    CreditSpended: ContractEvent<{
-      _type: BN;
-      _quantity: BN;
-      0: BN;
-      1: BN;
-    }>;
-    Pause: ContractEvent<{}>;
-    Unpause: ContractEvent<{}>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }

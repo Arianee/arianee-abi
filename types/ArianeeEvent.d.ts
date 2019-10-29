@@ -2,22 +2,14 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import {Contract, ContractOptions } from "web3-eth-contract";
+import { TransactionObject } from "./types";
 
 export class ArianeeEvent extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeEvent;
   methods: {
@@ -89,50 +81,5 @@ export class ArianeeEvent extends Contract {
     paused(): TransactionObject<boolean>;
     owner(): TransactionObject<string>;
   };
-  events: {
-    EventCreated: ContractEvent<{
-      _tokenId: BN;
-      _eventId: BN;
-      _imprint: string;
-      _uri: string;
-      _provider: string;
-      0: BN;
-      1: BN;
-      2: string;
-      3: string;
-      4: string;
-    }>;
-    EventAccepted: ContractEvent<{
-      _eventId: BN;
-      _sender: string;
-      0: BN;
-      1: string;
-    }>;
-    EventRefused: ContractEvent<{
-      _eventId: BN;
-      _sender: string;
-      0: BN;
-      1: string;
-    }>;
-    EventDestroyed: ContractEvent<BN>;
-    DestroyRequestUpdated: ContractEvent<{
-      _eventId: BN;
-      _active: boolean;
-      0: BN;
-      1: boolean;
-    }>;
-    EventDestroyDelayUpdated: ContractEvent<BN>;
-    Pause: ContractEvent<{}>;
-    Unpause: ContractEvent<{}>;
-    OwnershipTransferred: ContractEvent<{
-      previousOwner: string;
-      newOwner: string;
-      0: string;
-      1: string;
-    }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
-  };
+
 }
