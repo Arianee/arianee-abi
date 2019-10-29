@@ -2,8 +2,9 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import {Contract, ContractOptions } from "web3-eth-contract";
-import { TransactionObject } from "./types";
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeSmartAsset extends Contract {
   constructor(
@@ -24,56 +25,9 @@ export class ArianeeSmartAsset extends Contract {
       _signature: string | number[]
     ): TransactionObject<boolean>;
 
+    name(): TransactionObject<string>;
+
     getApproved(_tokenId: number | string): TransactionObject<string>;
-
-    tokenOfOwnerByIndex(
-      _owner: string,
-      _index: number | string
-    ): TransactionObject<BN>;
-
-    addressToAbility(arg0: string): TransactionObject<BN>;
-
-    tokenByIndex(_index: number | string): TransactionObject<BN>;
-
-    tokenCreation(_tokenId: number | string): TransactionObject<BN>;
-
-    ownerOf(_tokenId: number | string): TransactionObject<string>;
-
-    recoveryRequestOpen(_tokenId: number | string): TransactionObject<boolean>;
-
-    balanceOf(_owner: string): TransactionObject<BN>;
-
-    tokenImprint(_tokenId: number | string): TransactionObject<string>;
-
-    canOperate(
-      _tokenId: number | string,
-      _operator: string
-    ): TransactionObject<boolean>;
-
-    issuerOf(_tokenId: number | string): TransactionObject<string>;
-
-    isAble(
-      _target: string,
-      _abilities: number | string
-    ): TransactionObject<boolean>;
-
-    getRewards(_tokenId: number | string): TransactionObject<BN>;
-
-    tokenURI(_tokenId: number | string): TransactionObject<string>;
-
-    tokenHashedAccess(
-      _tokenId: number | string,
-      _tokenType: number | string
-    ): TransactionObject<string>;
-
-    tokenRecoveryDate(_tokenId: number | string): TransactionObject<BN>;
-
-    isApprovedForAll(
-      _owner: string,
-      _operator: string
-    ): TransactionObject<boolean>;
-
-    isRequestable(_tokenId: number | string): TransactionObject<boolean>;
 
     approve(
       _approved: string,
@@ -86,6 +40,10 @@ export class ArianeeSmartAsset extends Contract {
     ): TransactionObject<void>;
 
     validRecoveryRequest(_tokenId: number | string): TransactionObject<void>;
+
+    arianeeWhitelist(): TransactionObject<string>;
+
+    totalSupply(): TransactionObject<BN>;
 
     updateTokenURI(
       _tokenId: number | string,
@@ -106,6 +64,11 @@ export class ArianeeSmartAsset extends Contract {
 
     setUriBase(_newURIBase: string): TransactionObject<void>;
 
+    tokenOfOwnerByIndex(
+      _owner: string,
+      _index: number | string
+    ): TransactionObject<BN>;
+
     unpause(): TransactionObject<void>;
 
     safeTransferFrom(
@@ -114,9 +77,36 @@ export class ArianeeSmartAsset extends Contract {
       _tokenId: number | string
     ): TransactionObject<void>;
 
+    addressToAbility(arg0: string): TransactionObject<BN>;
+
+    tokenByIndex(_index: number | string): TransactionObject<BN>;
+
+    paused(): TransactionObject<boolean>;
+
+    tokenCreation(_tokenId: number | string): TransactionObject<BN>;
+
+    ownerOf(_tokenId: number | string): TransactionObject<string>;
+
+    recoveryRequestOpen(_tokenId: number | string): TransactionObject<boolean>;
+
     setStoreAddress(_storeAddress: string): TransactionObject<void>;
 
+    balanceOf(_owner: string): TransactionObject<BN>;
+
+    tokenImprint(_tokenId: number | string): TransactionObject<string>;
+
+    canOperate(
+      _tokenId: number | string,
+      _operator: string
+    ): TransactionObject<boolean>;
+
     pause(): TransactionObject<void>;
+
+    owner(): TransactionObject<string>;
+
+    symbol(): TransactionObject<string>;
+
+    store(): TransactionObject<string>;
 
     destroy(_tokenId: number | string): TransactionObject<void>;
 
@@ -126,6 +116,8 @@ export class ArianeeSmartAsset extends Contract {
       _operator: string,
       _approved: boolean
     ): TransactionObject<void>;
+
+    issuerOf(_tokenId: number | string): TransactionObject<string>;
 
     revokeAbilities(
       _target: string,
@@ -142,6 +134,22 @@ export class ArianeeSmartAsset extends Contract {
       _tokenType: number | string
     ): TransactionObject<void>;
 
+    isAble(
+      _target: string,
+      _abilities: number | string
+    ): TransactionObject<boolean>;
+
+    getRewards(_tokenId: number | string): TransactionObject<BN>;
+
+    tokenURI(_tokenId: number | string): TransactionObject<string>;
+
+    tokenHashedAccess(
+      _tokenId: number | string,
+      _tokenType: number | string
+    ): TransactionObject<string>;
+
+    tokenRecoveryDate(_tokenId: number | string): TransactionObject<BN>;
+
     requestToken(
       _tokenId: number | string,
       _hash: string | number[],
@@ -149,6 +157,11 @@ export class ArianeeSmartAsset extends Contract {
       _newOwner: string,
       _signature: string | number[]
     ): TransactionObject<BN>;
+
+    isApprovedForAll(
+      _owner: string,
+      _operator: string
+    ): TransactionObject<boolean>;
 
     hydrateToken(
       _tokenId: number | string,
@@ -167,14 +180,102 @@ export class ArianeeSmartAsset extends Contract {
       _active: boolean
     ): TransactionObject<void>;
 
-    name(): TransactionObject<string>;
-    arianeeWhitelist(): TransactionObject<string>;
-    totalSupply(): TransactionObject<BN>;
-    paused(): TransactionObject<boolean>;
-    owner(): TransactionObject<string>;
-    symbol(): TransactionObject<string>;
-    store(): TransactionObject<string>;
+    isRequestable(_tokenId: number | string): TransactionObject<boolean>;
+
     uriBase(): TransactionObject<string>;
   };
-
+  events: {
+    SetAddress: ContractEvent<{
+      _addressType: string;
+      _newAddress: string;
+      0: string;
+      1: string;
+    }>;
+    Hydrated: ContractEvent<{
+      _tokenId: BN;
+      _imprint: string;
+      _uri: string;
+      _initialKey: string;
+      _tokenRecoveryTimestamp: BN;
+      _initialKeyIsRequestKey: boolean;
+      _tokenCreation: BN;
+      0: BN;
+      1: string;
+      2: string;
+      3: string;
+      4: BN;
+      5: boolean;
+      6: BN;
+    }>;
+    RecoveryRequestUpdated: ContractEvent<{
+      _tokenId: BN;
+      _active: boolean;
+      0: BN;
+      1: boolean;
+    }>;
+    TokenRecovered: ContractEvent<BN>;
+    TokenURIUpdated: ContractEvent<{
+      _tokenId: BN;
+      URI: string;
+      0: BN;
+      1: string;
+    }>;
+    TokenAccessAdded: ContractEvent<{
+      _tokenId: BN;
+      _encryptedTokenKey: string;
+      _enable: boolean;
+      _tokenType: BN;
+      0: BN;
+      1: string;
+      2: boolean;
+      3: BN;
+    }>;
+    TokenDestroyed: ContractEvent<BN>;
+    SetNewUriBase: ContractEvent<string>;
+    Pause: ContractEvent<{}>;
+    Unpause: ContractEvent<{}>;
+    OwnershipTransferred: ContractEvent<{
+      previousOwner: string;
+      newOwner: string;
+      0: string;
+      1: string;
+    }>;
+    GrantAbilities: ContractEvent<{
+      _target: string;
+      _abilities: BN;
+      0: string;
+      1: BN;
+    }>;
+    RevokeAbilities: ContractEvent<{
+      _target: string;
+      _abilities: BN;
+      0: string;
+      1: BN;
+    }>;
+    Transfer: ContractEvent<{
+      _from: string;
+      _to: string;
+      _tokenId: BN;
+      0: string;
+      1: string;
+      2: BN;
+    }>;
+    Approval: ContractEvent<{
+      _owner: string;
+      _approved: string;
+      _tokenId: BN;
+      0: string;
+      1: string;
+      2: BN;
+    }>;
+    ApprovalForAll: ContractEvent<{
+      _owner: string;
+      _operator: string;
+      _approved: boolean;
+      0: string;
+      1: string;
+      2: boolean;
+    }>;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
+  };
 }

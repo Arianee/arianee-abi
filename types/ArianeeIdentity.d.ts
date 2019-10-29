@@ -2,8 +2,9 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import {Contract, ContractOptions } from "web3-eth-contract";
-import { TransactionObject } from "./types";
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeIdentity extends Contract {
   constructor(
@@ -15,23 +16,17 @@ export class ArianeeIdentity extends Contract {
   methods: {
     waitingURI(_identity: string): TransactionObject<string>;
 
-    compromiseIdentityDate(_identity: string): TransactionObject<BN>;
-
-    waitingImprint(_identity: string): TransactionObject<string>;
-
-    addressFromId(_id: string | number[]): TransactionObject<string>;
-
-    addressURI(_identity: string): TransactionObject<string>;
-
-    addressImprint(_identity: string): TransactionObject<string>;
-
-    addressIsApproved(_identity: string): TransactionObject<boolean>;
-
     updateValidatorAddress(
       _newValidatorAddress: string
     ): TransactionObject<void>;
 
+    compromiseIdentityDate(_identity: string): TransactionObject<BN>;
+
     updateBouncerAddress(_newBouncerAddress: string): TransactionObject<void>;
+
+    waitingImprint(_identity: string): TransactionObject<string>;
+
+    validatorAddress(): TransactionObject<string>;
 
     removeAddressFromApprovedList(_identity: string): TransactionObject<void>;
 
@@ -41,10 +36,20 @@ export class ArianeeIdentity extends Contract {
       _imprintToValidate: string | number[]
     ): TransactionObject<void>;
 
+    addressFromId(_id: string | number[]): TransactionObject<string>;
+
+    addressURI(_identity: string): TransactionObject<string>;
+
+    addressImprint(_identity: string): TransactionObject<string>;
+
     updateCompromiseDate(
       _identity: string,
       _compromiseDate: number | string
     ): TransactionObject<void>;
+
+    owner(): TransactionObject<string>;
+
+    bouncerAddress(): TransactionObject<string>;
 
     updateInformations(
       _uri: string,
@@ -53,11 +58,52 @@ export class ArianeeIdentity extends Contract {
 
     addAddressToApprovedList(_newIdentity: string): TransactionObject<string>;
 
+    addressIsApproved(_identity: string): TransactionObject<boolean>;
+
     transferOwnership(_newOwner: string): TransactionObject<void>;
-
-    validatorAddress(): TransactionObject<string>;
-    owner(): TransactionObject<string>;
-    bouncerAddress(): TransactionObject<string>;
   };
-
+  events: {
+    AddressApprovedAdded: ContractEvent<{
+      _newIdentity: string;
+      _addressId: string;
+      0: string;
+      1: string;
+    }>;
+    AddressApprovedRemoved: ContractEvent<string>;
+    URIUpdated: ContractEvent<{
+      _identity: string;
+      _uri: string;
+      _imprint: string;
+      0: string;
+      1: string;
+      2: string;
+    }>;
+    URIValidate: ContractEvent<{
+      _identity: string;
+      _uri: string;
+      _imprint: string;
+      0: string;
+      1: string;
+      2: string;
+    }>;
+    IdentityCompromised: ContractEvent<{
+      _identity: string;
+      _compromiseDate: BN;
+      0: string;
+      1: BN;
+    }>;
+    SetAddress: ContractEvent<{
+      _addressType: string;
+      _newAddress: string;
+      0: string;
+      1: string;
+    }>;
+    OwnershipTransferred: ContractEvent<{
+      previousOwner: string;
+      newOwner: string;
+      0: string;
+      1: string;
+    }>;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
+  };
 }

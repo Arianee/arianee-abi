@@ -2,25 +2,23 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeWhitelist extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeWhitelist;
   methods: {
+    grantAbilities(
+      _target: string,
+      _abilities: number | string
+    ): TransactionObject<void>;
+
     isBlacklisted(
       _owner: string,
       _sender: string,
@@ -40,16 +38,6 @@ export class ArianeeWhitelist extends Contract {
       _address: string
     ): TransactionObject<boolean>;
 
-    isAble(
-      _target: string,
-      _abilities: number | string
-    ): TransactionObject<boolean>;
-
-    grantAbilities(
-      _target: string,
-      _abilities: number | string
-    ): TransactionObject<void>;
-
     addWhitelistedAddress(
       _tokenId: number | string,
       _address: string
@@ -61,11 +49,44 @@ export class ArianeeWhitelist extends Contract {
       _allowSuperRevoke: boolean
     ): TransactionObject<void>;
 
+    isAble(
+      _target: string,
+      _abilities: number | string
+    ): TransactionObject<boolean>;
+
     addBlacklistedAddress(
       _sender: string,
       _tokenId: number | string,
       _activate: boolean
     ): TransactionObject<void>;
   };
-
+  events: {
+    WhitelistedAddressAdded: ContractEvent<{
+      _tokenId: BN;
+      _address: string;
+      0: BN;
+      1: string;
+    }>;
+    BlacklistedAddresAdded: ContractEvent<{
+      _sender: string;
+      _tokenId: BN;
+      _activate: boolean;
+      0: string;
+      1: BN;
+      2: boolean;
+    }>;
+    GrantAbilities: ContractEvent<{
+      _target: string;
+      _abilities: BN;
+      0: string;
+      1: BN;
+    }>;
+    RevokeAbilities: ContractEvent<{
+      _target: string;
+      _abilities: BN;
+      0: string;
+      1: BN;
+    }>;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
+  };
 }

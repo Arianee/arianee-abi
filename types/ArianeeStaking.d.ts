@@ -2,9 +2,9 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import {Contract, ContractOptions } from "web3-eth-contract";
-import { TransactionObject } from "./types";
-
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeStaking extends Contract {
   constructor(
@@ -14,37 +14,6 @@ export class ArianeeStaking extends Contract {
   );
   clone(): ArianeeStaking;
   methods: {
-    getPersonalStakeActualAmounts(_address: string): TransactionObject<(BN)[]>;
-
-    getPersonalStakeForAddresses(
-      _address: string
-    ): TransactionObject<(string)[]>;
-
-    getPersonalStakes(
-      _address: string
-    ): TransactionObject<{
-      0: (BN)[];
-      1: (BN)[];
-      2: (string)[];
-    }>;
-
-    getPersonalStakeUnlockedTimestamps(
-      _address: string
-    ): TransactionObject<(BN)[]>;
-
-    stakeHolders(
-      arg0: string
-    ): TransactionObject<{
-      totalStakedFor: BN;
-      personalStakeIndex: BN;
-      exists: boolean;
-      0: BN;
-      1: BN;
-      2: boolean;
-    }>;
-
-    totalStakedFor(_address: string): TransactionObject<BN>;
-
     stake(
       _amount: number | string,
       _data: string | number[]
@@ -90,13 +59,85 @@ export class ArianeeStaking extends Contract {
     ): TransactionObject<void>;
 
     ariaUSDExchange(): TransactionObject<BN>;
-    defaultLockInDuration(): TransactionObject<BN>;
-    feesReceiver(): TransactionObject<string>;
-    minimalUSDStakable(): TransactionObject<BN>;
-    owner(): TransactionObject<string>;
-    supportsHistory(): TransactionObject<boolean>;
-    token(): TransactionObject<string>;
-    totalStaked(): TransactionObject<BN>;
-  };
 
+    defaultLockInDuration(): TransactionObject<BN>;
+
+    feesReceiver(): TransactionObject<string>;
+
+    getPersonalStakeActualAmounts(_address: string): TransactionObject<(BN)[]>;
+
+    getPersonalStakeForAddresses(
+      _address: string
+    ): TransactionObject<(string)[]>;
+
+    getPersonalStakes(
+      _address: string
+    ): TransactionObject<{
+      0: (BN)[];
+      1: (BN)[];
+      2: (string)[];
+    }>;
+
+    getPersonalStakeUnlockedTimestamps(
+      _address: string
+    ): TransactionObject<(BN)[]>;
+
+    minimalUSDStakable(): TransactionObject<BN>;
+
+    owner(): TransactionObject<string>;
+
+    stakeHolders(
+      arg0: string
+    ): TransactionObject<{
+      totalStakedFor: BN;
+      personalStakeIndex: BN;
+      exists: boolean;
+      0: BN;
+      1: BN;
+      2: boolean;
+    }>;
+
+    supportsHistory(): TransactionObject<boolean>;
+
+    token(): TransactionObject<string>;
+
+    totalStaked(): TransactionObject<BN>;
+
+    totalStakedFor(_address: string): TransactionObject<BN>;
+  };
+  events: {
+    newStake: ContractEvent<{
+      _amount: BN;
+      staker: string;
+      0: BN;
+      1: string;
+    }>;
+    OwnershipTransferred: ContractEvent<{
+      previousOwner: string;
+      newOwner: string;
+      0: string;
+      1: string;
+    }>;
+    Staked: ContractEvent<{
+      user: string;
+      amount: BN;
+      total: BN;
+      data: string;
+      0: string;
+      1: BN;
+      2: BN;
+      3: string;
+    }>;
+    Unstaked: ContractEvent<{
+      user: string;
+      amount: BN;
+      total: BN;
+      data: string;
+      0: string;
+      1: BN;
+      2: BN;
+      3: string;
+    }>;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
+  };
 }

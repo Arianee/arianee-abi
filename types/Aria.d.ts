@@ -2,9 +2,9 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import {Contract, ContractOptions } from "web3-eth-contract";
-
-import {TransactionObject} from "./types";
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class Aria extends Contract {
   constructor(
@@ -18,14 +18,14 @@ export class Aria extends Contract {
       _interfaceID: string | number[]
     ): TransactionObject<boolean>;
 
-    balanceOf(_owner: string): TransactionObject<BN>;
-
-    allowance(_owner: string, _spender: string): TransactionObject<BN>;
+    name(): TransactionObject<string>;
 
     approve(
       _spender: string,
       _value: number | string
     ): TransactionObject<boolean>;
+
+    totalSupply(): TransactionObject<BN>;
 
     transferFrom(
       _from: string,
@@ -33,13 +33,33 @@ export class Aria extends Contract {
       _value: number | string
     ): TransactionObject<boolean>;
 
-    transfer(_to: string, _value: number | string): TransactionObject<boolean>;
-
-    name(): TransactionObject<string>;
-    totalSupply(): TransactionObject<BN>;
     decimals(): TransactionObject<BN>;
+
+    balanceOf(_owner: string): TransactionObject<BN>;
+
     symbol(): TransactionObject<string>;
 
-  };
+    transfer(_to: string, _value: number | string): TransactionObject<boolean>;
 
+    allowance(_owner: string, _spender: string): TransactionObject<BN>;
+  };
+  events: {
+    Transfer: ContractEvent<{
+      _from: string;
+      _to: string;
+      _value: BN;
+      0: string;
+      1: string;
+      2: BN;
+    }>;
+    Approval: ContractEvent<{
+      _owner: string;
+      _spender: string;
+      _value: BN;
+      0: string;
+      1: string;
+      2: BN;
+    }>;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
+  };
 }
