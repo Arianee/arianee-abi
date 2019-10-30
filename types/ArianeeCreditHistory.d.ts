@@ -2,22 +2,15 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeCreditHistory extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeCreditHistory;
   methods: {
@@ -36,6 +29,8 @@ export class ArianeeCreditHistory extends Contract {
 
     userIndex(_spender: string, _type: number | string): TransactionObject<BN>;
 
+    owner(): TransactionObject<string>;
+
     addCreditHistory(
       _spender: string,
       _price: number | string,
@@ -53,10 +48,9 @@ export class ArianeeCreditHistory extends Contract {
       _quantity: number | string
     ): TransactionObject<BN>;
 
-    transferOwnership(_newOwner: string): TransactionObject<void>;
-
-    owner(): TransactionObject<string>;
     arianeeStoreAddress(): TransactionObject<string>;
+
+    transferOwnership(_newOwner: string): TransactionObject<void>;
   };
   events: {
     SetAddress: ContractEvent<{
@@ -71,9 +65,6 @@ export class ArianeeCreditHistory extends Contract {
       0: string;
       1: string;
     }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }

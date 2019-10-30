@@ -11,17 +11,18 @@
   },
   "main": "",
   "scripts": {
-    "generate": "./node_modules/.bin/typechain --target=web3-1.0.0 './abi/*.json' --outDir=./types",
+    "generate": "./node_modules/.bin/typechain --target=web3-v1.2.2/dist './abi/*.json' --outDir=./types",
     "minify": "node ./minify.js",
     "build": "npm run generate && npm run minify"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typechain": "^0.3.21"
+    "typechain": "1.0.3",
+    "web3": "1.2.2"
   },
   "dependencies": {
-    "@types/web3": "^1.0.19",
-    "bn": "^1.0.5"
+    "bn": "1.0.5",
+    "lodash": "4.17.15"
   }
 }

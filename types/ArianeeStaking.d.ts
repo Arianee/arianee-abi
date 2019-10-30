@@ -2,56 +2,18 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeStaking extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeStaking;
   methods: {
-    getPersonalStakeActualAmounts(_address: string): TransactionObject<(BN)[]>;
-
-    getPersonalStakeForAddresses(
-      _address: string
-    ): TransactionObject<(string)[]>;
-
-    getPersonalStakes(
-      _address: string
-    ): TransactionObject<{
-      0: (BN)[];
-      1: (BN)[];
-      2: (string)[];
-    }>;
-
-    getPersonalStakeUnlockedTimestamps(
-      _address: string
-    ): TransactionObject<(BN)[]>;
-
-    stakeHolders(
-      arg0: string
-    ): TransactionObject<{
-      totalStakedFor: BN;
-      personalStakeIndex: BN;
-      exists: boolean;
-      0: BN;
-      1: BN;
-      2: boolean;
-    }>;
-
-    totalStakedFor(_address: string): TransactionObject<BN>;
-
     stake(
       _amount: number | string,
       _data: string | number[]
@@ -97,13 +59,51 @@ export class ArianeeStaking extends Contract {
     ): TransactionObject<void>;
 
     ariaUSDExchange(): TransactionObject<BN>;
+
     defaultLockInDuration(): TransactionObject<BN>;
+
     feesReceiver(): TransactionObject<string>;
+
+    getPersonalStakeActualAmounts(_address: string): TransactionObject<(BN)[]>;
+
+    getPersonalStakeForAddresses(
+      _address: string
+    ): TransactionObject<(string)[]>;
+
+    getPersonalStakes(
+      _address: string
+    ): TransactionObject<{
+      0: (BN)[];
+      1: (BN)[];
+      2: (string)[];
+    }>;
+
+    getPersonalStakeUnlockedTimestamps(
+      _address: string
+    ): TransactionObject<(BN)[]>;
+
     minimalUSDStakable(): TransactionObject<BN>;
+
     owner(): TransactionObject<string>;
+
+    stakeHolders(
+      arg0: string
+    ): TransactionObject<{
+      totalStakedFor: BN;
+      personalStakeIndex: BN;
+      exists: boolean;
+      0: BN;
+      1: BN;
+      2: boolean;
+    }>;
+
     supportsHistory(): TransactionObject<boolean>;
+
     token(): TransactionObject<string>;
+
     totalStaked(): TransactionObject<BN>;
+
+    totalStakedFor(_address: string): TransactionObject<BN>;
   };
   events: {
     newStake: ContractEvent<{
@@ -138,9 +138,6 @@ export class ArianeeStaking extends Contract {
       2: BN;
       3: string;
     }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }

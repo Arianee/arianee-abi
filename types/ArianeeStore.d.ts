@@ -2,41 +2,19 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeStore extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeStore;
   methods: {
     percentOfDispatch(_receiver: number | string): TransactionObject<BN>;
-
-    canDestroy(
-      _tokenId: number | string,
-      _sender: string
-    ): TransactionObject<boolean>;
-
-    creditPriceUSD(_creditType: number | string): TransactionObject<BN>;
-
-    canTransfer(
-      _to: string,
-      _from: string,
-      _tokenId: number | string
-    ): TransactionObject<boolean>;
-
-    getCreditPrice(_creditType: number | string): TransactionObject<BN>;
 
     buyCredit(
       _creditType: number | string,
@@ -50,7 +28,13 @@ export class ArianeeStore extends Contract {
 
     getAriaFromOldStore(_oldStoreAddress: string): TransactionObject<void>;
 
+    nonFungibleRegistry(): TransactionObject<string>;
+
     reserveToken(_id: number | string, _to: string): TransactionObject<void>;
+
+    creditHistory(): TransactionObject<string>;
+
+    ariaUSDExchange(): TransactionObject<BN>;
 
     acceptEvent(
       _eventId: number | string,
@@ -71,22 +55,41 @@ export class ArianeeStore extends Contract {
       _assetHolder: number | string
     ): TransactionObject<void>;
 
+    acceptedToken(): TransactionObject<string>;
+
+    arianeeProjectAddress(): TransactionObject<string>;
+
     refuseEvent(
       _eventId: number | string,
       _providerOwner: string
     ): TransactionObject<void>;
 
+    paused(): TransactionObject<boolean>;
+
     setArianeeProjectAddress(
       _arianeeProjectAddress: string
     ): TransactionObject<void>;
 
+    protocolInfraAddress(): TransactionObject<string>;
+
     withdrawArias(): TransactionObject<void>;
+
+    canDestroy(
+      _tokenId: number | string,
+      _sender: string
+    ): TransactionObject<boolean>;
 
     pause(): TransactionObject<void>;
 
     setProtocolInfraAddress(
       _protocolInfraAddress: string
     ): TransactionObject<void>;
+
+    owner(): TransactionObject<string>;
+
+    arianeeEvent(): TransactionObject<string>;
+
+    creditPriceUSD(_creditType: number | string): TransactionObject<BN>;
 
     requestToken(
       _tokenId: number | string,
@@ -95,6 +98,12 @@ export class ArianeeStore extends Contract {
       _providerOwner: string,
       _signature: string | number[]
     ): TransactionObject<void>;
+
+    canTransfer(
+      _to: string,
+      _from: string,
+      _tokenId: number | string
+    ): TransactionObject<boolean>;
 
     createEvent(
       _eventId: number | string,
@@ -116,21 +125,14 @@ export class ArianeeStore extends Contract {
 
     transferOwnership(_newOwner: string): TransactionObject<void>;
 
+    authorizedExchangeAddress(): TransactionObject<string>;
+
+    getCreditPrice(_creditType: number | string): TransactionObject<BN>;
+
     setCreditPrice(
       _creditType: number | string,
       _price: number | string
     ): TransactionObject<void>;
-
-    nonFungibleRegistry(): TransactionObject<string>;
-    creditHistory(): TransactionObject<string>;
-    ariaUSDExchange(): TransactionObject<BN>;
-    acceptedToken(): TransactionObject<string>;
-    arianeeProjectAddress(): TransactionObject<string>;
-    paused(): TransactionObject<boolean>;
-    protocolInfraAddress(): TransactionObject<string>;
-    owner(): TransactionObject<string>;
-    arianeeEvent(): TransactionObject<string>;
-    authorizedExchangeAddress(): TransactionObject<string>;
   };
   events: {
     SetAddress: ContractEvent<{
@@ -182,9 +184,6 @@ export class ArianeeStore extends Contract {
       0: string;
       1: string;
     }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }

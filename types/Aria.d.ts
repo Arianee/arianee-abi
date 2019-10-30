@@ -2,22 +2,15 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class Aria extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): Aria;
   methods: {
@@ -25,14 +18,14 @@ export class Aria extends Contract {
       _interfaceID: string | number[]
     ): TransactionObject<boolean>;
 
-    balanceOf(_owner: string): TransactionObject<BN>;
-
-    allowance(_owner: string, _spender: string): TransactionObject<BN>;
+    name(): TransactionObject<string>;
 
     approve(
       _spender: string,
       _value: number | string
     ): TransactionObject<boolean>;
+
+    totalSupply(): TransactionObject<BN>;
 
     transferFrom(
       _from: string,
@@ -40,12 +33,15 @@ export class Aria extends Contract {
       _value: number | string
     ): TransactionObject<boolean>;
 
+    decimals(): TransactionObject<BN>;
+
+    balanceOf(_owner: string): TransactionObject<BN>;
+
+    symbol(): TransactionObject<string>;
+
     transfer(_to: string, _value: number | string): TransactionObject<boolean>;
 
-    name(): TransactionObject<string>;
-    totalSupply(): TransactionObject<BN>;
-    decimals(): TransactionObject<BN>;
-    symbol(): TransactionObject<string>;
+    allowance(_owner: string, _spender: string): TransactionObject<BN>;
   };
   events: {
     Transfer: ContractEvent<{
@@ -64,9 +60,6 @@ export class Aria extends Contract {
       1: string;
       2: BN;
     }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }

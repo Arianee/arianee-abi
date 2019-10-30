@@ -2,22 +2,15 @@
 /* tslint:disable */
 
 import BN from "bn.js";
-import Contract, { contractOptions } from "web3/eth/contract";
-import { EventLog, Callback, EventEmitter } from "web3/types";
-import { TransactionObject, BlockType } from "web3/eth/types";
-import { ContractEvent } from "./types";
-
-interface EventOptions {
-  filter?: object;
-  fromBlock?: BlockType;
-  topics?: string[];
-}
+import { Contract, ContractOptions, EventOptions } from "web3-eth-contract";
+import { EventLog } from "web3-core";
+import { TransactionObject, ContractEvent, Callback } from "./types";
 
 export class ArianeeSmartAsset extends Contract {
   constructor(
     jsonInterface: any[],
     address?: string,
-    options?: contractOptions
+    options?: ContractOptions
   );
   clone(): ArianeeSmartAsset;
   methods: {
@@ -32,56 +25,9 @@ export class ArianeeSmartAsset extends Contract {
       _signature: string | number[]
     ): TransactionObject<boolean>;
 
+    name(): TransactionObject<string>;
+
     getApproved(_tokenId: number | string): TransactionObject<string>;
-
-    tokenOfOwnerByIndex(
-      _owner: string,
-      _index: number | string
-    ): TransactionObject<BN>;
-
-    addressToAbility(arg0: string): TransactionObject<BN>;
-
-    tokenByIndex(_index: number | string): TransactionObject<BN>;
-
-    tokenCreation(_tokenId: number | string): TransactionObject<BN>;
-
-    ownerOf(_tokenId: number | string): TransactionObject<string>;
-
-    recoveryRequestOpen(_tokenId: number | string): TransactionObject<boolean>;
-
-    balanceOf(_owner: string): TransactionObject<BN>;
-
-    tokenImprint(_tokenId: number | string): TransactionObject<string>;
-
-    canOperate(
-      _tokenId: number | string,
-      _operator: string
-    ): TransactionObject<boolean>;
-
-    issuerOf(_tokenId: number | string): TransactionObject<string>;
-
-    isAble(
-      _target: string,
-      _abilities: number | string
-    ): TransactionObject<boolean>;
-
-    getRewards(_tokenId: number | string): TransactionObject<BN>;
-
-    tokenURI(_tokenId: number | string): TransactionObject<string>;
-
-    tokenHashedAccess(
-      _tokenId: number | string,
-      _tokenType: number | string
-    ): TransactionObject<string>;
-
-    tokenRecoveryDate(_tokenId: number | string): TransactionObject<BN>;
-
-    isApprovedForAll(
-      _owner: string,
-      _operator: string
-    ): TransactionObject<boolean>;
-
-    isRequestable(_tokenId: number | string): TransactionObject<boolean>;
 
     approve(
       _approved: string,
@@ -94,6 +40,10 @@ export class ArianeeSmartAsset extends Contract {
     ): TransactionObject<void>;
 
     validRecoveryRequest(_tokenId: number | string): TransactionObject<void>;
+
+    arianeeWhitelist(): TransactionObject<string>;
+
+    totalSupply(): TransactionObject<BN>;
 
     updateTokenURI(
       _tokenId: number | string,
@@ -114,6 +64,11 @@ export class ArianeeSmartAsset extends Contract {
 
     setUriBase(_newURIBase: string): TransactionObject<void>;
 
+    tokenOfOwnerByIndex(
+      _owner: string,
+      _index: number | string
+    ): TransactionObject<BN>;
+
     unpause(): TransactionObject<void>;
 
     safeTransferFrom(
@@ -122,9 +77,36 @@ export class ArianeeSmartAsset extends Contract {
       _tokenId: number | string
     ): TransactionObject<void>;
 
+    addressToAbility(arg0: string): TransactionObject<BN>;
+
+    tokenByIndex(_index: number | string): TransactionObject<BN>;
+
+    paused(): TransactionObject<boolean>;
+
+    tokenCreation(_tokenId: number | string): TransactionObject<BN>;
+
+    ownerOf(_tokenId: number | string): TransactionObject<string>;
+
+    recoveryRequestOpen(_tokenId: number | string): TransactionObject<boolean>;
+
     setStoreAddress(_storeAddress: string): TransactionObject<void>;
 
+    balanceOf(_owner: string): TransactionObject<BN>;
+
+    tokenImprint(_tokenId: number | string): TransactionObject<string>;
+
+    canOperate(
+      _tokenId: number | string,
+      _operator: string
+    ): TransactionObject<boolean>;
+
     pause(): TransactionObject<void>;
+
+    owner(): TransactionObject<string>;
+
+    symbol(): TransactionObject<string>;
+
+    store(): TransactionObject<string>;
 
     destroy(_tokenId: number | string): TransactionObject<void>;
 
@@ -134,6 +116,8 @@ export class ArianeeSmartAsset extends Contract {
       _operator: string,
       _approved: boolean
     ): TransactionObject<void>;
+
+    issuerOf(_tokenId: number | string): TransactionObject<string>;
 
     revokeAbilities(
       _target: string,
@@ -150,6 +134,22 @@ export class ArianeeSmartAsset extends Contract {
       _tokenType: number | string
     ): TransactionObject<void>;
 
+    isAble(
+      _target: string,
+      _abilities: number | string
+    ): TransactionObject<boolean>;
+
+    getRewards(_tokenId: number | string): TransactionObject<BN>;
+
+    tokenURI(_tokenId: number | string): TransactionObject<string>;
+
+    tokenHashedAccess(
+      _tokenId: number | string,
+      _tokenType: number | string
+    ): TransactionObject<string>;
+
+    tokenRecoveryDate(_tokenId: number | string): TransactionObject<BN>;
+
     requestToken(
       _tokenId: number | string,
       _hash: string | number[],
@@ -157,6 +157,11 @@ export class ArianeeSmartAsset extends Contract {
       _newOwner: string,
       _signature: string | number[]
     ): TransactionObject<BN>;
+
+    isApprovedForAll(
+      _owner: string,
+      _operator: string
+    ): TransactionObject<boolean>;
 
     hydrateToken(
       _tokenId: number | string,
@@ -175,13 +180,8 @@ export class ArianeeSmartAsset extends Contract {
       _active: boolean
     ): TransactionObject<void>;
 
-    name(): TransactionObject<string>;
-    arianeeWhitelist(): TransactionObject<string>;
-    totalSupply(): TransactionObject<BN>;
-    paused(): TransactionObject<boolean>;
-    owner(): TransactionObject<string>;
-    symbol(): TransactionObject<string>;
-    store(): TransactionObject<string>;
+    isRequestable(_tokenId: number | string): TransactionObject<boolean>;
+
     uriBase(): TransactionObject<string>;
   };
   events: {
@@ -276,9 +276,6 @@ export class ArianeeSmartAsset extends Contract {
       1: string;
       2: boolean;
     }>;
-    allEvents: (
-      options?: EventOptions,
-      cb?: Callback<EventLog>
-    ) => EventEmitter;
+    allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }
