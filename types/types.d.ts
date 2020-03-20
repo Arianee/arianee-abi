@@ -2,6 +2,7 @@
 /* tslint:disable */
 
 import { EventLog } from "web3-core";
+import { TransactionObject } from "./types";
 import BN from "bn.js";
 import { EventEmitter } from "events";
 // @ts-ignore
