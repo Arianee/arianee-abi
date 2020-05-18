@@ -32,6 +32,11 @@ export class ArianeeStore extends Contract {
 
     reserveToken(_id: number | string, _to: string): TransactionObject<void>;
 
+    readMessage(
+      _messageId: number | string,
+      _providerBrand: string
+    ): TransactionObject<void>;
+
     creditHistory(): TransactionObject<string>;
 
     ariaUSDExchange(): TransactionObject<BN>;
@@ -56,6 +61,12 @@ export class ArianeeStore extends Contract {
     ): TransactionObject<void>;
 
     acceptedToken(): TransactionObject<string>;
+
+    createMessage(
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _providerBrand: string
+    ): TransactionObject<void>;
 
     arianeeProjectAddress(): TransactionObject<string>;
 
@@ -112,6 +123,8 @@ export class ArianeeStore extends Contract {
       _uri: string,
       _providerBrand: string
     ): TransactionObject<void>;
+
+    arianeeMessage(): TransactionObject<string>;
 
     hydrateToken(
       _tokenId: number | string,

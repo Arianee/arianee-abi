@@ -6,7 +6,8 @@ import { ArianeeSmartAsset } from "./types/ArianeeSmartAsset";
 import { ArianeeStaking } from "./types/ArianeeStaking";
 import { ArianeeStore } from "./types/ArianeeStore";
 import { ArianeeWhitelist } from "./types/ArianeeWhitelist";
-import {ArianeeEvent} from './types/ArianeeEvent';
+import { ArianeeEvent } from './types/ArianeeEvent';
+import { ArianeeMessage } from './types/ArianeeMessage';
 
 export {
   Aria,
@@ -16,5 +17,6 @@ export {
   ArianeeStore,
   ArianeeWhitelist,
   ArianeeCreditHistory,
-  ArianeeEvent
+  ArianeeEvent,
+  ArianeeMessage
 };
