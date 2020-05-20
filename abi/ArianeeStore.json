@@ -101,6 +101,24 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_messageId",
+				"type": "uint256"
+			},
+			{
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "readMessage",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "creditHistory",
@@ -211,6 +229,28 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "createMessage",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -477,6 +517,20 @@
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "arianeeMessage",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -595,6 +649,10 @@
 			},
 			{
 				"name": "_arianeeEvent",
+				"type": "address"
+			},
+			{
+				"name": "_arianeeMessage",
 				"type": "address"
 			},
 			{
