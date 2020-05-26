@@ -54,6 +54,36 @@
         "type": "function"
     },
     {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_messageId",
+                "type": "uint256"
+            },
+            {
+                "name": "_tokenId",
+                "type": "uint256"
+            },
+            {
+                "name": "_imprint",
+                "type": "bytes32"
+            },
+            {
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "name": "_reward",
+                "type": "uint256"
+            }
+        ],
+        "name": "sendMessage",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "constant": true,
         "inputs": [
             {
@@ -133,37 +163,6 @@
         ],
         "name": "transferOwnership",
         "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_tokenId",
-                "type": "uint256"
-            },
-            {
-                "name": "_imprint",
-                "type": "bytes32"
-            },
-            {
-                "name": "_from",
-                "type": "address"
-            },
-            {
-                "name": "_reward",
-                "type": "uint256"
-            }
-        ],
-        "name": "sendMessage",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
