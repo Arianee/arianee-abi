@@ -32,6 +32,14 @@ export class ArianeeMessage extends Contract {
       _from: string
     ): TransactionObject<BN>;
 
+    sendMessage(
+      _messageId: number | string,
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _from: string,
+      _reward: number | string
+    ): TransactionObject<void>;
+
     receiverToMessageIds(
       arg0: string,
       arg1: number | string
@@ -44,13 +52,6 @@ export class ArianeeMessage extends Contract {
     messageLengthByReceiver(_receiver: string): TransactionObject<BN>;
 
     transferOwnership(_newOwner: string): TransactionObject<void>;
-
-    sendMessage(
-      _tokenId: number | string,
-      _imprint: string | number[],
-      _from: string,
-      _reward: number | string
-    ): TransactionObject<BN>;
   };
   events: {
     MessageSent: ContractEvent<{

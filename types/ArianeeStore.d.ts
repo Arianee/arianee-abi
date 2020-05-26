@@ -62,12 +62,6 @@ export class ArianeeStore extends Contract {
 
     acceptedToken(): TransactionObject<string>;
 
-    createMessage(
-      _tokenId: number | string,
-      _imprint: string | number[],
-      _providerBrand: string
-    ): TransactionObject<void>;
-
     arianeeProjectAddress(): TransactionObject<string>;
 
     refuseEvent(
@@ -97,6 +91,13 @@ export class ArianeeStore extends Contract {
     ): TransactionObject<void>;
 
     owner(): TransactionObject<string>;
+
+    createMessage(
+      _messageId: number | string,
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _providerBrand: string
+    ): TransactionObject<void>;
 
     arianeeEvent(): TransactionObject<string>;
 

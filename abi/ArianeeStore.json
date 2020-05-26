@@ -232,28 +232,6 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "createMessage",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [],
 		"name": "arianeeProjectAddress",
@@ -394,6 +372,32 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_messageId",
+				"type": "uint256"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "createMessage",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
