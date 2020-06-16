@@ -8,6 +8,7 @@ import { ArianeeStore } from "./types/ArianeeStore";
 import { ArianeeWhitelist } from "./types/ArianeeWhitelist";
 import { ArianeeEvent } from './types/ArianeeEvent';
 import { ArianeeMessage } from './types/ArianeeMessage';
+import { ArianeeUserAction } from './types/ArianeeUserAction';
 
 export {
   Aria,
@@ -18,5 +19,6 @@ export {
   ArianeeWhitelist,
   ArianeeCreditHistory,
   ArianeeEvent,
-  ArianeeMessage
+  ArianeeMessage,
+  ArianeeUserAction
 };
