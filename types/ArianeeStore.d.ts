@@ -14,108 +14,16 @@ export class ArianeeStore extends Contract {
   );
   clone(): ArianeeStore;
   methods: {
-    percentOfDispatch(_receiver: number | string): TransactionObject<BN>;
+    acceptEvent(
+      _eventId: number | string,
+      _providerOwner: string
+    ): TransactionObject<void>;
 
     buyCredit(
       _creditType: number | string,
       _quantity: number | string,
       _to: string
     ): TransactionObject<void>;
-
-    setAriaUSDExchange(
-      _ariaUSDExchange: number | string
-    ): TransactionObject<void>;
-
-    getAriaFromOldStore(_oldStoreAddress: string): TransactionObject<void>;
-
-    nonFungibleRegistry(): TransactionObject<string>;
-
-    reserveToken(_id: number | string, _to: string): TransactionObject<void>;
-
-    readMessage(
-      _messageId: number | string,
-      _providerBrand: string
-    ): TransactionObject<void>;
-
-    creditHistory(): TransactionObject<string>;
-
-    ariaUSDExchange(): TransactionObject<BN>;
-
-    acceptEvent(
-      _eventId: number | string,
-      _providerOwner: string
-    ): TransactionObject<void>;
-
-    setAuthorizedExchangeAddress(
-      _authorizedExchangeAddress: string
-    ): TransactionObject<void>;
-
-    unpause(): TransactionObject<void>;
-
-    setDispatchPercent(
-      _percentInfra: number | string,
-      _percentBrandsProvider: number | string,
-      _percentOwnerProvider: number | string,
-      _arianeeProject: number | string,
-      _assetHolder: number | string
-    ): TransactionObject<void>;
-
-    acceptedToken(): TransactionObject<string>;
-
-    arianeeProjectAddress(): TransactionObject<string>;
-
-    refuseEvent(
-      _eventId: number | string,
-      _providerOwner: string
-    ): TransactionObject<void>;
-
-    paused(): TransactionObject<boolean>;
-
-    setArianeeProjectAddress(
-      _arianeeProjectAddress: string
-    ): TransactionObject<void>;
-
-    protocolInfraAddress(): TransactionObject<string>;
-
-    withdrawArias(): TransactionObject<void>;
-
-    canDestroy(
-      _tokenId: number | string,
-      _sender: string
-    ): TransactionObject<boolean>;
-
-    pause(): TransactionObject<void>;
-
-    setProtocolInfraAddress(
-      _protocolInfraAddress: string
-    ): TransactionObject<void>;
-
-    owner(): TransactionObject<string>;
-
-    createMessage(
-      _messageId: number | string,
-      _tokenId: number | string,
-      _imprint: string | number[],
-      _providerBrand: string
-    ): TransactionObject<void>;
-
-    arianeeEvent(): TransactionObject<string>;
-
-    creditPriceUSD(_creditType: number | string): TransactionObject<BN>;
-
-    requestToken(
-      _tokenId: number | string,
-      _hash: string | number[],
-      _keepRequestToken: boolean,
-      _providerOwner: string,
-      _signature: string | number[]
-    ): TransactionObject<void>;
-
-    canTransfer(
-      _to: string,
-      _from: string,
-      _tokenId: number | string
-    ): TransactionObject<boolean>;
 
     createEvent(
       _eventId: number | string,
@@ -125,7 +33,14 @@ export class ArianeeStore extends Contract {
       _providerBrand: string
     ): TransactionObject<void>;
 
-    arianeeMessage(): TransactionObject<string>;
+    createMessage(
+      _messageId: number | string,
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _providerBrand: string
+    ): TransactionObject<void>;
+
+    getAriaFromOldStore(_oldStoreAddress: string): TransactionObject<void>;
 
     hydrateToken(
       _tokenId: number | string,
@@ -137,16 +52,114 @@ export class ArianeeStore extends Contract {
       _providerBrand: string
     ): TransactionObject<void>;
 
-    transferOwnership(_newOwner: string): TransactionObject<void>;
+    pause(): TransactionObject<void>;
 
-    authorizedExchangeAddress(): TransactionObject<string>;
+    readMessage(
+      _messageId: number | string,
+      _walletProvider: string
+    ): TransactionObject<void>;
 
-    getCreditPrice(_creditType: number | string): TransactionObject<BN>;
+    readUpdateSmartAsset(
+      _tokenId: number | string,
+      _walletProvider: string
+    ): TransactionObject<void>;
+
+    refuseEvent(
+      _eventId: number | string,
+      _providerOwner: string
+    ): TransactionObject<void>;
+
+    requestToken(
+      _tokenId: number | string,
+      _hash: string | number[],
+      _keepRequestToken: boolean,
+      _providerOwner: string,
+      _signature: string | number[]
+    ): TransactionObject<void>;
+
+    reserveToken(_id: number | string, _to: string): TransactionObject<void>;
+
+    setArianeeProjectAddress(
+      _arianeeProjectAddress: string
+    ): TransactionObject<void>;
+
+    setAriaUSDExchange(
+      _ariaUSDExchange: number | string
+    ): TransactionObject<void>;
+
+    setAuthorizedExchangeAddress(
+      _authorizedExchangeAddress: string
+    ): TransactionObject<void>;
 
     setCreditPrice(
       _creditType: number | string,
       _price: number | string
     ): TransactionObject<void>;
+
+    setDispatchPercent(
+      _percentInfra: number | string,
+      _percentBrandsProvider: number | string,
+      _percentOwnerProvider: number | string,
+      _arianeeProject: number | string,
+      _assetHolder: number | string
+    ): TransactionObject<void>;
+
+    setProtocolInfraAddress(
+      _protocolInfraAddress: string
+    ): TransactionObject<void>;
+
+    transferOwnership(_newOwner: string): TransactionObject<void>;
+
+    unpause(): TransactionObject<void>;
+
+    updateSmartAsset(
+      _tokenId: number | string,
+      _imprint: string | number[],
+      _providerBrand: string
+    ): TransactionObject<void>;
+
+    withdrawArias(): TransactionObject<void>;
+
+    acceptedToken(): TransactionObject<string>;
+
+    arianeeEvent(): TransactionObject<string>;
+
+    arianeeMessage(): TransactionObject<string>;
+
+    arianeeProjectAddress(): TransactionObject<string>;
+
+    arianeeUpdate(): TransactionObject<string>;
+
+    ariaUSDExchange(): TransactionObject<BN>;
+
+    authorizedExchangeAddress(): TransactionObject<string>;
+
+    canDestroy(
+      _tokenId: number | string,
+      _sender: string
+    ): TransactionObject<boolean>;
+
+    canTransfer(
+      _to: string,
+      _from: string,
+      _tokenId: number | string
+    ): TransactionObject<boolean>;
+
+    creditHistory(): TransactionObject<string>;
+
+    creditPriceUSD(_creditType: number | string): TransactionObject<BN>;
+
+    getCreditPrice(_creditType: number | string): TransactionObject<BN>;
+
+    nonFungibleRegistry(): TransactionObject<string>;
+
+    owner(): TransactionObject<string>;
+
+    paused(): TransactionObject<boolean>;
+
+    percentOfDispatch(_receiver: number | string): TransactionObject<BN>;
+
+    protocolInfraAddress(): TransactionObject<string>;
   };
   events: {
     SetAddress: ContractEvent<{
