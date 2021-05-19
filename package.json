@@ -11,7 +11,8 @@
   },
   "main": "",
   "scripts": {
-    "generate": "./node_modules/.bin/typechain --target=web3-v1.2.2/dist './abi/*.json' --outDir=./types",
+    "generate": "./node_modules/.bin/typechain --target=web3-v1.2.2/dist './abi/json/**/*.json' --outDir=./types",
+    "generateJS": "",
     "minify": "node ./minify.js",
     "build": "npm run generate && npm run minify"
   },

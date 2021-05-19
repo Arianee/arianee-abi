@@ -48,6 +48,10 @@ export class ArianeeEvent extends Contract {
     getEvent(
       _eventId: number | string
     ): TransactionObject<{
+      uri: string;
+      imprint: string;
+      provider: string;
+      timestamp: BN;
       0: string;
       1: string;
       2: string;
