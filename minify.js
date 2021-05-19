@@ -1,38 +1,34 @@
 const fs = require('fs');
 var path = require('path')
 
-const testFolder = './abi/';
+const rootFolder = './abi/';
 
 const dir={
-  js:testFolder+'js/',
-  json:testFolder+'json/'
+  js:rootFolder+'js/',
+  json:rootFolder+'json/'
 }
 
-if (!fs.existsSync(dir.js)) {
-  fs.mkdirSync(dir.js);
-};
+fs.readdirSync(dir.json).forEach(folder => {
 
-if (!fs.existsSync( dir.json)) {
-  fs.mkdirSync(dir.json);
-};
+  fs.readdirSync(path.join(dir.json ,folder)).forEach(file => {
 
+    if (path.extname(file) === '.json') {
+      const content = fs.readFileSync(path.join(__dirname, dir.json , folder , file) );
+      const minified = JSON.stringify(JSON.parse(content));
 
-const minifiedFiles = [];
-fs.readdirSync(testFolder).forEach(file => {
-  if (path.extname(file) === '.json') {
-    minifiedFiles.push(testFolder + file);
-    const content = fs.readFileSync(testFolder + file);
-    var minified = JSON.stringify(JSON.parse(content));
-    
-    // Write jsFile
-    const jsfileName = file.substr(0, file.lastIndexOf(".")) + ".js";
-    const jsContent="module.exports = " + minified;
-    fs.writeFileSync(dir.js + jsfileName, jsContent);
+      // Write jsFile
+      const jsfileName = file.substr(0, file.lastIndexOf(".")) + ".js";
+      const jsContent="module.exports = " + minified;
+      const outFolder = path.join(__dirname, dir.js , folder)
+      if (!fs.existsSync(outFolder)) {
+        fs.mkdirSync(outFolder);
+      }
 
-    // write json content
-    fs.writeFileSync(dir.json + file, minified);
-  }
+      fs.writeFileSync(path.join(outFolder , jsfileName), jsContent);
+    }
+
+  })
+
 });
 
 console.log("FINISHED MINI-FYING")
-console.log(minifiedFiles);

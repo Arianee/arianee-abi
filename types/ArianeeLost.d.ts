@@ -14,11 +14,11 @@ export class ArianeeLost extends Contract {
   );
   clone(): ArianeeLost;
   methods: {
-    setLost(_tokenId: number | string): TransactionObject<void>;
-
     unsetLost(_tokenId: number | string): TransactionObject<void>;
 
     isLost(_tokenId: number | string): TransactionObject<boolean>;
+
+    setLost(_tokenId: number | string): TransactionObject<void>;
 
     smartAsset(): TransactionObject<string>;
   };
