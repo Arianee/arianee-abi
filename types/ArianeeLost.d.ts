@@ -14,17 +14,52 @@ export class ArianeeLost extends Contract {
   );
   clone(): ArianeeLost;
   methods: {
-    unsetLost(_tokenId: number | string): TransactionObject<void>;
+    setAuthorizedIdentity(
+      _newIdentityAuthorized: string
+    ): TransactionObject<void>;
 
-    isLost(_tokenId: number | string): TransactionObject<boolean>;
+    setManagerIdentity(_managerIdentity: string): TransactionObject<void>;
 
-    setLost(_tokenId: number | string): TransactionObject<void>;
+    setMissingStatus(_tokenId: number | string): TransactionObject<void>;
+
+    setStolenStatus(_tokenId: number | string): TransactionObject<void>;
+
+    transferOwnership(_newOwner: string): TransactionObject<void>;
+
+    unsetAuthorizedIdentity(
+      _newIdentityUnauthorized: string
+    ): TransactionObject<void>;
+
+    unsetMissingStatus(_tokenId: number | string): TransactionObject<void>;
+
+    unsetStolenStatus(_tokenId: number | string): TransactionObject<void>;
+
+    getManagerIdentity(): TransactionObject<string>;
+
+    isAddressAuthorized(_address: string): TransactionObject<boolean>;
+
+    isMissing(_tokenId: number | string): TransactionObject<boolean>;
+
+    isStolen(_tokenId: number | string): TransactionObject<boolean>;
+
+    owner(): TransactionObject<string>;
 
     smartAsset(): TransactionObject<string>;
   };
   events: {
-    Lost: ContractEvent<BN>;
-    Retrieved: ContractEvent<BN>;
+    NewManagerIdentity: ContractEvent<string>;
+    Missing: ContractEvent<BN>;
+    UnMissing: ContractEvent<BN>;
+    AuthorizedIdentityAdded: ContractEvent<string>;
+    AuthorizedIdentityRemoved: ContractEvent<string>;
+    Stolen: ContractEvent<BN>;
+    UnStolen: ContractEvent<BN>;
+    OwnershipTransferred: ContractEvent<{
+      previousOwner: string;
+      newOwner: string;
+      0: string;
+      1: string;
+    }>;
     allEvents: (options?: EventOptions, cb?: Callback<EventLog>) => any;
   };
 }
