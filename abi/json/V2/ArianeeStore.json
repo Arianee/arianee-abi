@@ -1,744 +1,62 @@
 [
 	{
-		"constant": true,
 		"inputs": [
 			{
-				"name": "_receiver",
-				"type": "uint8"
-			}
-		],
-		"name": "percentOfDispatch",
-		"outputs": [
-			{
-				"name": "_percent",
-				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_creditType",
-				"type": "uint256"
-			},
-			{
-				"name": "_quantity",
-				"type": "uint256"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			}
-		],
-		"name": "buyCredit",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_ariaUSDExchange",
-				"type": "uint256"
-			}
-		],
-		"name": "setAriaUSDExchange",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_oldStoreAddress",
-				"type": "address"
-			}
-		],
-		"name": "getAriaFromOldStore",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_walletProvider",
-				"type": "address"
-			}
-		],
-		"name": "readUpdateSmartAsset",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "nonFungibleRegistry",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "uint256"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			}
-		],
-		"name": "reserveToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_messageId",
-				"type": "uint256"
-			},
-			{
-				"name": "_walletProvider",
-				"type": "address"
-			}
-		],
-		"name": "readMessage",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "creditHistory",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "ariaUSDExchange",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_eventId",
-				"type": "uint256"
-			},
-			{
-				"name": "_providerOwner",
-				"type": "address"
-			}
-		],
-		"name": "acceptEvent",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_authorizedExchangeAddress",
-				"type": "address"
-			}
-		],
-		"name": "setAuthorizedExchangeAddress",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "unpause",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_percentInfra",
-				"type": "uint8"
-			},
-			{
-				"name": "_percentBrandsProvider",
-				"type": "uint8"
-			},
-			{
-				"name": "_percentOwnerProvider",
-				"type": "uint8"
-			},
-			{
-				"name": "_arianeeProject",
-				"type": "uint8"
-			},
-			{
-				"name": "_assetHolder",
-				"type": "uint8"
-			}
-		],
-		"name": "setDispatchPercent",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "acceptedToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arianeeProjectAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_eventId",
-				"type": "uint256"
-			},
-			{
-				"name": "_providerOwner",
-				"type": "address"
-			}
-		],
-		"name": "refuseEvent",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "paused",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_arianeeProjectAddress",
-				"type": "address"
-			}
-		],
-		"name": "setArianeeProjectAddress",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "protocolInfraAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdrawArias",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_sender",
-				"type": "address"
-			}
-		],
-		"name": "canDestroy",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "pause",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_protocolInfraAddress",
-				"type": "address"
-			}
-		],
-		"name": "setProtocolInfraAddress",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_messageId",
-				"type": "uint256"
-			},
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "createMessage",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arianeeUpdate",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arianeeEvent",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_creditType",
-				"type": "uint256"
-			}
-		],
-		"name": "creditPriceUSD",
-		"outputs": [
-			{
-				"name": "_creditPriceUSD",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_hash",
-				"type": "bytes32"
-			},
-			{
-				"name": "_keepRequestToken",
-				"type": "bool"
-			},
-			{
-				"name": "_providerOwner",
-				"type": "address"
-			},
-			{
-				"name": "_signature",
-				"type": "bytes"
-			}
-		],
-		"name": "requestToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "canTransfer",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_eventId",
-				"type": "uint256"
-			},
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_uri",
-				"type": "string"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "createEvent",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arianeeMessage",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_uri",
-				"type": "string"
-			},
-			{
-				"name": "_encryptedInitialKey",
-				"type": "address"
-			},
-			{
-				"name": "_tokenRecoveryTimestamp",
-				"type": "uint256"
-			},
-			{
-				"name": "_initialKeyIsRequestKey",
-				"type": "bool"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "hydrateToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "authorizedExchangeAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_creditType",
-				"type": "uint256"
-			}
-		],
-		"name": "getCreditPrice",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "_imprint",
-				"type": "bytes32"
-			},
-			{
-				"name": "_providerBrand",
-				"type": "address"
-			}
-		],
-		"name": "updateSmartAsset",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_creditType",
-				"type": "uint256"
-			},
-			{
-				"name": "_price",
-				"type": "uint256"
-			}
-		],
-		"name": "setCreditPrice",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
+				"internalType": "contract ERC20",
 				"name": "_acceptedToken",
 				"type": "address"
 			},
 			{
+				"internalType": "contract ERC721",
 				"name": "_nonFungibleRegistry",
 				"type": "address"
 			},
 			{
+				"internalType": "address",
 				"name": "_creditHistoryAddress",
 				"type": "address"
 			},
 			{
+				"internalType": "address",
 				"name": "_arianeeEvent",
 				"type": "address"
 			},
 			{
+				"internalType": "address",
 				"name": "_arianeeMessage",
 				"type": "address"
 			},
 			{
+				"internalType": "address",
 				"name": "_arianeeUpdate",
 				"type": "address"
 			},
 			{
+				"internalType": "uint256",
 				"name": "_ariaUSDExchange",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "_creditPricesUSD0",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "_creditPricesUSD1",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "_creditPricesUSD2",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "_creditPricesUSD3",
 				"type": "uint256"
 			}
 		],
-		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -746,17 +64,31 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "_addressType",
-				"type": "string"
+				"indexed": true,
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_receiver",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "_creditType",
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "_newAddress",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
 			}
 		],
-		"name": "SetAddress",
+		"name": "CreditBought",
 		"type": "event"
 	},
 	{
@@ -764,16 +96,18 @@
 		"inputs": [
 			{
 				"indexed": true,
-				"name": "_creditType",
+				"internalType": "uint256",
+				"name": "_type",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "_price",
+				"internalType": "uint256",
+				"name": "_quantity",
 				"type": "uint256"
 			}
 		],
-		"name": "NewCreditPrice",
+		"name": "CreditSpended",
 		"type": "event"
 	},
 	{
@@ -781,6 +115,7 @@
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "uint256",
 				"name": "_ariaUSDExchange",
 				"type": "uint256"
 			}
@@ -793,26 +128,18 @@
 		"inputs": [
 			{
 				"indexed": true,
-				"name": "buyer",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "_receiver",
-				"type": "address"
-			},
-			{
-				"indexed": true,
+				"internalType": "uint256",
 				"name": "_creditType",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "quantity",
+				"internalType": "uint256",
+				"name": "_price",
 				"type": "uint256"
 			}
 		],
-		"name": "CreditBought",
+		"name": "NewCreditPrice",
 		"type": "event"
 	},
 	{
@@ -820,26 +147,31 @@
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "uint8",
 				"name": "_percentInfra",
 				"type": "uint8"
 			},
 			{
 				"indexed": false,
+				"internalType": "uint8",
 				"name": "_percentBrandsProvider",
 				"type": "uint8"
 			},
 			{
 				"indexed": false,
+				"internalType": "uint8",
 				"name": "_percentOwnerProvider",
 				"type": "uint8"
 			},
 			{
 				"indexed": false,
+				"internalType": "uint8",
 				"name": "_arianeeProject",
 				"type": "uint8"
 			},
 			{
 				"indexed": false,
+				"internalType": "uint8",
 				"name": "_assetHolder",
 				"type": "uint8"
 			}
@@ -852,16 +184,18 @@
 		"inputs": [
 			{
 				"indexed": true,
-				"name": "_type",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
 			},
 			{
-				"indexed": false,
-				"name": "_quantity",
-				"type": "uint256"
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
 			}
 		],
-		"name": "CreditSpended",
+		"name": "OwnershipTransferred",
 		"type": "event"
 	},
 	{
@@ -872,25 +206,780 @@
 	},
 	{
 		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_addressType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_newAddress",
+				"type": "address"
+			}
+		],
+		"name": "SetAddress",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
 		"inputs": [],
 		"name": "Unpause",
 		"type": "event"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_eventId",
+				"type": "uint256"
 			},
 			{
-				"indexed": true,
-				"name": "newOwner",
+				"internalType": "address",
+				"name": "_providerOwner",
 				"type": "address"
 			}
 		],
-		"name": "OwnershipTransferred",
-		"type": "event"
+		"name": "acceptEvent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "acceptedToken",
+		"outputs": [
+			{
+				"internalType": "contract ERC20Interface",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ariaUSDExchange",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "arianeeEvent",
+		"outputs": [
+			{
+				"internalType": "contract iArianeeEvent",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "arianeeMessage",
+		"outputs": [
+			{
+				"internalType": "contract iArianeeMessage",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "arianeeProjectAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "arianeeUpdate",
+		"outputs": [
+			{
+				"internalType": "contract iArianeeUpdate",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "authorizedExchangeAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "authorizedMintAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_creditType",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_quantity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "buyCredit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_sender",
+				"type": "address"
+			}
+		],
+		"name": "canDestroy",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "canTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_eventId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_uri",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "createEvent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_messageId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "createMessage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "creditHistory",
+		"outputs": [
+			{
+				"internalType": "contract iArianeeCreditHistory",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_creditType",
+				"type": "uint256"
+			}
+		],
+		"name": "creditPriceUSD",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_creditPriceUSD",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_oldStoreAddress",
+				"type": "address"
+			}
+		],
+		"name": "getAriaFromOldStore",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_creditType",
+				"type": "uint256"
+			}
+		],
+		"name": "getCreditPrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_uri",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_encryptedInitialKey",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenRecoveryTimestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_initialKeyIsRequestKey",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "hydrateToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nonFungibleRegistry",
+		"outputs": [
+			{
+				"internalType": "contract ERC721Interface",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "paused",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "_receiver",
+				"type": "uint8"
+			}
+		],
+		"name": "percentOfDispatch",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "_percent",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "protocolInfraAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_messageId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_walletProvider",
+				"type": "address"
+			}
+		],
+		"name": "readMessage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_walletProvider",
+				"type": "address"
+			}
+		],
+		"name": "readUpdateSmartAsset",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_eventId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerOwner",
+				"type": "address"
+			}
+		],
+		"name": "refuseEvent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_hash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bool",
+				"name": "_keepRequestToken",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_signature",
+				"type": "bytes"
+			},
+			{
+				"internalType": "address",
+				"name": "_newOwner",
+				"type": "address"
+			}
+		],
+		"name": "requestToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_hash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bool",
+				"name": "_keepRequestToken",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_signature",
+				"type": "bytes"
+			}
+		],
+		"name": "requestToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "reserveToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_ariaUSDExchange",
+				"type": "uint256"
+			}
+		],
+		"name": "setAriaUSDExchange",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_arianeeProjectAddress",
+				"type": "address"
+			}
+		],
+		"name": "setArianeeProjectAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_authorizedExchangeAddress",
+				"type": "address"
+			}
+		],
+		"name": "setAuthorizedExchangeAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newAuthorizedMintAddress",
+				"type": "address"
+			}
+		],
+		"name": "setAuthorizedMintAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_creditType",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "setCreditPrice",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "_percentInfra",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_percentBrandsProvider",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_percentOwnerProvider",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_arianeeProject",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_assetHolder",
+				"type": "uint8"
+			}
+		],
+		"name": "setDispatchPercent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_protocolInfraAddress",
+				"type": "address"
+			}
+		],
+		"name": "setProtocolInfraAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unpause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_imprint",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "_providerBrand",
+				"type": "address"
+			}
+		],
+		"name": "updateSmartAsset",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawArias",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]
