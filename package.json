@@ -1,6 +1,6 @@
 {
   "name": "@arianee/arianee-abi",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "abi definition of Arianee and typescript declaration files",
   "publishConfig": {
     "access": "public"
@@ -12,6 +12,9 @@
   "main": "",
   "scripts": {
     "generate": "./node_modules/.bin/typechain --target=web3-v1.2.2/dist './abi/json/**/*.json' --outDir=./types",
+    "generateEthers6": "npm run _generateEthers6_v1 && npm run _generateEthers6_v1_1",
+    "_generateEthers6_v1": "typechain --target ethers-v6 --out-dir ./ethers6/v1 './abi/json/V1/*.json'",
+    "_generateEthers6_v1_1": "typechain --target ethers-v6 --out-dir ./ethers6/v1_1 './abi/json/V2/*.json'",
     "generateJS": "",
     "minify": "node ./minify.js",
     "build": "npm run generate && npm run minify"
@@ -19,8 +22,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typechain": "1.0.3",
+    "@typechain/ethers-v6": "^0.4.0",
+    "typechain": "^8.2.0",
     "web3": "1.8.1"
+  },
+  "peerDependencies": {
+    "ethers": "^6.6.0"
   },
   "dependencies": {
     "bn": "1.0.5",
