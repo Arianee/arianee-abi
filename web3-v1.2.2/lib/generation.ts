@@ -85,7 +85,7 @@ function codegenForEvents(events: Dictionary<EventDeclaration[]>): string {
 }
 
 function generateEvent(event: EventDeclaration) {
-  return `${event.name}: ContractEvent<${generateOutputTypes(event.inputs)}>`;
+  return `${event.name}: ContractEvent<${generateOutputTypes(event.inputs as any)}>`;
 }
 
 function generateInputType(evmType: EvmType): string {
