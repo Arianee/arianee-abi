@@ -3,8 +3,10 @@
 /* eslint-disable */
 export type { Aria } from "./Aria";
 export type { ArianeeCreditHistory } from "./ArianeeCreditHistory";
+export type { ArianeeCreditNotePool } from "./ArianeeCreditNotePool";
 export type { ArianeeEvent } from "./ArianeeEvent";
 export type { ArianeeIdentity } from "./ArianeeIdentity";
+export type { ArianeeIssuerProxy } from "./ArianeeIssuerProxy";
 export type { ArianeeLost } from "./ArianeeLost";
 export type { ArianeeMessage } from "./ArianeeMessage";
 export type { ArianeeSmartAsset } from "./ArianeeSmartAsset";
@@ -15,8 +17,10 @@ export type { ArianeeWhitelist } from "./ArianeeWhitelist";
 export * as factories from "./factories";
 export { Aria__factory } from "./factories/Aria__factory";
 export { ArianeeCreditHistory__factory } from "./factories/ArianeeCreditHistory__factory";
+export { ArianeeCreditNotePool__factory } from "./factories/ArianeeCreditNotePool__factory";
 export { ArianeeEvent__factory } from "./factories/ArianeeEvent__factory";
 export { ArianeeIdentity__factory } from "./factories/ArianeeIdentity__factory";
+export { ArianeeIssuerProxy__factory } from "./factories/ArianeeIssuerProxy__factory";
 export { ArianeeLost__factory } from "./factories/ArianeeLost__factory";
 export { ArianeeMessage__factory } from "./factories/ArianeeMessage__factory";
 export { ArianeeSmartAsset__factory } from "./factories/ArianeeSmartAsset__factory";

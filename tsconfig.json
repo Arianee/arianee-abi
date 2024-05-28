@@ -9,5 +9,6 @@
     "lib": ["es5", "es2017", "dom"],
     "esModuleInterop": true,
     "baseUrl": "."
-  }
+  },
+  "files": ["./index.ts"],
 }
