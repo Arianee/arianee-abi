@@ -13,6 +13,11 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
+        name: "_issuerProxy",
+        type: "address",
+      },
+      {
+        internalType: "address",
         name: "_token",
         type: "address",
       },
@@ -85,16 +90,10 @@ const _abi = [
         type: "bytes32",
       },
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint32",
         name: "leafIndex",
         type: "uint32",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "issuerProxy",
-        type: "address",
       },
       {
         indexed: false,
@@ -381,6 +380,19 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "issuerProxy",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "levels",
     outputs: [
       {
@@ -559,11 +571,6 @@ const _abi = [
         name: "_zkCreditType",
         type: "uint256",
       },
-      {
-        internalType: "address",
-        name: "_issuerProxy",
-        type: "address",
-      },
     ],
     name: "purchase",
     outputs: [],
@@ -590,9 +597,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[5]",
+            internalType: "uint256[3]",
             name: "_pubSignals",
-            type: "uint256[5]",
+            type: "uint256[3]",
           },
         ],
         internalType: "struct ArianeeCreditNotePool.CreditNoteProof",
@@ -601,13 +608,8 @@ const _abi = [
       },
       {
         internalType: "uint256",
-        name: "_creditType",
+        name: "_zkCreditType",
         type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_issuerProxy",
-        type: "address",
       },
     ],
     name: "spend",
