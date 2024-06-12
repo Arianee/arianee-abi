@@ -396,28 +396,16 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   ZERO_VALUE: TypedContractMethod<[], [bigint], "view">;
 
-  /**
-   * Mapping<CommitmentHash, IsRegistered>
-   */
   commitmentHashes: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
   currentRootIndex: TypedContractMethod<[], [bigint], "view">;
 
   filledSubtrees: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
 
-  /**
-   * Returns the last root
-   */
   getLastRoot: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * :warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.Method is not a required method to allow Recipients to trust multiple Forwarders. Not recommended yet.
-   */
   getTrustedForwarder: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Hash 2 tree leaves, returns MiMC(_left, _right)
-   */
   hashLeftRight: TypedContractMethod<
     [_hasher: AddressLike, _left: BytesLike, _right: BytesLike],
     [string],
@@ -426,15 +414,8 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   hasher: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Whether the root is present in the root history
-   */
   isKnownRoot: TypedContractMethod<[_root: BytesLike], [boolean], "view">;
 
-  /**
-   * :warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.
-   * @param forwarder The address of the Forwarder contract that is being used.
-   */
   isTrustedForwarder: TypedContractMethod<
     [forwarder: AddressLike],
     [boolean],
@@ -445,61 +426,34 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   nextIndex: TypedContractMethod<[], [bigint], "view">;
 
-  /**
-   * Mapping<NullifierHash, IsUsed>
-   */
   nullifierHashes: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
-  /**
-   * Returns the address of the current owner.
-   */
   owner: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * The contract used to compute Poseidon hashes
-   */
   poseidon: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.
-   */
   renounceOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
   roots: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
 
-  /**
-   * The ArianeeStore contract used to purchase credits
-   */
   store: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * The ERC20 token used to purchase credits
-   */
   token: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-   */
   transferOwnership: TypedContractMethod<
     [newOwner: AddressLike],
     [void],
     "nonpayable"
   >;
 
-  /**
-   * The contract used to verify the credit note proofs
-   */
   verifier: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * provides Zero (Empty) elements for a MiMC MerkleTree. Up to 32 levels
-   */
   zeros: TypedContractMethod<[i: BigNumberish], [string], "view">;
 
   purchase: TypedContractMethod<
     [
       _commitmentHash: BytesLike,
-      _creditType: BigNumberish,
+      _zkCreditType: BigNumberish,
       _issuerProxy: AddressLike
     ],
     [void],
@@ -621,7 +575,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
   ): TypedContractMethod<
     [
       _commitmentHash: BytesLike,
-      _creditType: BigNumberish,
+      _zkCreditType: BigNumberish,
       _issuerProxy: AddressLike
     ],
     [void],

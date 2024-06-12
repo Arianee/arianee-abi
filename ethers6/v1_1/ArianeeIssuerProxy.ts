@@ -73,12 +73,12 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "CREDIT_NOTE_PROOF_SIZE"
-      | "CREDIT_TYPE_CERTIFICATE"
-      | "CREDIT_TYPE_EVENT"
-      | "CREDIT_TYPE_MESSAGE"
-      | "CREDIT_TYPE_UPDATE"
       | "OWNERSHIP_PROOF_SIZE"
       | "SELECTOR_SIZE"
+      | "ZK_CREDIT_TYPE_CERTIFICATE"
+      | "ZK_CREDIT_TYPE_EVENT"
+      | "ZK_CREDIT_TYPE_MESSAGE"
+      | "ZK_CREDIT_TYPE_UPDATE"
       | "acceptOwnership"
       | "arianeeEvent"
       | "arianeeLost"
@@ -136,27 +136,27 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "CREDIT_TYPE_CERTIFICATE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "CREDIT_TYPE_EVENT",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "CREDIT_TYPE_MESSAGE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "CREDIT_TYPE_UPDATE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "OWNERSHIP_PROOF_SIZE",
     values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "SELECTOR_SIZE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "ZK_CREDIT_TYPE_CERTIFICATE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "ZK_CREDIT_TYPE_EVENT",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "ZK_CREDIT_TYPE_MESSAGE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "ZK_CREDIT_TYPE_UPDATE",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -235,6 +235,8 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "hydrateToken",
     values: [
       ArianeeIssuerProxy.OwnershipProofStruct,
+      CreditNoteProofStruct,
+      AddressLike,
       BigNumberish,
       BigNumberish,
       BytesLike,
@@ -384,27 +386,27 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "CREDIT_TYPE_CERTIFICATE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "CREDIT_TYPE_EVENT",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "CREDIT_TYPE_MESSAGE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "CREDIT_TYPE_UPDATE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "OWNERSHIP_PROOF_SIZE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "SELECTOR_SIZE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "ZK_CREDIT_TYPE_CERTIFICATE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "ZK_CREDIT_TYPE_EVENT",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "ZK_CREDIT_TYPE_MESSAGE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "ZK_CREDIT_TYPE_UPDATE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -658,122 +660,70 @@ export interface ArianeeIssuerProxy extends BaseContract {
 
   CREDIT_NOTE_PROOF_SIZE: TypedContractMethod<[], [bigint], "view">;
 
-  CREDIT_TYPE_CERTIFICATE: TypedContractMethod<[], [bigint], "view">;
-
-  CREDIT_TYPE_EVENT: TypedContractMethod<[], [bigint], "view">;
-
-  CREDIT_TYPE_MESSAGE: TypedContractMethod<[], [bigint], "view">;
-
-  CREDIT_TYPE_UPDATE: TypedContractMethod<[], [bigint], "view">;
-
   OWNERSHIP_PROOF_SIZE: TypedContractMethod<[], [bigint], "view">;
 
   SELECTOR_SIZE: TypedContractMethod<[], [bigint], "view">;
 
-  /**
-   * The new owner accepts the ownership transfer.
-   */
+  ZK_CREDIT_TYPE_CERTIFICATE: TypedContractMethod<[], [bigint], "view">;
+
+  ZK_CREDIT_TYPE_EVENT: TypedContractMethod<[], [bigint], "view">;
+
+  ZK_CREDIT_TYPE_MESSAGE: TypedContractMethod<[], [bigint], "view">;
+
+  ZK_CREDIT_TYPE_UPDATE: TypedContractMethod<[], [bigint], "view">;
+
   acceptOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
-  /**
-   * The ArianeeEvent contract used to pass issuer intents
-   */
   arianeeEvent: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * The ArianeeLost contract used to pass issuer intents
-   */
   arianeeLost: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Mapping<TokenId, CommitmentHash>
-   */
   commitmentHashes: TypedContractMethod<
     [tokenId: BigNumberish],
     [bigint],
     "view"
   >;
 
-  /**
-   * The addresses allowed to send intents without a CreditNoteProof
-   */
   creditFreeSenders: TypedContractMethod<
     [arg0: AddressLike],
     [boolean],
     "view"
   >;
 
-  /**
-   * The contracts used for credit notes management
-   */
   creditNotePools: TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
 
-  /**
-   * :warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.Method is not a required method to allow Recipients to trust multiple Forwarders. Not recommended yet.
-   */
   getTrustedForwarder: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * :warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.
-   * @param forwarder The address of the Forwarder contract that is being used.
-   */
   isTrustedForwarder: TypedContractMethod<
     [forwarder: AddressLike],
     [boolean],
     "view"
   >;
 
-  /**
-   * A map from tokenId and a caller specified word index to a bitmap. Used to set bits in the bitmap to prevent against signature replay protection
-   */
   nonceBitmap: TypedContractMethod<
     [arg0: BigNumberish, arg1: BigNumberish],
     [bigint],
     "view"
   >;
 
-  /**
-   * Returns the address of the current owner.
-   */
   owner: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Returns the address of the pending owner.
-   */
   pendingOwner: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * The contract used to compute Poseidon hashes
-   */
   poseidon: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.
-   */
   renounceOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
-  /**
-   * The ArianeeSmartAsset contract used to pass issuer intents
-   */
   smartAsset: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * The ArianeeStore contract used to pass issuer intents
-   */
   store: TypedContractMethod<[], [string], "view">;
 
-  /**
-   * Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner.
-   */
   transferOwnership: TypedContractMethod<
     [newOwner: AddressLike],
     [void],
     "nonpayable"
   >;
 
-  /**
-   * The contract used to verify the ownership proofs
-   */
   verifier: TypedContractMethod<[], [string], "view">;
 
   addCreditNotePool: TypedContractMethod<
@@ -803,6 +753,8 @@ export interface ArianeeIssuerProxy extends BaseContract {
   hydrateToken: TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _creditNoteProof: CreditNoteProofStruct,
+      _creditNotePool: AddressLike,
       _commitmentHash: BigNumberish,
       _tokenId: BigNumberish,
       _imprint: BytesLike,
@@ -1032,22 +984,22 @@ export interface ArianeeIssuerProxy extends BaseContract {
     nameOrSignature: "CREDIT_NOTE_PROOF_SIZE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
-    nameOrSignature: "CREDIT_TYPE_CERTIFICATE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "CREDIT_TYPE_EVENT"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "CREDIT_TYPE_MESSAGE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "CREDIT_TYPE_UPDATE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
     nameOrSignature: "OWNERSHIP_PROOF_SIZE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "SELECTOR_SIZE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "ZK_CREDIT_TYPE_CERTIFICATE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "ZK_CREDIT_TYPE_EVENT"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "ZK_CREDIT_TYPE_MESSAGE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "ZK_CREDIT_TYPE_UPDATE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "acceptOwnership"
@@ -1125,6 +1077,8 @@ export interface ArianeeIssuerProxy extends BaseContract {
   ): TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _creditNoteProof: CreditNoteProofStruct,
+      _creditNotePool: AddressLike,
       _commitmentHash: BigNumberish,
       _tokenId: BigNumberish,
       _imprint: BytesLike,
