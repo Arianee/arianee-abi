@@ -30,11 +30,6 @@
         },
         {
           "internalType": "address",
-          "name": "_creditNotePool",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
           "name": "_poseidon",
           "type": "address"
         },
@@ -568,9 +563,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[5]",
+              "internalType": "uint256[3]",
               "name": "_pubSignals",
-              "type": "uint256[5]"
+              "type": "uint256[3]"
             }
           ],
           "internalType": "struct CreditNoteProof",
@@ -1100,9 +1095,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[5]",
+              "internalType": "uint256[3]",
               "name": "_pubSignals",
-              "type": "uint256[5]"
+              "type": "uint256[3]"
             }
           ],
           "internalType": "struct CreditNoteProof",
@@ -1182,9 +1177,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[5]",
+              "internalType": "uint256[3]",
               "name": "_pubSignals",
-              "type": "uint256[5]"
+              "type": "uint256[3]"
             }
           ],
           "internalType": "struct CreditNoteProof",
@@ -1404,9 +1399,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[5]",
+              "internalType": "uint256[3]",
               "name": "_pubSignals",
-              "type": "uint256[5]"
+              "type": "uint256[3]"
             }
           ],
           "internalType": "struct CreditNoteProof",
@@ -1629,9 +1624,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[5]",
+              "internalType": "uint256[3]",
               "name": "_pubSignals",
-              "type": "uint256[5]"
+              "type": "uint256[3]"
             }
           ],
           "internalType": "struct CreditNoteProof",

@@ -27,25 +27,19 @@ export type CreditNoteProofStruct = {
   _pA: [BigNumberish, BigNumberish];
   _pB: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
   _pC: [BigNumberish, BigNumberish];
-  _pubSignals: [
-    BigNumberish,
-    BigNumberish,
-    BigNumberish,
-    BigNumberish,
-    BigNumberish
-  ];
+  _pubSignals: [BigNumberish, BigNumberish, BigNumberish];
 };
 
 export type CreditNoteProofStructOutput = [
   _pA: [bigint, bigint],
   _pB: [[bigint, bigint], [bigint, bigint]],
   _pC: [bigint, bigint],
-  _pubSignals: [bigint, bigint, bigint, bigint, bigint]
+  _pubSignals: [bigint, bigint, bigint]
 ] & {
   _pA: [bigint, bigint];
   _pB: [[bigint, bigint], [bigint, bigint]];
   _pC: [bigint, bigint];
-  _pubSignals: [bigint, bigint, bigint, bigint, bigint];
+  _pubSignals: [bigint, bigint, bigint];
 };
 
 export declare namespace ArianeeIssuerProxy {
