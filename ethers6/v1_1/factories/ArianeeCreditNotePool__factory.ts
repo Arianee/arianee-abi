@@ -13,6 +13,11 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
+        name: "_issuerProxy",
+        type: "address",
+      },
+      {
+        internalType: "address",
         name: "_token",
         type: "address",
       },
@@ -23,7 +28,12 @@ const _abi = [
       },
       {
         internalType: "address",
-        name: "_verifier",
+        name: "_creditRegister",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_creditVerifier",
         type: "address",
       },
       {
@@ -85,16 +95,10 @@ const _abi = [
         type: "bytes32",
       },
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint32",
         name: "leafIndex",
         type: "uint32",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "issuerProxy",
-        type: "address",
       },
       {
         indexed: false,
@@ -243,6 +247,32 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "creditRegister",
+    outputs: [
+      {
+        internalType: "contract ICreditRegister",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "creditVerifier",
+    outputs: [
+      {
+        internalType: "contract ICreditVerifier",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "currentRootIndex",
     outputs: [
       {
@@ -374,6 +404,19 @@ const _abi = [
         internalType: "bool",
         name: "",
         type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "issuerProxy",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
       },
     ],
     stateMutability: "view",
@@ -516,19 +559,6 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "verifier",
-    outputs: [
-      {
-        internalType: "contract ICreditVerifier",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "uint256",
@@ -550,6 +580,33 @@ const _abi = [
   {
     inputs: [
       {
+        components: [
+          {
+            internalType: "uint256[2]",
+            name: "_pA",
+            type: "uint256[2]",
+          },
+          {
+            internalType: "uint256[2][2]",
+            name: "_pB",
+            type: "uint256[2][2]",
+          },
+          {
+            internalType: "uint256[2]",
+            name: "_pC",
+            type: "uint256[2]",
+          },
+          {
+            internalType: "uint256[2]",
+            name: "_pubSignals",
+            type: "uint256[2]",
+          },
+        ],
+        internalType: "struct ArianeeCreditNotePool.CreditRegistrationProof",
+        name: "_creditRegistrationProof",
+        type: "tuple",
+      },
+      {
         internalType: "bytes32",
         name: "_commitmentHash",
         type: "bytes32",
@@ -558,11 +615,6 @@ const _abi = [
         internalType: "uint256",
         name: "_zkCreditType",
         type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_issuerProxy",
-        type: "address",
       },
     ],
     name: "purchase",
@@ -590,9 +642,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[5]",
+            internalType: "uint256[3]",
             name: "_pubSignals",
-            type: "uint256[5]",
+            type: "uint256[3]",
           },
         ],
         internalType: "struct ArianeeCreditNotePool.CreditNoteProof",
@@ -601,13 +653,8 @@ const _abi = [
       },
       {
         internalType: "uint256",
-        name: "_creditType",
+        name: "_zkCreditType",
         type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_issuerProxy",
-        type: "address",
       },
     ],
     name: "spend",

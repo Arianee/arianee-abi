@@ -24,29 +24,42 @@ import type {
 } from "./common";
 
 export declare namespace ArianeeCreditNotePool {
+  export type CreditRegistrationProofStruct = {
+    _pA: [BigNumberish, BigNumberish];
+    _pB: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
+    _pC: [BigNumberish, BigNumberish];
+    _pubSignals: [BigNumberish, BigNumberish];
+  };
+
+  export type CreditRegistrationProofStructOutput = [
+    _pA: [bigint, bigint],
+    _pB: [[bigint, bigint], [bigint, bigint]],
+    _pC: [bigint, bigint],
+    _pubSignals: [bigint, bigint]
+  ] & {
+    _pA: [bigint, bigint];
+    _pB: [[bigint, bigint], [bigint, bigint]];
+    _pC: [bigint, bigint];
+    _pubSignals: [bigint, bigint];
+  };
+
   export type CreditNoteProofStruct = {
     _pA: [BigNumberish, BigNumberish];
     _pB: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
     _pC: [BigNumberish, BigNumberish];
-    _pubSignals: [
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish
-    ];
+    _pubSignals: [BigNumberish, BigNumberish, BigNumberish];
   };
 
   export type CreditNoteProofStructOutput = [
     _pA: [bigint, bigint],
     _pB: [[bigint, bigint], [bigint, bigint]],
     _pC: [bigint, bigint],
-    _pubSignals: [bigint, bigint, bigint, bigint, bigint]
+    _pubSignals: [bigint, bigint, bigint]
   ] & {
     _pA: [bigint, bigint];
     _pB: [[bigint, bigint], [bigint, bigint]];
     _pC: [bigint, bigint];
-    _pubSignals: [bigint, bigint, bigint, bigint, bigint];
+    _pubSignals: [bigint, bigint, bigint];
   };
 }
 
@@ -61,6 +74,8 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "SELECTOR_SIZE"
       | "ZERO_VALUE"
       | "commitmentHashes"
+      | "creditRegister"
+      | "creditVerifier"
       | "currentRootIndex"
       | "filledSubtrees"
       | "getLastRoot"
@@ -69,6 +84,7 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "hasher"
       | "isKnownRoot"
       | "isTrustedForwarder"
+      | "issuerProxy"
       | "levels"
       | "nextIndex"
       | "nullifierHashes"
@@ -79,7 +95,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "store"
       | "token"
       | "transferOwnership"
-      | "verifier"
       | "zeros"
       | "purchase"
       | "spend"
@@ -124,6 +139,14 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     values: [BytesLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "creditRegister",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "creditVerifier",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "currentRootIndex",
     values?: undefined
   ): string;
@@ -152,6 +175,10 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "isTrustedForwarder",
     values: [AddressLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "issuerProxy",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "levels", values?: undefined): string;
   encodeFunctionData(functionFragment: "nextIndex", values?: undefined): string;
   encodeFunctionData(
@@ -171,19 +198,18 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "transferOwnership",
     values: [AddressLike]
   ): string;
-  encodeFunctionData(functionFragment: "verifier", values?: undefined): string;
   encodeFunctionData(functionFragment: "zeros", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "purchase",
-    values: [BytesLike, BigNumberish, AddressLike]
+    values: [
+      ArianeeCreditNotePool.CreditRegistrationProofStruct,
+      BytesLike,
+      BigNumberish
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "spend",
-    values: [
-      ArianeeCreditNotePool.CreditNoteProofStruct,
-      BigNumberish,
-      AddressLike
-    ]
+    values: [ArianeeCreditNotePool.CreditNoteProofStruct, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "isSpentBatch",
@@ -218,6 +244,14 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "creditRegister",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "creditVerifier",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "currentRootIndex",
     data: BytesLike
   ): Result;
@@ -246,6 +280,10 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "isTrustedForwarder",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "issuerProxy",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "levels", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "nextIndex", data: BytesLike): Result;
   decodeFunctionResult(
@@ -265,7 +303,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "verifier", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "zeros", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "purchase", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "spend", data: BytesLike): Result;
@@ -294,21 +331,18 @@ export namespace PurchasedEvent {
     creditType: BigNumberish,
     commitmentHash: BytesLike,
     leafIndex: BigNumberish,
-    issuerProxy: AddressLike,
     timestamp: BigNumberish
   ];
   export type OutputTuple = [
     creditType: bigint,
     commitmentHash: string,
     leafIndex: bigint,
-    issuerProxy: string,
     timestamp: bigint
   ];
   export interface OutputObject {
     creditType: bigint;
     commitmentHash: string;
     leafIndex: bigint;
-    issuerProxy: string;
     timestamp: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
@@ -398,6 +432,10 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   commitmentHashes: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
+  creditRegister: TypedContractMethod<[], [string], "view">;
+
+  creditVerifier: TypedContractMethod<[], [string], "view">;
+
   currentRootIndex: TypedContractMethod<[], [bigint], "view">;
 
   filledSubtrees: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
@@ -421,6 +459,8 @@ export interface ArianeeCreditNotePool extends BaseContract {
     [boolean],
     "view"
   >;
+
+  issuerProxy: TypedContractMethod<[], [string], "view">;
 
   levels: TypedContractMethod<[], [bigint], "view">;
 
@@ -446,15 +486,13 @@ export interface ArianeeCreditNotePool extends BaseContract {
     "nonpayable"
   >;
 
-  verifier: TypedContractMethod<[], [string], "view">;
-
   zeros: TypedContractMethod<[i: BigNumberish], [string], "view">;
 
   purchase: TypedContractMethod<
     [
+      _creditRegistrationProof: ArianeeCreditNotePool.CreditRegistrationProofStruct,
       _commitmentHash: BytesLike,
-      _zkCreditType: BigNumberish,
-      _issuerProxy: AddressLike
+      _zkCreditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -463,8 +501,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
   spend: TypedContractMethod<
     [
       _creditNoteProof: ArianeeCreditNotePool.CreditNoteProofStruct,
-      _creditType: BigNumberish,
-      _issuerProxy: AddressLike
+      _zkCreditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -507,6 +544,12 @@ export interface ArianeeCreditNotePool extends BaseContract {
     nameOrSignature: "commitmentHashes"
   ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
   getFunction(
+    nameOrSignature: "creditRegister"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "creditVerifier"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "currentRootIndex"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
@@ -534,6 +577,9 @@ export interface ArianeeCreditNotePool extends BaseContract {
   getFunction(
     nameOrSignature: "isTrustedForwarder"
   ): TypedContractMethod<[forwarder: AddressLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "issuerProxy"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "levels"
   ): TypedContractMethod<[], [bigint], "view">;
@@ -565,18 +611,15 @@ export interface ArianeeCreditNotePool extends BaseContract {
     nameOrSignature: "transferOwnership"
   ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
   getFunction(
-    nameOrSignature: "verifier"
-  ): TypedContractMethod<[], [string], "view">;
-  getFunction(
     nameOrSignature: "zeros"
   ): TypedContractMethod<[i: BigNumberish], [string], "view">;
   getFunction(
     nameOrSignature: "purchase"
   ): TypedContractMethod<
     [
+      _creditRegistrationProof: ArianeeCreditNotePool.CreditRegistrationProofStruct,
       _commitmentHash: BytesLike,
-      _zkCreditType: BigNumberish,
-      _issuerProxy: AddressLike
+      _zkCreditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -586,8 +629,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
   ): TypedContractMethod<
     [
       _creditNoteProof: ArianeeCreditNotePool.CreditNoteProofStruct,
-      _creditType: BigNumberish,
-      _issuerProxy: AddressLike
+      _zkCreditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -633,7 +675,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
       OwnershipTransferredEvent.OutputObject
     >;
 
-    "Purchased(uint256,bytes32,uint32,address,uint256)": TypedContractEvent<
+    "Purchased(uint256,bytes32,uint32,uint256)": TypedContractEvent<
       PurchasedEvent.InputTuple,
       PurchasedEvent.OutputTuple,
       PurchasedEvent.OutputObject
