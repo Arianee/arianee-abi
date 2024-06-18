@@ -111,7 +111,9 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "updateDestroyEventRequest"
       | "createMessage"
       | "setStolenStatus"
+      | "unsetStolenStatus"
       | "setMissingStatus"
+      | "unsetMissingStatus"
       | "updateCommitment"
       | "updateCommitmentBatch"
       | "isDefaultCreditNoteProof"
@@ -351,7 +353,15 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "unsetStolenStatus",
+    values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setMissingStatus",
+    values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "unsetMissingStatus",
     values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish]
   ): string;
   encodeFunctionData(
@@ -535,7 +545,15 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "unsetStolenStatus",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "setMissingStatus",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "unsetMissingStatus",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -935,7 +953,25 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
+  unsetStolenStatus: TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish
+    ],
+    [void],
+    "nonpayable"
+  >;
+
   setMissingStatus: TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish
+    ],
+    [void],
+    "nonpayable"
+  >;
+
+  unsetMissingStatus: TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
       _tokenId: BigNumberish
@@ -1275,7 +1311,27 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "unsetStolenStatus"
+  ): TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish
+    ],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
     nameOrSignature: "setMissingStatus"
+  ): TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish
+    ],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "unsetMissingStatus"
   ): TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
