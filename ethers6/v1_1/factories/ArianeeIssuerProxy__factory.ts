@@ -1436,6 +1436,11 @@ const _abi = [
         name: "_imprint",
         type: "bytes32",
       },
+      {
+        internalType: "address",
+        name: "_interfaceProvider",
+        type: "address",
+      },
     ],
     name: "createMessage",
     outputs: [],
