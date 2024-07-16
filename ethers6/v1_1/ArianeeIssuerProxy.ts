@@ -27,19 +27,19 @@ export type CreditNoteProofStruct = {
   _pA: [BigNumberish, BigNumberish];
   _pB: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
   _pC: [BigNumberish, BigNumberish];
-  _pubSignals: [BigNumberish, BigNumberish, BigNumberish];
+  _pubSignals: [BigNumberish, BigNumberish, BigNumberish, BigNumberish];
 };
 
 export type CreditNoteProofStructOutput = [
   _pA: [bigint, bigint],
   _pB: [[bigint, bigint], [bigint, bigint]],
   _pC: [bigint, bigint],
-  _pubSignals: [bigint, bigint, bigint]
+  _pubSignals: [bigint, bigint, bigint, bigint]
 ] & {
   _pA: [bigint, bigint];
   _pB: [[bigint, bigint], [bigint, bigint]];
   _pC: [bigint, bigint];
-  _pubSignals: [bigint, bigint, bigint];
+  _pubSignals: [bigint, bigint, bigint, bigint];
 };
 
 export declare namespace ArianeeIssuerProxy {
@@ -67,12 +67,12 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "CREDIT_NOTE_PROOF_SIZE"
+      | "CREDIT_TYPE_CERTIFICATE"
+      | "CREDIT_TYPE_EVENT"
+      | "CREDIT_TYPE_MESSAGE"
+      | "CREDIT_TYPE_UPDATE"
       | "OWNERSHIP_PROOF_SIZE"
       | "SELECTOR_SIZE"
-      | "ZK_CREDIT_TYPE_CERTIFICATE"
-      | "ZK_CREDIT_TYPE_EVENT"
-      | "ZK_CREDIT_TYPE_MESSAGE"
-      | "ZK_CREDIT_TYPE_UPDATE"
       | "acceptOwnership"
       | "arianeeEvent"
       | "arianeeLost"
@@ -116,14 +116,19 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "unsetMissingStatus"
       | "updateCommitment"
       | "updateCommitmentBatch"
-      | "isDefaultCreditNoteProof"
   ): FunctionFragment;
 
   getEvent(
     nameOrSignatureOrTopic:
+      | "CreditFreeSenderAdded"
       | "CreditFreeSenderLog"
+      | "CreditFreeSenderRemoved"
+      | "CreditNotePoolAdded"
       | "OwnershipTransferStarted"
       | "OwnershipTransferred"
+      | "TokenCommitmentRegistered"
+      | "TokenCommitmentUnregistered"
+      | "TokenCommitmentUpdated"
       | "UnorderedNonceInvalidation"
   ): EventFragment;
 
@@ -132,27 +137,27 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "CREDIT_TYPE_CERTIFICATE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "CREDIT_TYPE_EVENT",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "CREDIT_TYPE_MESSAGE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "CREDIT_TYPE_UPDATE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "OWNERSHIP_PROOF_SIZE",
     values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "SELECTOR_SIZE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ZK_CREDIT_TYPE_CERTIFICATE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ZK_CREDIT_TYPE_EVENT",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ZK_CREDIT_TYPE_MESSAGE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ZK_CREDIT_TYPE_UPDATE",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -247,6 +252,7 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "invalidateUnorderedNonces",
     values: [
       ArianeeIssuerProxy.OwnershipProofStruct,
+      BigNumberish,
       BigNumberish,
       BigNumberish,
       BigNumberish
@@ -381,13 +387,25 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       BigNumberish[]
     ]
   ): string;
-  encodeFunctionData(
-    functionFragment: "isDefaultCreditNoteProof",
-    values: [CreditNoteProofStruct]
-  ): string;
 
   decodeFunctionResult(
     functionFragment: "CREDIT_NOTE_PROOF_SIZE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "CREDIT_TYPE_CERTIFICATE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "CREDIT_TYPE_EVENT",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "CREDIT_TYPE_MESSAGE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "CREDIT_TYPE_UPDATE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -396,22 +414,6 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "SELECTOR_SIZE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ZK_CREDIT_TYPE_CERTIFICATE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ZK_CREDIT_TYPE_EVENT",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ZK_CREDIT_TYPE_MESSAGE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ZK_CREDIT_TYPE_UPDATE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -565,10 +567,18 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "updateCommitmentBatch",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "isDefaultCreditNoteProof",
-    data: BytesLike
-  ): Result;
+}
+
+export namespace CreditFreeSenderAddedEvent {
+  export type InputTuple = [sender: AddressLike];
+  export type OutputTuple = [sender: string];
+  export interface OutputObject {
+    sender: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export namespace CreditFreeSenderLogEvent {
@@ -577,6 +587,30 @@ export namespace CreditFreeSenderLogEvent {
   export interface OutputObject {
     sender: string;
     creditType: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace CreditFreeSenderRemovedEvent {
+  export type InputTuple = [sender: AddressLike];
+  export type OutputTuple = [sender: string];
+  export interface OutputObject {
+    sender: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace CreditNotePoolAddedEvent {
+  export type InputTuple = [creditNotePool: AddressLike];
+  export type OutputTuple = [creditNotePool: string];
+  export interface OutputObject {
+    creditNotePool: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -610,15 +644,73 @@ export namespace OwnershipTransferredEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
+export namespace TokenCommitmentRegisteredEvent {
+  export type InputTuple = [
+    commitmentHash: BigNumberish,
+    tokenId: BigNumberish
+  ];
+  export type OutputTuple = [commitmentHash: bigint, tokenId: bigint];
+  export interface OutputObject {
+    commitmentHash: bigint;
+    tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TokenCommitmentUnregisteredEvent {
+  export type InputTuple = [
+    commitmentHash: BigNumberish,
+    tokenId: BigNumberish
+  ];
+  export type OutputTuple = [commitmentHash: bigint, tokenId: bigint];
+  export interface OutputObject {
+    commitmentHash: bigint;
+    tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TokenCommitmentUpdatedEvent {
+  export type InputTuple = [
+    previousCommitmentHash: BigNumberish,
+    newCommitmentHash: BigNumberish,
+    tokenId: BigNumberish
+  ];
+  export type OutputTuple = [
+    previousCommitmentHash: bigint,
+    newCommitmentHash: bigint,
+    tokenId: bigint
+  ];
+  export interface OutputObject {
+    previousCommitmentHash: bigint;
+    newCommitmentHash: bigint;
+    tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
 export namespace UnorderedNonceInvalidationEvent {
   export type InputTuple = [
-    tokenId: BigNumberish,
+    commitmentHash: BigNumberish,
     word: BigNumberish,
     mask: BigNumberish
   ];
-  export type OutputTuple = [tokenId: bigint, word: bigint, mask: bigint];
+  export type OutputTuple = [
+    commitmentHash: bigint,
+    word: bigint,
+    mask: bigint
+  ];
   export interface OutputObject {
-    tokenId: bigint;
+    commitmentHash: bigint;
     word: bigint;
     mask: bigint;
   }
@@ -673,17 +765,17 @@ export interface ArianeeIssuerProxy extends BaseContract {
 
   CREDIT_NOTE_PROOF_SIZE: TypedContractMethod<[], [bigint], "view">;
 
+  CREDIT_TYPE_CERTIFICATE: TypedContractMethod<[], [bigint], "view">;
+
+  CREDIT_TYPE_EVENT: TypedContractMethod<[], [bigint], "view">;
+
+  CREDIT_TYPE_MESSAGE: TypedContractMethod<[], [bigint], "view">;
+
+  CREDIT_TYPE_UPDATE: TypedContractMethod<[], [bigint], "view">;
+
   OWNERSHIP_PROOF_SIZE: TypedContractMethod<[], [bigint], "view">;
 
   SELECTOR_SIZE: TypedContractMethod<[], [bigint], "view">;
-
-  ZK_CREDIT_TYPE_CERTIFICATE: TypedContractMethod<[], [bigint], "view">;
-
-  ZK_CREDIT_TYPE_EVENT: TypedContractMethod<[], [bigint], "view">;
-
-  ZK_CREDIT_TYPE_MESSAGE: TypedContractMethod<[], [bigint], "view">;
-
-  ZK_CREDIT_TYPE_UPDATE: TypedContractMethod<[], [bigint], "view">;
 
   acceptOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
@@ -785,6 +877,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
       _tokenId: BigNumberish,
+      _commitmentHash: BigNumberish,
       _wordPos: BigNumberish,
       _mask: BigNumberish
     ],
@@ -1002,12 +1095,6 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
-  isDefaultCreditNoteProof: TypedContractMethod<
-    [_proof: CreditNoteProofStruct],
-    [boolean],
-    "view"
-  >;
-
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
@@ -1016,22 +1103,22 @@ export interface ArianeeIssuerProxy extends BaseContract {
     nameOrSignature: "CREDIT_NOTE_PROOF_SIZE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
+    nameOrSignature: "CREDIT_TYPE_CERTIFICATE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "CREDIT_TYPE_EVENT"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "CREDIT_TYPE_MESSAGE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "CREDIT_TYPE_UPDATE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "OWNERSHIP_PROOF_SIZE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "SELECTOR_SIZE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "ZK_CREDIT_TYPE_CERTIFICATE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "ZK_CREDIT_TYPE_EVENT"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "ZK_CREDIT_TYPE_MESSAGE"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "ZK_CREDIT_TYPE_UPDATE"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "acceptOwnership"
@@ -1129,6 +1216,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
       _tokenId: BigNumberish,
+      _commitmentHash: BigNumberish,
       _wordPos: BigNumberish,
       _mask: BigNumberish
     ],
@@ -1365,16 +1453,34 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [void],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "isDefaultCreditNoteProof"
-  ): TypedContractMethod<[_proof: CreditNoteProofStruct], [boolean], "view">;
 
+  getEvent(
+    key: "CreditFreeSenderAdded"
+  ): TypedContractEvent<
+    CreditFreeSenderAddedEvent.InputTuple,
+    CreditFreeSenderAddedEvent.OutputTuple,
+    CreditFreeSenderAddedEvent.OutputObject
+  >;
   getEvent(
     key: "CreditFreeSenderLog"
   ): TypedContractEvent<
     CreditFreeSenderLogEvent.InputTuple,
     CreditFreeSenderLogEvent.OutputTuple,
     CreditFreeSenderLogEvent.OutputObject
+  >;
+  getEvent(
+    key: "CreditFreeSenderRemoved"
+  ): TypedContractEvent<
+    CreditFreeSenderRemovedEvent.InputTuple,
+    CreditFreeSenderRemovedEvent.OutputTuple,
+    CreditFreeSenderRemovedEvent.OutputObject
+  >;
+  getEvent(
+    key: "CreditNotePoolAdded"
+  ): TypedContractEvent<
+    CreditNotePoolAddedEvent.InputTuple,
+    CreditNotePoolAddedEvent.OutputTuple,
+    CreditNotePoolAddedEvent.OutputObject
   >;
   getEvent(
     key: "OwnershipTransferStarted"
@@ -1391,6 +1497,27 @@ export interface ArianeeIssuerProxy extends BaseContract {
     OwnershipTransferredEvent.OutputObject
   >;
   getEvent(
+    key: "TokenCommitmentRegistered"
+  ): TypedContractEvent<
+    TokenCommitmentRegisteredEvent.InputTuple,
+    TokenCommitmentRegisteredEvent.OutputTuple,
+    TokenCommitmentRegisteredEvent.OutputObject
+  >;
+  getEvent(
+    key: "TokenCommitmentUnregistered"
+  ): TypedContractEvent<
+    TokenCommitmentUnregisteredEvent.InputTuple,
+    TokenCommitmentUnregisteredEvent.OutputTuple,
+    TokenCommitmentUnregisteredEvent.OutputObject
+  >;
+  getEvent(
+    key: "TokenCommitmentUpdated"
+  ): TypedContractEvent<
+    TokenCommitmentUpdatedEvent.InputTuple,
+    TokenCommitmentUpdatedEvent.OutputTuple,
+    TokenCommitmentUpdatedEvent.OutputObject
+  >;
+  getEvent(
     key: "UnorderedNonceInvalidation"
   ): TypedContractEvent<
     UnorderedNonceInvalidationEvent.InputTuple,
@@ -1399,6 +1526,17 @@ export interface ArianeeIssuerProxy extends BaseContract {
   >;
 
   filters: {
+    "CreditFreeSenderAdded(address)": TypedContractEvent<
+      CreditFreeSenderAddedEvent.InputTuple,
+      CreditFreeSenderAddedEvent.OutputTuple,
+      CreditFreeSenderAddedEvent.OutputObject
+    >;
+    CreditFreeSenderAdded: TypedContractEvent<
+      CreditFreeSenderAddedEvent.InputTuple,
+      CreditFreeSenderAddedEvent.OutputTuple,
+      CreditFreeSenderAddedEvent.OutputObject
+    >;
+
     "CreditFreeSenderLog(address,uint256)": TypedContractEvent<
       CreditFreeSenderLogEvent.InputTuple,
       CreditFreeSenderLogEvent.OutputTuple,
@@ -1408,6 +1546,28 @@ export interface ArianeeIssuerProxy extends BaseContract {
       CreditFreeSenderLogEvent.InputTuple,
       CreditFreeSenderLogEvent.OutputTuple,
       CreditFreeSenderLogEvent.OutputObject
+    >;
+
+    "CreditFreeSenderRemoved(address)": TypedContractEvent<
+      CreditFreeSenderRemovedEvent.InputTuple,
+      CreditFreeSenderRemovedEvent.OutputTuple,
+      CreditFreeSenderRemovedEvent.OutputObject
+    >;
+    CreditFreeSenderRemoved: TypedContractEvent<
+      CreditFreeSenderRemovedEvent.InputTuple,
+      CreditFreeSenderRemovedEvent.OutputTuple,
+      CreditFreeSenderRemovedEvent.OutputObject
+    >;
+
+    "CreditNotePoolAdded(address)": TypedContractEvent<
+      CreditNotePoolAddedEvent.InputTuple,
+      CreditNotePoolAddedEvent.OutputTuple,
+      CreditNotePoolAddedEvent.OutputObject
+    >;
+    CreditNotePoolAdded: TypedContractEvent<
+      CreditNotePoolAddedEvent.InputTuple,
+      CreditNotePoolAddedEvent.OutputTuple,
+      CreditNotePoolAddedEvent.OutputObject
     >;
 
     "OwnershipTransferStarted(address,address)": TypedContractEvent<
@@ -1430,6 +1590,39 @@ export interface ArianeeIssuerProxy extends BaseContract {
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
       OwnershipTransferredEvent.OutputObject
+    >;
+
+    "TokenCommitmentRegistered(uint256,uint256)": TypedContractEvent<
+      TokenCommitmentRegisteredEvent.InputTuple,
+      TokenCommitmentRegisteredEvent.OutputTuple,
+      TokenCommitmentRegisteredEvent.OutputObject
+    >;
+    TokenCommitmentRegistered: TypedContractEvent<
+      TokenCommitmentRegisteredEvent.InputTuple,
+      TokenCommitmentRegisteredEvent.OutputTuple,
+      TokenCommitmentRegisteredEvent.OutputObject
+    >;
+
+    "TokenCommitmentUnregistered(uint256,uint256)": TypedContractEvent<
+      TokenCommitmentUnregisteredEvent.InputTuple,
+      TokenCommitmentUnregisteredEvent.OutputTuple,
+      TokenCommitmentUnregisteredEvent.OutputObject
+    >;
+    TokenCommitmentUnregistered: TypedContractEvent<
+      TokenCommitmentUnregisteredEvent.InputTuple,
+      TokenCommitmentUnregisteredEvent.OutputTuple,
+      TokenCommitmentUnregisteredEvent.OutputObject
+    >;
+
+    "TokenCommitmentUpdated(uint256,uint256,uint256)": TypedContractEvent<
+      TokenCommitmentUpdatedEvent.InputTuple,
+      TokenCommitmentUpdatedEvent.OutputTuple,
+      TokenCommitmentUpdatedEvent.OutputObject
+    >;
+    TokenCommitmentUpdated: TypedContractEvent<
+      TokenCommitmentUpdatedEvent.InputTuple,
+      TokenCommitmentUpdatedEvent.OutputTuple,
+      TokenCommitmentUpdatedEvent.OutputObject
     >;
 
     "UnorderedNonceInvalidation(uint256,uint256,uint256)": TypedContractEvent<

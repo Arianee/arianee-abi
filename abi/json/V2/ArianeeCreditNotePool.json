@@ -56,25 +56,6 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
-          "internalType": "address",
-          "name": "previousOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "OwnershipTransferred",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
           "indexed": false,
           "internalType": "uint256",
           "name": "creditType",
@@ -461,19 +442,6 @@
     },
     {
       "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
       "name": "poseidon",
       "outputs": [
         {
@@ -483,13 +451,6 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "renounceOwnership",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -535,19 +496,6 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "transferOwnership",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -605,7 +553,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_zkCreditType",
+          "name": "_creditType",
           "type": "uint256"
         }
       ],
@@ -634,9 +582,9 @@
               "type": "uint256[2]"
             },
             {
-              "internalType": "uint256[3]",
+              "internalType": "uint256[4]",
               "name": "_pubSignals",
-              "type": "uint256[3]"
+              "type": "uint256[4]"
             }
           ],
           "internalType": "struct ArianeeCreditNotePool.CreditNoteProof",
@@ -644,8 +592,13 @@
           "type": "tuple"
         },
         {
+          "internalType": "bytes",
+          "name": "_intentMsgData",
+          "type": "bytes"
+        },
+        {
           "internalType": "uint256",
-          "name": "_zkCreditType",
+          "name": "_creditType",
           "type": "uint256"
         }
       ],

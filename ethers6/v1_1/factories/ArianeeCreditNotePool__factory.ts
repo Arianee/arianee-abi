@@ -64,25 +64,6 @@ const _abi = [
     anonymous: false,
     inputs: [
       {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
         indexed: false,
         internalType: "uint256",
         name: "creditType",
@@ -469,19 +450,6 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "owner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "poseidon",
     outputs: [
       {
@@ -491,13 +459,6 @@ const _abi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -543,19 +504,6 @@ const _abi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -613,7 +561,7 @@ const _abi = [
       },
       {
         internalType: "uint256",
-        name: "_zkCreditType",
+        name: "_creditType",
         type: "uint256",
       },
     ],
@@ -642,9 +590,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[3]",
+            internalType: "uint256[4]",
             name: "_pubSignals",
-            type: "uint256[3]",
+            type: "uint256[4]",
           },
         ],
         internalType: "struct ArianeeCreditNotePool.CreditNoteProof",
@@ -652,8 +600,13 @@ const _abi = [
         type: "tuple",
       },
       {
+        internalType: "bytes",
+        name: "_intentMsgData",
+        type: "bytes",
+      },
+      {
         internalType: "uint256",
-        name: "_zkCreditType",
+        name: "_creditType",
         type: "uint256",
       },
     ],
