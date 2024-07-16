@@ -47,19 +47,19 @@ export declare namespace ArianeeCreditNotePool {
     _pA: [BigNumberish, BigNumberish];
     _pB: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
     _pC: [BigNumberish, BigNumberish];
-    _pubSignals: [BigNumberish, BigNumberish, BigNumberish];
+    _pubSignals: [BigNumberish, BigNumberish, BigNumberish, BigNumberish];
   };
 
   export type CreditNoteProofStructOutput = [
     _pA: [bigint, bigint],
     _pB: [[bigint, bigint], [bigint, bigint]],
     _pC: [bigint, bigint],
-    _pubSignals: [bigint, bigint, bigint]
+    _pubSignals: [bigint, bigint, bigint, bigint]
   ] & {
     _pA: [bigint, bigint];
     _pB: [[bigint, bigint], [bigint, bigint]];
     _pC: [bigint, bigint];
-    _pubSignals: [bigint, bigint, bigint];
+    _pubSignals: [bigint, bigint, bigint, bigint];
   };
 }
 
@@ -88,13 +88,10 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "levels"
       | "nextIndex"
       | "nullifierHashes"
-      | "owner"
       | "poseidon"
-      | "renounceOwnership"
       | "roots"
       | "store"
       | "token"
-      | "transferOwnership"
       | "zeros"
       | "purchase"
       | "spend"
@@ -102,9 +99,7 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "isSpent"
   ): FunctionFragment;
 
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred" | "Purchased" | "Spent"
-  ): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Purchased" | "Spent"): EventFragment;
 
   encodeFunctionData(
     functionFragment: "CREDIT_NOTE_PROOF_SIZE",
@@ -185,19 +180,10 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "nullifierHashes",
     values: [BytesLike]
   ): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(functionFragment: "poseidon", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
-  ): string;
   encodeFunctionData(functionFragment: "roots", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "store", values?: undefined): string;
   encodeFunctionData(functionFragment: "token", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [AddressLike]
-  ): string;
   encodeFunctionData(functionFragment: "zeros", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "purchase",
@@ -209,7 +195,11 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "spend",
-    values: [ArianeeCreditNotePool.CreditNoteProofStruct, BigNumberish]
+    values: [
+      ArianeeCreditNotePool.CreditNoteProofStruct,
+      BytesLike,
+      BigNumberish
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "isSpentBatch",
@@ -290,19 +280,10 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     functionFragment: "nullifierHashes",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "poseidon", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceOwnership",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "roots", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "store", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "zeros", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "purchase", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "spend", data: BytesLike): Result;
@@ -311,19 +292,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "isSpent", data: BytesLike): Result;
-}
-
-export namespace OwnershipTransferredEvent {
-  export type InputTuple = [previousOwner: AddressLike, newOwner: AddressLike];
-  export type OutputTuple = [previousOwner: string, newOwner: string];
-  export interface OutputObject {
-    previousOwner: string;
-    newOwner: string;
-  }
-  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-  export type Filter = TypedDeferredTopicFilter<Event>;
-  export type Log = TypedEventLog<Event>;
-  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export namespace PurchasedEvent {
@@ -468,11 +436,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   nullifierHashes: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
-  owner: TypedContractMethod<[], [string], "view">;
-
   poseidon: TypedContractMethod<[], [string], "view">;
-
-  renounceOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
   roots: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
 
@@ -480,19 +444,13 @@ export interface ArianeeCreditNotePool extends BaseContract {
 
   token: TypedContractMethod<[], [string], "view">;
 
-  transferOwnership: TypedContractMethod<
-    [newOwner: AddressLike],
-    [void],
-    "nonpayable"
-  >;
-
   zeros: TypedContractMethod<[i: BigNumberish], [string], "view">;
 
   purchase: TypedContractMethod<
     [
       _creditRegistrationProof: ArianeeCreditNotePool.CreditRegistrationProofStruct,
       _commitmentHash: BytesLike,
-      _zkCreditType: BigNumberish
+      _creditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -501,7 +459,8 @@ export interface ArianeeCreditNotePool extends BaseContract {
   spend: TypedContractMethod<
     [
       _creditNoteProof: ArianeeCreditNotePool.CreditNoteProofStruct,
-      _zkCreditType: BigNumberish
+      _intentMsgData: BytesLike,
+      _creditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -590,14 +549,8 @@ export interface ArianeeCreditNotePool extends BaseContract {
     nameOrSignature: "nullifierHashes"
   ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
   getFunction(
-    nameOrSignature: "owner"
-  ): TypedContractMethod<[], [string], "view">;
-  getFunction(
     nameOrSignature: "poseidon"
   ): TypedContractMethod<[], [string], "view">;
-  getFunction(
-    nameOrSignature: "renounceOwnership"
-  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "roots"
   ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
@@ -608,9 +561,6 @@ export interface ArianeeCreditNotePool extends BaseContract {
     nameOrSignature: "token"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
-    nameOrSignature: "transferOwnership"
-  ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
-  getFunction(
     nameOrSignature: "zeros"
   ): TypedContractMethod<[i: BigNumberish], [string], "view">;
   getFunction(
@@ -619,7 +569,7 @@ export interface ArianeeCreditNotePool extends BaseContract {
     [
       _creditRegistrationProof: ArianeeCreditNotePool.CreditRegistrationProofStruct,
       _commitmentHash: BytesLike,
-      _zkCreditType: BigNumberish
+      _creditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -629,7 +579,8 @@ export interface ArianeeCreditNotePool extends BaseContract {
   ): TypedContractMethod<
     [
       _creditNoteProof: ArianeeCreditNotePool.CreditNoteProofStruct,
-      _zkCreditType: BigNumberish
+      _intentMsgData: BytesLike,
+      _creditType: BigNumberish
     ],
     [void],
     "nonpayable"
@@ -641,13 +592,6 @@ export interface ArianeeCreditNotePool extends BaseContract {
     nameOrSignature: "isSpent"
   ): TypedContractMethod<[_nullifierHash: BytesLike], [boolean], "view">;
 
-  getEvent(
-    key: "OwnershipTransferred"
-  ): TypedContractEvent<
-    OwnershipTransferredEvent.InputTuple,
-    OwnershipTransferredEvent.OutputTuple,
-    OwnershipTransferredEvent.OutputObject
-  >;
   getEvent(
     key: "Purchased"
   ): TypedContractEvent<
@@ -664,17 +608,6 @@ export interface ArianeeCreditNotePool extends BaseContract {
   >;
 
   filters: {
-    "OwnershipTransferred(address,address)": TypedContractEvent<
-      OwnershipTransferredEvent.InputTuple,
-      OwnershipTransferredEvent.OutputTuple,
-      OwnershipTransferredEvent.OutputObject
-    >;
-    OwnershipTransferred: TypedContractEvent<
-      OwnershipTransferredEvent.InputTuple,
-      OwnershipTransferredEvent.OutputTuple,
-      OwnershipTransferredEvent.OutputObject
-    >;
-
     "Purchased(uint256,bytes32,uint32,uint256)": TypedContractEvent<
       PurchasedEvent.InputTuple,
       PurchasedEvent.OutputTuple,

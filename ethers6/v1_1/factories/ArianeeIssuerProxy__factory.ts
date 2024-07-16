@@ -54,7 +54,20 @@ const _abi = [
     anonymous: false,
     inputs: [
       {
-        indexed: false,
+        indexed: true,
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+    ],
+    name: "CreditFreeSenderAdded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
         internalType: "address",
         name: "sender",
         type: "address",
@@ -67,6 +80,32 @@ const _abi = [
       },
     ],
     name: "CreditFreeSenderLog",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+    ],
+    name: "CreditFreeSenderRemoved",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "creditNotePool",
+        type: "address",
+      },
+    ],
+    name: "CreditNotePoolAdded",
     type: "event",
   },
   {
@@ -113,7 +152,70 @@ const _abi = [
       {
         indexed: true,
         internalType: "uint256",
+        name: "commitmentHash",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
         name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "TokenCommitmentRegistered",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "commitmentHash",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "TokenCommitmentUnregistered",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "previousCommitmentHash",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "newCommitmentHash",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "TokenCommitmentUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "commitmentHash",
         type: "uint256",
       },
       {
@@ -147,6 +249,58 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "CREDIT_TYPE_CERTIFICATE",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "CREDIT_TYPE_EVENT",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "CREDIT_TYPE_MESSAGE",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "CREDIT_TYPE_UPDATE",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "OWNERSHIP_PROOF_SIZE",
     outputs: [
       {
@@ -161,58 +315,6 @@ const _abi = [
   {
     inputs: [],
     name: "SELECTOR_SIZE",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ZK_CREDIT_TYPE_CERTIFICATE",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ZK_CREDIT_TYPE_EVENT",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ZK_CREDIT_TYPE_MESSAGE",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ZK_CREDIT_TYPE_UPDATE",
     outputs: [
       {
         internalType: "uint256",
@@ -571,9 +673,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[3]",
+            internalType: "uint256[4]",
             name: "_pubSignals",
-            type: "uint256[3]",
+            type: "uint256[4]",
           },
         ],
         internalType: "struct CreditNoteProof",
@@ -663,6 +765,11 @@ const _abi = [
       {
         internalType: "uint256",
         name: "_tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_commitmentHash",
         type: "uint256",
       },
       {
@@ -1103,9 +1210,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[3]",
+            internalType: "uint256[4]",
             name: "_pubSignals",
-            type: "uint256[3]",
+            type: "uint256[4]",
           },
         ],
         internalType: "struct CreditNoteProof",
@@ -1185,9 +1292,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[3]",
+            internalType: "uint256[4]",
             name: "_pubSignals",
-            type: "uint256[3]",
+            type: "uint256[4]",
           },
         ],
         internalType: "struct CreditNoteProof",
@@ -1407,9 +1514,9 @@ const _abi = [
             type: "uint256[2]",
           },
           {
-            internalType: "uint256[3]",
+            internalType: "uint256[4]",
             name: "_pubSignals",
-            type: "uint256[3]",
+            type: "uint256[4]",
           },
         ],
         internalType: "struct CreditNoteProof",
@@ -1695,47 +1802,6 @@ const _abi = [
     name: "updateCommitmentBatch",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: "uint256[2]",
-            name: "_pA",
-            type: "uint256[2]",
-          },
-          {
-            internalType: "uint256[2][2]",
-            name: "_pB",
-            type: "uint256[2][2]",
-          },
-          {
-            internalType: "uint256[2]",
-            name: "_pC",
-            type: "uint256[2]",
-          },
-          {
-            internalType: "uint256[3]",
-            name: "_pubSignals",
-            type: "uint256[3]",
-          },
-        ],
-        internalType: "struct CreditNoteProof",
-        name: "_proof",
-        type: "tuple",
-      },
-    ],
-    name: "isDefaultCreditNoteProof",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "pure",
     type: "function",
   },
 ] as const;
