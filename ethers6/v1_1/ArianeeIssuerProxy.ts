@@ -345,7 +345,8 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       AddressLike,
       BigNumberish,
       BigNumberish,
-      BytesLike
+      BytesLike,
+      AddressLike
     ]
   ): string;
   encodeFunctionData(
@@ -938,7 +939,8 @@ export interface ArianeeIssuerProxy extends BaseContract {
       _creditNotePool: AddressLike,
       _messageId: BigNumberish,
       _tokenId: BigNumberish,
-      _imprint: BytesLike
+      _imprint: BytesLike,
+      _interfaceProvider: AddressLike
     ],
     [void],
     "nonpayable"
@@ -1295,7 +1297,8 @@ export interface ArianeeIssuerProxy extends BaseContract {
       _creditNotePool: AddressLike,
       _messageId: BigNumberish,
       _tokenId: BigNumberish,
-      _imprint: BytesLike
+      _imprint: BytesLike,
+      _interfaceProvider: AddressLike
     ],
     [void],
     "nonpayable"
