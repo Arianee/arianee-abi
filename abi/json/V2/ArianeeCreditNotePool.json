@@ -15,11 +15,6 @@
         },
         {
           "internalType": "address",
-          "name": "_store",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
           "name": "_creditRegister",
           "type": "address"
         },
@@ -58,25 +53,25 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "creditType",
+          "name": "_creditType",
           "type": "uint256"
         },
         {
           "indexed": false,
           "internalType": "bytes32",
-          "name": "commitmentHash",
+          "name": "_commitmentHash",
           "type": "bytes32"
         },
         {
           "indexed": true,
           "internalType": "uint32",
-          "name": "leafIndex",
+          "name": "_leafIndex",
           "type": "uint32"
         },
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "timestamp",
+          "name": "_timestamp",
           "type": "uint256"
         }
       ],
@@ -89,19 +84,19 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "creditType",
+          "name": "_creditType",
           "type": "uint256"
         },
         {
           "indexed": false,
           "internalType": "bytes32",
-          "name": "nullifierHash",
+          "name": "_nullifierHash",
           "type": "bytes32"
         },
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "timestamp",
+          "name": "_timestamp",
           "type": "uint256"
         }
       ],
@@ -467,19 +462,6 @@
           "internalType": "bytes32",
           "name": "",
           "type": "bytes32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "store",
-      "outputs": [
-        {
-          "internalType": "contract IArianeeStore",
-          "name": "",
-          "type": "address"
         }
       ],
       "stateMutability": "view",
