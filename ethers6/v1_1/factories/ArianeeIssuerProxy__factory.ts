@@ -56,7 +56,7 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "sender",
+        name: "_sender",
         type: "address",
       },
     ],
@@ -69,13 +69,13 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "sender",
+        name: "_sender",
         type: "address",
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "creditType",
+        name: "_creditType",
         type: "uint256",
       },
     ],
@@ -88,7 +88,7 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "sender",
+        name: "_sender",
         type: "address",
       },
     ],
@@ -101,7 +101,7 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "creditNotePool",
+        name: "_creditNotePool",
         type: "address",
       },
     ],
@@ -150,15 +150,34 @@ const _abi = [
     anonymous: false,
     inputs: [
       {
+        indexed: false,
+        internalType: "address",
+        name: "_oldStore",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "_newStore",
+        type: "address",
+      },
+    ],
+    name: "StoreUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: true,
         internalType: "uint256",
-        name: "commitmentHash",
+        name: "_commitmentHash",
         type: "uint256",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "tokenId",
+        name: "_tokenId",
         type: "uint256",
       },
     ],
@@ -171,13 +190,13 @@ const _abi = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "commitmentHash",
+        name: "_commitmentHash",
         type: "uint256",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "tokenId",
+        name: "_tokenId",
         type: "uint256",
       },
     ],
@@ -190,19 +209,19 @@ const _abi = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "previousCommitmentHash",
+        name: "_previousCommitmentHash",
         type: "uint256",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "newCommitmentHash",
+        name: "_newCommitmentHash",
         type: "uint256",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "tokenId",
+        name: "_tokenId",
         type: "uint256",
       },
     ],
@@ -215,19 +234,19 @@ const _abi = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "commitmentHash",
+        name: "_commitmentHash",
         type: "uint256",
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "word",
+        name: "_word",
         type: "uint256",
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "mask",
+        name: "_mask",
         type: "uint256",
       },
     ],
@@ -598,12 +617,38 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address[]",
+        name: "_senders",
+        type: "address[]",
+      },
+    ],
+    name: "addCreditFreeSenderBatch",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "_sender",
         type: "address",
       },
     ],
     name: "removeCreditFreeSender",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "_senders",
+        type: "address[]",
+      },
+    ],
+    name: "removeCreditFreeSenderBatch",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -1802,6 +1847,32 @@ const _abi = [
     name: "updateCommitmentBatch",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_store",
+        type: "address",
+      },
+    ],
+    name: "setStoreAddress",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getStoreAddress",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ] as const;

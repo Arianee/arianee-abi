@@ -90,7 +90,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
       | "nullifierHashes"
       | "poseidon"
       | "roots"
-      | "store"
       | "token"
       | "zeros"
       | "purchase"
@@ -182,7 +181,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
   ): string;
   encodeFunctionData(functionFragment: "poseidon", values?: undefined): string;
   encodeFunctionData(functionFragment: "roots", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "store", values?: undefined): string;
   encodeFunctionData(functionFragment: "token", values?: undefined): string;
   encodeFunctionData(functionFragment: "zeros", values: [BigNumberish]): string;
   encodeFunctionData(
@@ -282,7 +280,6 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "poseidon", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "roots", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "store", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "zeros", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "purchase", data: BytesLike): Result;
@@ -296,22 +293,22 @@ export interface ArianeeCreditNotePoolInterface extends Interface {
 
 export namespace PurchasedEvent {
   export type InputTuple = [
-    creditType: BigNumberish,
-    commitmentHash: BytesLike,
-    leafIndex: BigNumberish,
-    timestamp: BigNumberish
+    _creditType: BigNumberish,
+    _commitmentHash: BytesLike,
+    _leafIndex: BigNumberish,
+    _timestamp: BigNumberish
   ];
   export type OutputTuple = [
-    creditType: bigint,
-    commitmentHash: string,
-    leafIndex: bigint,
-    timestamp: bigint
+    _creditType: bigint,
+    _commitmentHash: string,
+    _leafIndex: bigint,
+    _timestamp: bigint
   ];
   export interface OutputObject {
-    creditType: bigint;
-    commitmentHash: string;
-    leafIndex: bigint;
-    timestamp: bigint;
+    _creditType: bigint;
+    _commitmentHash: string;
+    _leafIndex: bigint;
+    _timestamp: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -321,19 +318,19 @@ export namespace PurchasedEvent {
 
 export namespace SpentEvent {
   export type InputTuple = [
-    creditType: BigNumberish,
-    nullifierHash: BytesLike,
-    timestamp: BigNumberish
+    _creditType: BigNumberish,
+    _nullifierHash: BytesLike,
+    _timestamp: BigNumberish
   ];
   export type OutputTuple = [
-    creditType: bigint,
-    nullifierHash: string,
-    timestamp: bigint
+    _creditType: bigint,
+    _nullifierHash: string,
+    _timestamp: bigint
   ];
   export interface OutputObject {
-    creditType: bigint;
-    nullifierHash: string;
-    timestamp: bigint;
+    _creditType: bigint;
+    _nullifierHash: string;
+    _timestamp: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -439,8 +436,6 @@ export interface ArianeeCreditNotePool extends BaseContract {
   poseidon: TypedContractMethod<[], [string], "view">;
 
   roots: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
-
-  store: TypedContractMethod<[], [string], "view">;
 
   token: TypedContractMethod<[], [string], "view">;
 
@@ -554,9 +549,6 @@ export interface ArianeeCreditNotePool extends BaseContract {
   getFunction(
     nameOrSignature: "roots"
   ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
-  getFunction(
-    nameOrSignature: "store"
-  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "token"
   ): TypedContractMethod<[], [string], "view">;

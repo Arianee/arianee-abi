@@ -92,7 +92,9 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "verifier"
       | "addCreditNotePool"
       | "addCreditFreeSender"
+      | "addCreditFreeSenderBatch"
       | "removeCreditFreeSender"
+      | "removeCreditFreeSenderBatch"
       | "reserveToken"
       | "hydrateToken"
       | "invalidateUnorderedNonces"
@@ -116,6 +118,8 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "unsetMissingStatus"
       | "updateCommitment"
       | "updateCommitmentBatch"
+      | "setStoreAddress"
+      | "getStoreAddress"
   ): FunctionFragment;
 
   getEvent(
@@ -126,6 +130,7 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "CreditNotePoolAdded"
       | "OwnershipTransferStarted"
       | "OwnershipTransferred"
+      | "StoreUpdated"
       | "TokenCommitmentRegistered"
       | "TokenCommitmentUnregistered"
       | "TokenCommitmentUpdated"
@@ -225,8 +230,16 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "addCreditFreeSenderBatch",
+    values: [AddressLike[]]
+  ): string;
+  encodeFunctionData(
     functionFragment: "removeCreditFreeSender",
     values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeCreditFreeSenderBatch",
+    values: [AddressLike[]]
   ): string;
   encodeFunctionData(
     functionFragment: "reserveToken",
@@ -387,6 +400,14 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       BigNumberish[]
     ]
   ): string;
+  encodeFunctionData(
+    functionFragment: "setStoreAddress",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getStoreAddress",
+    values?: undefined
+  ): string;
 
   decodeFunctionResult(
     functionFragment: "CREDIT_NOTE_PROOF_SIZE",
@@ -478,7 +499,15 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "addCreditFreeSenderBatch",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "removeCreditFreeSender",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "removeCreditFreeSenderBatch",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -567,13 +596,21 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "updateCommitmentBatch",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "setStoreAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getStoreAddress",
+    data: BytesLike
+  ): Result;
 }
 
 export namespace CreditFreeSenderAddedEvent {
-  export type InputTuple = [sender: AddressLike];
-  export type OutputTuple = [sender: string];
+  export type InputTuple = [_sender: AddressLike];
+  export type OutputTuple = [_sender: string];
   export interface OutputObject {
-    sender: string;
+    _sender: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -582,11 +619,11 @@ export namespace CreditFreeSenderAddedEvent {
 }
 
 export namespace CreditFreeSenderLogEvent {
-  export type InputTuple = [sender: AddressLike, creditType: BigNumberish];
-  export type OutputTuple = [sender: string, creditType: bigint];
+  export type InputTuple = [_sender: AddressLike, _creditType: BigNumberish];
+  export type OutputTuple = [_sender: string, _creditType: bigint];
   export interface OutputObject {
-    sender: string;
-    creditType: bigint;
+    _sender: string;
+    _creditType: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -595,10 +632,10 @@ export namespace CreditFreeSenderLogEvent {
 }
 
 export namespace CreditFreeSenderRemovedEvent {
-  export type InputTuple = [sender: AddressLike];
-  export type OutputTuple = [sender: string];
+  export type InputTuple = [_sender: AddressLike];
+  export type OutputTuple = [_sender: string];
   export interface OutputObject {
-    sender: string;
+    _sender: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -607,10 +644,10 @@ export namespace CreditFreeSenderRemovedEvent {
 }
 
 export namespace CreditNotePoolAddedEvent {
-  export type InputTuple = [creditNotePool: AddressLike];
-  export type OutputTuple = [creditNotePool: string];
+  export type InputTuple = [_creditNotePool: AddressLike];
+  export type OutputTuple = [_creditNotePool: string];
   export interface OutputObject {
-    creditNotePool: string;
+    _creditNotePool: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -644,15 +681,28 @@ export namespace OwnershipTransferredEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
+export namespace StoreUpdatedEvent {
+  export type InputTuple = [_oldStore: AddressLike, _newStore: AddressLike];
+  export type OutputTuple = [_oldStore: string, _newStore: string];
+  export interface OutputObject {
+    _oldStore: string;
+    _newStore: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
 export namespace TokenCommitmentRegisteredEvent {
   export type InputTuple = [
-    commitmentHash: BigNumberish,
-    tokenId: BigNumberish
+    _commitmentHash: BigNumberish,
+    _tokenId: BigNumberish
   ];
-  export type OutputTuple = [commitmentHash: bigint, tokenId: bigint];
+  export type OutputTuple = [_commitmentHash: bigint, _tokenId: bigint];
   export interface OutputObject {
-    commitmentHash: bigint;
-    tokenId: bigint;
+    _commitmentHash: bigint;
+    _tokenId: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -662,13 +712,13 @@ export namespace TokenCommitmentRegisteredEvent {
 
 export namespace TokenCommitmentUnregisteredEvent {
   export type InputTuple = [
-    commitmentHash: BigNumberish,
-    tokenId: BigNumberish
+    _commitmentHash: BigNumberish,
+    _tokenId: BigNumberish
   ];
-  export type OutputTuple = [commitmentHash: bigint, tokenId: bigint];
+  export type OutputTuple = [_commitmentHash: bigint, _tokenId: bigint];
   export interface OutputObject {
-    commitmentHash: bigint;
-    tokenId: bigint;
+    _commitmentHash: bigint;
+    _tokenId: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -678,19 +728,19 @@ export namespace TokenCommitmentUnregisteredEvent {
 
 export namespace TokenCommitmentUpdatedEvent {
   export type InputTuple = [
-    previousCommitmentHash: BigNumberish,
-    newCommitmentHash: BigNumberish,
-    tokenId: BigNumberish
+    _previousCommitmentHash: BigNumberish,
+    _newCommitmentHash: BigNumberish,
+    _tokenId: BigNumberish
   ];
   export type OutputTuple = [
-    previousCommitmentHash: bigint,
-    newCommitmentHash: bigint,
-    tokenId: bigint
+    _previousCommitmentHash: bigint,
+    _newCommitmentHash: bigint,
+    _tokenId: bigint
   ];
   export interface OutputObject {
-    previousCommitmentHash: bigint;
-    newCommitmentHash: bigint;
-    tokenId: bigint;
+    _previousCommitmentHash: bigint;
+    _newCommitmentHash: bigint;
+    _tokenId: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -700,19 +750,19 @@ export namespace TokenCommitmentUpdatedEvent {
 
 export namespace UnorderedNonceInvalidationEvent {
   export type InputTuple = [
-    commitmentHash: BigNumberish,
-    word: BigNumberish,
-    mask: BigNumberish
+    _commitmentHash: BigNumberish,
+    _word: BigNumberish,
+    _mask: BigNumberish
   ];
   export type OutputTuple = [
-    commitmentHash: bigint,
-    word: bigint,
-    mask: bigint
+    _commitmentHash: bigint,
+    _word: bigint,
+    _mask: bigint
   ];
   export interface OutputObject {
-    commitmentHash: bigint;
-    word: bigint;
-    mask: bigint;
+    _commitmentHash: bigint;
+    _word: bigint;
+    _mask: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -843,8 +893,20 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
+  addCreditFreeSenderBatch: TypedContractMethod<
+    [_senders: AddressLike[]],
+    [void],
+    "nonpayable"
+  >;
+
   removeCreditFreeSender: TypedContractMethod<
     [_sender: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  removeCreditFreeSenderBatch: TypedContractMethod<
+    [_senders: AddressLike[]],
     [void],
     "nonpayable"
   >;
@@ -1095,6 +1157,14 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
+  setStoreAddress: TypedContractMethod<
+    [_store: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  getStoreAddress: TypedContractMethod<[], [string], "view">;
+
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
@@ -1182,8 +1252,14 @@ export interface ArianeeIssuerProxy extends BaseContract {
     nameOrSignature: "addCreditFreeSender"
   ): TypedContractMethod<[_sender: AddressLike], [void], "nonpayable">;
   getFunction(
+    nameOrSignature: "addCreditFreeSenderBatch"
+  ): TypedContractMethod<[_senders: AddressLike[]], [void], "nonpayable">;
+  getFunction(
     nameOrSignature: "removeCreditFreeSender"
   ): TypedContractMethod<[_sender: AddressLike], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "removeCreditFreeSenderBatch"
+  ): TypedContractMethod<[_senders: AddressLike[]], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "reserveToken"
   ): TypedContractMethod<
@@ -1453,6 +1529,12 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "setStoreAddress"
+  ): TypedContractMethod<[_store: AddressLike], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "getStoreAddress"
+  ): TypedContractMethod<[], [string], "view">;
 
   getEvent(
     key: "CreditFreeSenderAdded"
@@ -1495,6 +1577,13 @@ export interface ArianeeIssuerProxy extends BaseContract {
     OwnershipTransferredEvent.InputTuple,
     OwnershipTransferredEvent.OutputTuple,
     OwnershipTransferredEvent.OutputObject
+  >;
+  getEvent(
+    key: "StoreUpdated"
+  ): TypedContractEvent<
+    StoreUpdatedEvent.InputTuple,
+    StoreUpdatedEvent.OutputTuple,
+    StoreUpdatedEvent.OutputObject
   >;
   getEvent(
     key: "TokenCommitmentRegistered"
@@ -1590,6 +1679,17 @@ export interface ArianeeIssuerProxy extends BaseContract {
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
       OwnershipTransferredEvent.OutputObject
+    >;
+
+    "StoreUpdated(address,address)": TypedContractEvent<
+      StoreUpdatedEvent.InputTuple,
+      StoreUpdatedEvent.OutputTuple,
+      StoreUpdatedEvent.OutputObject
+    >;
+    StoreUpdated: TypedContractEvent<
+      StoreUpdatedEvent.InputTuple,
+      StoreUpdatedEvent.OutputTuple,
+      StoreUpdatedEvent.OutputObject
     >;
 
     "TokenCommitmentRegistered(uint256,uint256)": TypedContractEvent<
