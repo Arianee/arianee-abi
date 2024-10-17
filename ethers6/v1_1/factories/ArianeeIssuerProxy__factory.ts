@@ -1413,6 +1413,11 @@ const _abi = [
       },
       {
         internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
         name: "_eventId",
         type: "uint256",
       },
@@ -1458,6 +1463,61 @@ const _abi = [
       },
       {
         internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_eventId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "_interfaceProvider",
+        type: "address",
+      },
+    ],
+    name: "refuseEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "uint256[2]",
+            name: "_pA",
+            type: "uint256[2]",
+          },
+          {
+            internalType: "uint256[2][2]",
+            name: "_pB",
+            type: "uint256[2][2]",
+          },
+          {
+            internalType: "uint256[2]",
+            name: "_pC",
+            type: "uint256[2]",
+          },
+          {
+            internalType: "uint256[3]",
+            name: "_pubSignals",
+            type: "uint256[3]",
+          },
+        ],
+        internalType: "struct ArianeeIssuerProxy.OwnershipProof",
+        name: "_ownershipProof",
+        type: "tuple",
+      },
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
         name: "_eventId",
         type: "uint256",
       },
@@ -1495,6 +1555,11 @@ const _abi = [
         internalType: "struct ArianeeIssuerProxy.OwnershipProof",
         name: "_ownershipProof",
         type: "tuple",
+      },
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
       },
       {
         internalType: "uint256",

@@ -109,6 +109,7 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "updateSmartAsset"
       | "createEvent"
       | "acceptEvent"
+      | "refuseEvent"
       | "destroyEvent"
       | "updateDestroyEventRequest"
       | "createMessage"
@@ -346,15 +347,38 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "acceptEvent",
-    values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish, AddressLike]
+    values: [
+      ArianeeIssuerProxy.OwnershipProofStruct,
+      BigNumberish,
+      BigNumberish,
+      AddressLike
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "refuseEvent",
+    values: [
+      ArianeeIssuerProxy.OwnershipProofStruct,
+      BigNumberish,
+      BigNumberish,
+      AddressLike
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "destroyEvent",
-    values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish]
+    values: [
+      ArianeeIssuerProxy.OwnershipProofStruct,
+      BigNumberish,
+      BigNumberish
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "updateDestroyEventRequest",
-    values: [ArianeeIssuerProxy.OwnershipProofStruct, BigNumberish, boolean]
+    values: [
+      ArianeeIssuerProxy.OwnershipProofStruct,
+      BigNumberish,
+      BigNumberish,
+      boolean
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "createMessage",
@@ -558,6 +582,10 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "acceptEvent",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "refuseEvent",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -1061,6 +1089,18 @@ export interface ArianeeIssuerProxy extends BaseContract {
   acceptEvent: TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
+      _eventId: BigNumberish,
+      _interfaceProvider: AddressLike
+    ],
+    [void],
+    "nonpayable"
+  >;
+
+  refuseEvent: TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish,
       _interfaceProvider: AddressLike
     ],
@@ -1071,6 +1111,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
   destroyEvent: TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish
     ],
     [void],
@@ -1080,6 +1121,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
   updateDestroyEventRequest: TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish,
       _active: boolean
     ],
@@ -1425,6 +1467,19 @@ export interface ArianeeIssuerProxy extends BaseContract {
   ): TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
+      _eventId: BigNumberish,
+      _interfaceProvider: AddressLike
+    ],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "refuseEvent"
+  ): TypedContractMethod<
+    [
+      _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish,
       _interfaceProvider: AddressLike
     ],
@@ -1436,6 +1491,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
   ): TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish
     ],
     [void],
@@ -1446,6 +1502,7 @@ export interface ArianeeIssuerProxy extends BaseContract {
   ): TypedContractMethod<
     [
       _ownershipProof: ArianeeIssuerProxy.OwnershipProofStruct,
+      _tokenId: BigNumberish,
       _eventId: BigNumberish,
       _active: boolean
     ],
