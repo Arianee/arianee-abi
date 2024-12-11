@@ -14,9 +14,10 @@
   "scripts": {
     "generate": "./node_modules/.bin/typechain --target=web3-v1.2.2/dist './abi/json/**/*.json' --outDir=./types",
     "generateJS": "",
-    "generateEthers6": "npm run _generateEthers6_v1 && npm run _generateEthers6_v1_1",
+    "generateEthers6": "npm run _generateEthers6_v1 && npm run _generateEthers6_v1_5 && npm run _generateEthers6_v1_6",
     "_generateEthers6_v1": "typechain --target ethers-v6 --out-dir ./ethers6/v1 './abi/json/V1/*.json'",
-    "_generateEthers6_v1_1": "typechain --target ethers-v6 --out-dir ./ethers6/v1_1 './abi/json/V2/*.json'",
+    "_generateEthers6_v1_5": "typechain --target ethers-v6 --out-dir ./ethers6/v1_5 './abi/json/V1_5/*.json'",
+    "_generateEthers6_v1_6": "typechain --target ethers-v6 --out-dir ./ethers6/v1_6 './abi/json/V1_6/*.json'",
     "minify": "node ./minify.js",
     "build": "npm run generate && npm run minify",
     "prepublish": "tsc"
