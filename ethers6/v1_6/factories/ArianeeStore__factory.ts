@@ -301,11 +301,6 @@ const _abi = [
         type: "address",
         internalType: "address",
       },
-      {
-        name: "_soulbound",
-        type: "bool",
-        internalType: "bool",
-      },
     ],
     outputs: [],
     stateMutability: "nonpayable",

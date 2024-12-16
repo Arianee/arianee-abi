@@ -136,8 +136,7 @@ export interface ArianeeStoreInterface extends Interface {
       AddressLike,
       BigNumberish,
       boolean,
-      AddressLike,
-      boolean
+      AddressLike
     ]
   ): string;
   encodeFunctionData(
@@ -697,8 +696,7 @@ export interface ArianeeStore extends BaseContract {
       _initialKey: AddressLike,
       _tokenRecoveryTimestamp: BigNumberish,
       _initialKeyIsRequestKey: boolean,
-      _rewardsReceiver: AddressLike,
-      _soulbound: boolean
+      _rewardsReceiver: AddressLike
     ],
     [void],
     "nonpayable"
@@ -954,8 +952,7 @@ export interface ArianeeStore extends BaseContract {
       _initialKey: AddressLike,
       _tokenRecoveryTimestamp: BigNumberish,
       _initialKeyIsRequestKey: boolean,
-      _rewardsReceiver: AddressLike,
-      _soulbound: boolean
+      _rewardsReceiver: AddressLike
     ],
     [void],
     "nonpayable"
