@@ -35,6 +35,7 @@ export interface ArianeeSmartAssetInterface extends Interface {
       | "destroy"
       | "getApproved"
       | "getRoleAdmin"
+      | "getStoreAddress"
       | "grantRole"
       | "hasRole"
       | "hydrateToken"
@@ -130,6 +131,10 @@ export interface ArianeeSmartAssetInterface extends Interface {
   encodeFunctionData(
     functionFragment: "getRoleAdmin",
     values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getStoreAddress",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "grantRole",
@@ -303,6 +308,10 @@ export interface ArianeeSmartAssetInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getRoleAdmin",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getStoreAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
@@ -777,6 +786,8 @@ export interface ArianeeSmartAsset extends BaseContract {
 
   getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
 
+  getStoreAddress: TypedContractMethod<[], [string], "view">;
+
   grantRole: TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
@@ -918,7 +929,7 @@ export interface ArianeeSmartAsset extends BaseContract {
     "nonpayable"
   >;
 
-  setUriBase: TypedContractMethod<[_newURIBase: string], [void], "nonpayable">;
+  setUriBase: TypedContractMethod<[_newBaseURI: string], [void], "nonpayable">;
 
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
@@ -1034,6 +1045,9 @@ export interface ArianeeSmartAsset extends BaseContract {
   getFunction(
     nameOrSignature: "getRoleAdmin"
   ): TypedContractMethod<[role: BytesLike], [string], "view">;
+  getFunction(
+    nameOrSignature: "getStoreAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "grantRole"
   ): TypedContractMethod<
@@ -1183,7 +1197,7 @@ export interface ArianeeSmartAsset extends BaseContract {
   >;
   getFunction(
     nameOrSignature: "setUriBase"
-  ): TypedContractMethod<[_newURIBase: string], [void], "nonpayable">;
+  ): TypedContractMethod<[_newBaseURI: string], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
