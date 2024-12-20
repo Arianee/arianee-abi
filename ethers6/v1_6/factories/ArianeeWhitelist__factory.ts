@@ -157,6 +157,16 @@ const _abi = [
         type: "address",
         internalType: "address",
       },
+      {
+        name: "_arianeeEventAddress",
+        type: "address",
+        internalType: "address",
+      },
+      {
+        name: "_smartAssetAddress",
+        type: "address",
+        internalType: "address",
+      },
     ],
     outputs: [],
     stateMutability: "nonpayable",

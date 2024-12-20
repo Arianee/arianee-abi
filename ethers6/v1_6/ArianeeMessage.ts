@@ -50,6 +50,7 @@ export interface ArianeeMessageInterface extends Interface {
       | "messageLengthByReceiver"
       | "messages"
       | "readMessage"
+      | "receiverToMessageIds"
       | "renounceRole"
       | "revokeRole"
       | "sendMessage"
@@ -108,6 +109,10 @@ export interface ArianeeMessageInterface extends Interface {
     values: [BigNumberish, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "receiverToMessageIds",
+    values: [AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "renounceRole",
     values: [BytesLike, AddressLike]
   ): string;
@@ -154,6 +159,10 @@ export interface ArianeeMessageInterface extends Interface {
   decodeFunctionResult(functionFragment: "messages", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "readMessage",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "receiverToMessageIds",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -388,6 +397,12 @@ export interface ArianeeMessage extends BaseContract {
     "nonpayable"
   >;
 
+  receiverToMessageIds: TypedContractMethod<
+    [_receiver: AddressLike, _index: BigNumberish],
+    [bigint],
+    "view"
+  >;
+
   renounceRole: TypedContractMethod<
     [role: BytesLike, callerConfirmation: AddressLike],
     [void],
@@ -478,6 +493,13 @@ export interface ArianeeMessage extends BaseContract {
     [_messageId: BigNumberish, _from: AddressLike],
     [bigint],
     "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "receiverToMessageIds"
+  ): TypedContractMethod<
+    [_receiver: AddressLike, _index: BigNumberish],
+    [bigint],
+    "view"
   >;
   getFunction(
     nameOrSignature: "renounceRole"

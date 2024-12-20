@@ -29,6 +29,7 @@ export interface ArianeeCreditHistoryInterface extends Interface {
       | "ArianeeCreditHistoryStorageV0Location"
       | "DEFAULT_ADMIN_ROLE"
       | "addCreditHistory"
+      | "arianeeStoreAddress"
       | "balanceOf"
       | "consumeCredits"
       | "getRoleAdmin"
@@ -63,6 +64,10 @@ export interface ArianeeCreditHistoryInterface extends Interface {
   encodeFunctionData(
     functionFragment: "addCreditHistory",
     values: [AddressLike, BigNumberish, BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeStoreAddress",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "balanceOf",
@@ -127,6 +132,10 @@ export interface ArianeeCreditHistoryInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "addCreditHistory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeStoreAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
@@ -297,6 +306,8 @@ export interface ArianeeCreditHistory extends BaseContract {
     "nonpayable"
   >;
 
+  arianeeStoreAddress: TypedContractMethod<[], [string], "view">;
+
   balanceOf: TypedContractMethod<
     [_spender: AddressLike, _type: BigNumberish],
     [bigint],
@@ -389,6 +400,9 @@ export interface ArianeeCreditHistory extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "arianeeStoreAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "balanceOf"
   ): TypedContractMethod<

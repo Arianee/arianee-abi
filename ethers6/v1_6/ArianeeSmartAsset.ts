@@ -30,6 +30,7 @@ export interface ArianeeSmartAssetInterface extends Interface {
       | "DEFAULT_ADMIN_ROLE"
       | "addTokenAccess"
       | "approve"
+      | "arianeeWhitelist"
       | "balanceOf"
       | "canOperate"
       | "destroy"
@@ -59,6 +60,7 @@ export interface ArianeeSmartAssetInterface extends Interface {
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setApprovalForAll"
       | "setUriBase"
+      | "store"
       | "supportsInterface"
       | "symbol"
       | "tokenByIndex"
@@ -111,6 +113,10 @@ export interface ArianeeSmartAssetInterface extends Interface {
   encodeFunctionData(
     functionFragment: "approve",
     values: [AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeWhitelist",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "balanceOf",
@@ -228,6 +234,7 @@ export interface ArianeeSmartAssetInterface extends Interface {
     values: [AddressLike, boolean]
   ): string;
   encodeFunctionData(functionFragment: "setUriBase", values: [string]): string;
+  encodeFunctionData(functionFragment: "store", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
@@ -299,6 +306,10 @@ export interface ArianeeSmartAssetInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeWhitelist",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "canOperate", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "destroy", data: BytesLike): Result;
@@ -379,6 +390,7 @@ export interface ArianeeSmartAssetInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "setUriBase", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "store", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -772,6 +784,8 @@ export interface ArianeeSmartAsset extends BaseContract {
     "nonpayable"
   >;
 
+  arianeeWhitelist: TypedContractMethod<[], [string], "view">;
+
   balanceOf: TypedContractMethod<[owner: AddressLike], [bigint], "view">;
 
   canOperate: TypedContractMethod<
@@ -931,6 +945,8 @@ export interface ArianeeSmartAsset extends BaseContract {
 
   setUriBase: TypedContractMethod<[_newBaseURI: string], [void], "nonpayable">;
 
+  store: TypedContractMethod<[], [string], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
@@ -1026,6 +1042,9 @@ export interface ArianeeSmartAsset extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "arianeeWhitelist"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "balanceOf"
   ): TypedContractMethod<[owner: AddressLike], [bigint], "view">;
@@ -1198,6 +1217,9 @@ export interface ArianeeSmartAsset extends BaseContract {
   getFunction(
     nameOrSignature: "setUriBase"
   ): TypedContractMethod<[_newBaseURI: string], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "store"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;

@@ -33,6 +33,7 @@ export interface ArianeeIdentityInterface extends Interface {
       | "addressImprint"
       | "addressIsApproved"
       | "addressURI"
+      | "bouncerAddress"
       | "compromiseIdentityDate"
       | "getRoleAdmin"
       | "grantRole"
@@ -49,6 +50,7 @@ export interface ArianeeIdentityInterface extends Interface {
       | "updateInformations"
       | "updateValidatorAddress"
       | "validateInformation"
+      | "validatorAddress"
       | "waitingImprint"
       | "waitingURI"
   ): FunctionFragment;
@@ -94,6 +96,10 @@ export interface ArianeeIdentityInterface extends Interface {
   encodeFunctionData(
     functionFragment: "addressURI",
     values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "bouncerAddress",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "compromiseIdentityDate",
@@ -160,6 +166,10 @@ export interface ArianeeIdentityInterface extends Interface {
     values: [AddressLike, string, BytesLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "validatorAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "waitingImprint",
     values: [AddressLike]
   ): string;
@@ -193,6 +203,10 @@ export interface ArianeeIdentityInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "addressURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "bouncerAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "compromiseIdentityDate",
     data: BytesLike
@@ -243,6 +257,10 @@ export interface ArianeeIdentityInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "validateInformation",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "validatorAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -481,6 +499,8 @@ export interface ArianeeIdentity extends BaseContract {
 
   addressURI: TypedContractMethod<[_identity: AddressLike], [string], "view">;
 
+  bouncerAddress: TypedContractMethod<[], [string], "view">;
+
   compromiseIdentityDate: TypedContractMethod<
     [_identity: AddressLike],
     [bigint],
@@ -577,6 +597,8 @@ export interface ArianeeIdentity extends BaseContract {
     "nonpayable"
   >;
 
+  validatorAddress: TypedContractMethod<[], [string], "view">;
+
   waitingImprint: TypedContractMethod<
     [_identity: AddressLike],
     [string],
@@ -610,6 +632,9 @@ export interface ArianeeIdentity extends BaseContract {
   getFunction(
     nameOrSignature: "addressURI"
   ): TypedContractMethod<[_identity: AddressLike], [string], "view">;
+  getFunction(
+    nameOrSignature: "bouncerAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "compromiseIdentityDate"
   ): TypedContractMethod<[_identity: AddressLike], [bigint], "view">;
@@ -706,6 +731,9 @@ export interface ArianeeIdentity extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "validatorAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "waitingImprint"
   ): TypedContractMethod<[_identity: AddressLike], [string], "view">;

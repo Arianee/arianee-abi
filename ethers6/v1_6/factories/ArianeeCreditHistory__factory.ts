@@ -76,6 +76,19 @@ const _abi = [
   },
   {
     type: "function",
+    name: "arianeeStoreAddress",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "balanceOf",
     inputs: [
       {

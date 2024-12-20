@@ -72,9 +72,13 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "addCreditNotePool"
       | "addTokenAccess"
       | "approve"
+      | "arianeeEvent"
+      | "arianeeLost"
       | "commitmentHashes"
       | "createEvent"
       | "createMessage"
+      | "creditFreeSenders"
+      | "creditNotePools"
       | "destroy"
       | "destroyEvent"
       | "getRoleAdmin"
@@ -85,6 +89,8 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "initialize"
       | "invalidateUnorderedNonces"
       | "isTrustedForwarder"
+      | "nonceBitmap"
+      | "poseidon"
       | "recoverTokenToIssuer"
       | "refuseEvent"
       | "removeCreditFreeSender"
@@ -95,17 +101,19 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       | "safeTransferFrom"
       | "setMissingStatus"
       | "setStolenStatus"
+      | "smartAsset"
+      | "store"
       | "supportsInterface"
       | "transferFrom"
       | "trustedForwarder"
       | "unsetMissingStatus"
       | "unsetStolenStatus"
       | "updateCommitment"
-      | "updateCommitmentBatch"
       | "updateDestroyEventRequest"
       | "updateRecoveryRequest"
       | "updateSmartAsset"
       | "updateTokenURI"
+      | "verifier"
   ): FunctionFragment;
 
   getEvent(
@@ -163,6 +171,14 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [OwnershipProofStruct, AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "arianeeEvent",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeLost",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "commitmentHashes",
     values: [BigNumberish]
   ): string;
@@ -190,6 +206,14 @@ export interface ArianeeIssuerProxyInterface extends Interface {
       BytesLike,
       AddressLike
     ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "creditFreeSenders",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "creditNotePools",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "destroy",
@@ -258,6 +282,11 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "nonceBitmap",
+    values: [BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "poseidon", values?: undefined): string;
+  encodeFunctionData(
     functionFragment: "recoverTokenToIssuer",
     values: [OwnershipProofStruct, BigNumberish]
   ): string;
@@ -304,6 +333,11 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [OwnershipProofStruct, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "smartAsset",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "store", values?: undefined): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
@@ -328,10 +362,6 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     values: [OwnershipProofStruct, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateCommitmentBatch",
-    values: [OwnershipProofStruct[], BigNumberish[], BigNumberish[]]
-  ): string;
-  encodeFunctionData(
     functionFragment: "updateDestroyEventRequest",
     values: [OwnershipProofStruct, BigNumberish, BigNumberish, boolean]
   ): string;
@@ -354,6 +384,7 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "updateTokenURI",
     values: [OwnershipProofStruct, BigNumberish, string]
   ): string;
+  encodeFunctionData(functionFragment: "verifier", values?: undefined): string;
 
   decodeFunctionResult(
     functionFragment: "ArianeeIssuerProxyStorageV0Location",
@@ -385,6 +416,14 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "arianeeEvent",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeLost",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "commitmentHashes",
     data: BytesLike
   ): Result;
@@ -394,6 +433,14 @@ export interface ArianeeIssuerProxyInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "createMessage",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "creditFreeSenders",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "creditNotePools",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "destroy", data: BytesLike): Result;
@@ -424,6 +471,11 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "isTrustedForwarder",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "nonceBitmap",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "poseidon", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "recoverTokenToIssuer",
     data: BytesLike
@@ -461,6 +513,8 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "setStolenStatus",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "smartAsset", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "store", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -486,10 +540,6 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateCommitmentBatch",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "updateDestroyEventRequest",
     data: BytesLike
   ): Result;
@@ -505,6 +555,7 @@ export interface ArianeeIssuerProxyInterface extends Interface {
     functionFragment: "updateTokenURI",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "verifier", data: BytesLike): Result;
 }
 
 export namespace CreditFreeSenderAddedEvent {
@@ -804,6 +855,10 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
+  arianeeEvent: TypedContractMethod<[], [string], "view">;
+
+  arianeeLost: TypedContractMethod<[], [string], "view">;
+
   commitmentHashes: TypedContractMethod<
     [_tokenId: BigNumberish],
     [bigint],
@@ -837,6 +892,18 @@ export interface ArianeeIssuerProxy extends BaseContract {
     ],
     [void],
     "nonpayable"
+  >;
+
+  creditFreeSenders: TypedContractMethod<
+    [_sender: AddressLike],
+    [boolean],
+    "view"
+  >;
+
+  creditNotePools: TypedContractMethod<
+    [_creditNotePool: AddressLike],
+    [boolean],
+    "view"
   >;
 
   destroy: TypedContractMethod<
@@ -921,6 +988,14 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "view"
   >;
 
+  nonceBitmap: TypedContractMethod<
+    [commitmentHash: BigNumberish, wordPos: BigNumberish],
+    [bigint],
+    "view"
+  >;
+
+  poseidon: TypedContractMethod<[], [string], "view">;
+
   recoverTokenToIssuer: TypedContractMethod<
     [_ownershipProof: OwnershipProofStruct, _tokenId: BigNumberish],
     [void],
@@ -992,6 +1067,10 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
 
+  smartAsset: TypedContractMethod<[], [string], "view">;
+
+  store: TypedContractMethod<[], [string], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
@@ -1028,16 +1107,6 @@ export interface ArianeeIssuerProxy extends BaseContract {
       _ownershipProof: OwnershipProofStruct,
       _tokenId: BigNumberish,
       _newCommitmentHash: BigNumberish
-    ],
-    [void],
-    "nonpayable"
-  >;
-
-  updateCommitmentBatch: TypedContractMethod<
-    [
-      _ownershipProofs: OwnershipProofStruct[],
-      _tokenIds: BigNumberish[],
-      _newCommitmentHashes: BigNumberish[]
     ],
     [void],
     "nonpayable"
@@ -1086,6 +1155,8 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [void],
     "nonpayable"
   >;
+
+  verifier: TypedContractMethod<[], [string], "view">;
 
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
@@ -1143,6 +1214,12 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "arianeeEvent"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "arianeeLost"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "commitmentHashes"
   ): TypedContractMethod<[_tokenId: BigNumberish], [bigint], "view">;
   getFunction(
@@ -1176,6 +1253,12 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "creditFreeSenders"
+  ): TypedContractMethod<[_sender: AddressLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "creditNotePools"
+  ): TypedContractMethod<[_creditNotePool: AddressLike], [boolean], "view">;
   getFunction(
     nameOrSignature: "destroy"
   ): TypedContractMethod<
@@ -1265,6 +1348,16 @@ export interface ArianeeIssuerProxy extends BaseContract {
     nameOrSignature: "isTrustedForwarder"
   ): TypedContractMethod<[forwarder: AddressLike], [boolean], "view">;
   getFunction(
+    nameOrSignature: "nonceBitmap"
+  ): TypedContractMethod<
+    [commitmentHash: BigNumberish, wordPos: BigNumberish],
+    [bigint],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "poseidon"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "recoverTokenToIssuer"
   ): TypedContractMethod<
     [_ownershipProof: OwnershipProofStruct, _tokenId: BigNumberish],
@@ -1338,6 +1431,12 @@ export interface ArianeeIssuerProxy extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "smartAsset"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "store"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
   getFunction(
@@ -1376,17 +1475,6 @@ export interface ArianeeIssuerProxy extends BaseContract {
       _ownershipProof: OwnershipProofStruct,
       _tokenId: BigNumberish,
       _newCommitmentHash: BigNumberish
-    ],
-    [void],
-    "nonpayable"
-  >;
-  getFunction(
-    nameOrSignature: "updateCommitmentBatch"
-  ): TypedContractMethod<
-    [
-      _ownershipProofs: OwnershipProofStruct[],
-      _tokenIds: BigNumberish[],
-      _newCommitmentHashes: BigNumberish[]
     ],
     [void],
     "nonpayable"
@@ -1439,6 +1527,9 @@ export interface ArianeeIssuerProxy extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "verifier"
+  ): TypedContractMethod<[], [string], "view">;
 
   getEvent(
     key: "CreditFreeSenderAdded"

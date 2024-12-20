@@ -94,6 +94,19 @@ const _abi = [
   },
   {
     type: "function",
+    name: "arianeeWhitelist",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeWhitelist",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "balanceOf",
     inputs: [
       {
@@ -691,6 +704,19 @@ const _abi = [
     ],
     outputs: [],
     stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "store",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeStore",
+      },
+    ],
+    stateMutability: "view",
   },
   {
     type: "function",
