@@ -143,6 +143,19 @@ const _abi = [
   },
   {
     type: "function",
+    name: "bouncerAddress",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "compromiseIdentityDate",
     inputs: [
       {
@@ -428,6 +441,19 @@ const _abi = [
     ],
     outputs: [],
     stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "validatorAddress",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    stateMutability: "view",
   },
   {
     type: "function",

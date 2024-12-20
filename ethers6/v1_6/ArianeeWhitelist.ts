@@ -84,7 +84,7 @@ export interface ArianeeWhitelistInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "initialize",
-    values: [AddressLike]
+    values: [AddressLike, AddressLike, AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "isAuthorized",
@@ -352,7 +352,11 @@ export interface ArianeeWhitelist extends BaseContract {
   >;
 
   initialize: TypedContractMethod<
-    [_initialAdmin: AddressLike],
+    [
+      _initialAdmin: AddressLike,
+      _arianeeEventAddress: AddressLike,
+      _smartAssetAddress: AddressLike
+    ],
     [void],
     "nonpayable"
   >;
@@ -444,7 +448,15 @@ export interface ArianeeWhitelist extends BaseContract {
   >;
   getFunction(
     nameOrSignature: "initialize"
-  ): TypedContractMethod<[_initialAdmin: AddressLike], [void], "nonpayable">;
+  ): TypedContractMethod<
+    [
+      _initialAdmin: AddressLike,
+      _arianeeEventAddress: AddressLike,
+      _smartAssetAddress: AddressLike
+    ],
+    [void],
+    "nonpayable"
+  >;
   getFunction(
     nameOrSignature: "isAuthorized"
   ): TypedContractMethod<

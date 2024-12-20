@@ -42,6 +42,7 @@ export interface ArianeeRewardsHistoryInterface extends Interface {
       | "setTokenNmpProvider"
       | "setTokenReward"
       | "setTokenWalletProvider"
+      | "storeAddress"
       | "supportsInterface"
       | "trustedForwarder"
   ): FunctionFragment;
@@ -119,6 +120,10 @@ export interface ArianeeRewardsHistoryInterface extends Interface {
     values: [BigNumberish, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "storeAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
@@ -177,6 +182,10 @@ export interface ArianeeRewardsHistoryInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "setTokenWalletProvider",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "storeAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -390,6 +399,8 @@ export interface ArianeeRewardsHistory extends BaseContract {
     "nonpayable"
   >;
 
+  storeAddress: TypedContractMethod<[], [string], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
@@ -482,6 +493,9 @@ export interface ArianeeRewardsHistory extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "storeAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;

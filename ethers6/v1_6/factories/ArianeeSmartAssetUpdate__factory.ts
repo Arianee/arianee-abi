@@ -296,6 +296,19 @@ const _abi = [
   },
   {
     type: "function",
+    name: "storeAddress",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "supportsInterface",
     inputs: [
       {

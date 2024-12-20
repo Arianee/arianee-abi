@@ -237,6 +237,32 @@ const _abi = [
   },
   {
     type: "function",
+    name: "arianeeEvent",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeEvent",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "arianeeLost",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeLost",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "commitmentHashes",
     inputs: [
       {
@@ -432,6 +458,44 @@ const _abi = [
     ],
     outputs: [],
     stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "creditFreeSenders",
+    inputs: [
+      {
+        name: "_sender",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "bool",
+        internalType: "bool",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "creditNotePools",
+    inputs: [
+      {
+        name: "_creditNotePool",
+        type: "address",
+        internalType: "address",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "bool",
+        internalType: "bool",
+      },
+    ],
+    stateMutability: "view",
   },
   {
     type: "function",
@@ -818,6 +882,43 @@ const _abi = [
   },
   {
     type: "function",
+    name: "nonceBitmap",
+    inputs: [
+      {
+        name: "commitmentHash",
+        type: "uint256",
+        internalType: "uint256",
+      },
+      {
+        name: "wordPos",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "poseidon",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IPoseidon",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "recoverTokenToIssuer",
     inputs: [
       {
@@ -1123,6 +1224,32 @@ const _abi = [
   },
   {
     type: "function",
+    name: "smartAsset",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeSmartAsset",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "store",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeStore",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "supportsInterface",
     inputs: [
       {
@@ -1323,51 +1450,6 @@ const _abi = [
         name: "_newCommitmentHash",
         type: "uint256",
         internalType: "uint256",
-      },
-    ],
-    outputs: [],
-    stateMutability: "nonpayable",
-  },
-  {
-    type: "function",
-    name: "updateCommitmentBatch",
-    inputs: [
-      {
-        name: "_ownershipProofs",
-        type: "tuple[]",
-        internalType: "struct OwnershipProof[]",
-        components: [
-          {
-            name: "_pA",
-            type: "uint256[2]",
-            internalType: "uint256[2]",
-          },
-          {
-            name: "_pB",
-            type: "uint256[2][2]",
-            internalType: "uint256[2][2]",
-          },
-          {
-            name: "_pC",
-            type: "uint256[2]",
-            internalType: "uint256[2]",
-          },
-          {
-            name: "_pubSignals",
-            type: "uint256[3]",
-            internalType: "uint256[3]",
-          },
-        ],
-      },
-      {
-        name: "_tokenIds",
-        type: "uint256[]",
-        internalType: "uint256[]",
-      },
-      {
-        name: "_newCommitmentHashes",
-        type: "uint256[]",
-        internalType: "uint256[]",
       },
     ],
     outputs: [],
@@ -1594,6 +1676,19 @@ const _abi = [
     ],
     outputs: [],
     stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "verifier",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IOwnershipVerifier",
+      },
+    ],
+    stateMutability: "view",
   },
   {
     type: "event",

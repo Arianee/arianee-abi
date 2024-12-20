@@ -43,6 +43,7 @@ export interface ArianeeLostInterface extends Interface {
       | "setManagerIdentity"
       | "setMissingStatus"
       | "setStolenStatus"
+      | "smartAsset"
       | "supportsInterface"
       | "trustedForwarder"
       | "unsetAuthorizedIdentity"
@@ -134,6 +135,10 @@ export interface ArianeeLostInterface extends Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "smartAsset",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
@@ -204,6 +209,7 @@ export interface ArianeeLostInterface extends Interface {
     functionFragment: "setStolenStatus",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "smartAsset", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -505,6 +511,8 @@ export interface ArianeeLost extends BaseContract {
     "nonpayable"
   >;
 
+  smartAsset: TypedContractMethod<[], [string], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
@@ -614,6 +622,9 @@ export interface ArianeeLost extends BaseContract {
   getFunction(
     nameOrSignature: "setStolenStatus"
   ): TypedContractMethod<[_tokenId: BigNumberish], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "smartAsset"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;

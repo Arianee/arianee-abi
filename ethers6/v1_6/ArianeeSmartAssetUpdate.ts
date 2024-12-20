@@ -40,6 +40,7 @@ export interface ArianeeSmartAssetUpdateInterface extends Interface {
       | "readUpdateSmartAsset"
       | "renounceRole"
       | "revokeRole"
+      | "storeAddress"
       | "supportsInterface"
       | "trustedForwarder"
       | "updateSmartAsset"
@@ -111,6 +112,10 @@ export interface ArianeeSmartAssetUpdateInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "storeAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
@@ -158,6 +163,10 @@ export interface ArianeeSmartAssetUpdateInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "storeAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -406,6 +415,8 @@ export interface ArianeeSmartAssetUpdate extends BaseContract {
     "nonpayable"
   >;
 
+  storeAddress: TypedContractMethod<[], [string], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
@@ -503,6 +514,9 @@ export interface ArianeeSmartAssetUpdate extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "storeAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;

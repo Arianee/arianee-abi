@@ -253,6 +253,44 @@ const _abi = [
   },
   {
     type: "function",
+    name: "idToPendingEvents",
+    inputs: [
+      {
+        name: "_tokenId",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "idToTokenEventIndex",
+    inputs: [
+      {
+        name: "_eventId",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "initialize",
     inputs: [
       {
@@ -326,6 +364,30 @@ const _abi = [
         name: "",
         type: "bool",
         internalType: "bool",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "pendingEvents",
+    inputs: [
+      {
+        name: "_tokenId",
+        type: "uint256",
+        internalType: "uint256",
+      },
+      {
+        name: "_index",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
       },
     ],
     stateMutability: "view",
@@ -411,6 +473,25 @@ const _abi = [
   },
   {
     type: "function",
+    name: "rewards",
+    inputs: [
+      {
+        name: "_eventId",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "supportsInterface",
     inputs: [
       {
@@ -424,6 +505,30 @@ const _abi = [
         name: "",
         type: "bool",
         internalType: "bool",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "tokenEventsList",
+    inputs: [
+      {
+        name: "_tokenId",
+        type: "uint256",
+        internalType: "uint256",
+      },
+      {
+        name: "_index",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    outputs: [
+      {
+        name: "",
+        type: "uint256",
+        internalType: "uint256",
       },
     ],
     stateMutability: "view",

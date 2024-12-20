@@ -37,15 +37,20 @@ export interface ArianeeEventInterface extends Interface {
       | "getRoleAdmin"
       | "grantRole"
       | "hasRole"
+      | "idToPendingEvents"
+      | "idToTokenEventIndex"
       | "initialize"
       | "isPending"
       | "isTrustedForwarder"
       | "paused"
+      | "pendingEvents"
       | "pendingEventsLength"
       | "refuse"
       | "renounceRole"
       | "revokeRole"
+      | "rewards"
       | "supportsInterface"
+      | "tokenEventsList"
       | "trustedForwarder"
       | "updateDestroyRequest"
       | "updateEventDestroyDelay"
@@ -120,6 +125,14 @@ export interface ArianeeEventInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "idToPendingEvents",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "idToTokenEventIndex",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "initialize",
     values: [AddressLike, AddressLike, AddressLike, AddressLike]
   ): string;
@@ -132,6 +145,10 @@ export interface ArianeeEventInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "pendingEvents",
+    values: [BigNumberish, BigNumberish]
+  ): string;
   encodeFunctionData(
     functionFragment: "pendingEventsLength",
     values: [BigNumberish]
@@ -149,8 +166,16 @@ export interface ArianeeEventInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "rewards",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenEventsList",
+    values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "trustedForwarder",
@@ -195,6 +220,14 @@ export interface ArianeeEventInterface extends Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "idToPendingEvents",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "idToTokenEventIndex",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "isPending", data: BytesLike): Result;
   decodeFunctionResult(
@@ -202,6 +235,10 @@ export interface ArianeeEventInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "pendingEvents",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "pendingEventsLength",
     data: BytesLike
@@ -212,8 +249,13 @@ export interface ArianeeEventInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "rewards", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenEventsList",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -509,6 +551,18 @@ export interface ArianeeEvent extends BaseContract {
     "view"
   >;
 
+  idToPendingEvents: TypedContractMethod<
+    [_tokenId: BigNumberish],
+    [bigint],
+    "view"
+  >;
+
+  idToTokenEventIndex: TypedContractMethod<
+    [_eventId: BigNumberish],
+    [bigint],
+    "view"
+  >;
+
   initialize: TypedContractMethod<
     [
       _initialAdmin: AddressLike,
@@ -529,6 +583,12 @@ export interface ArianeeEvent extends BaseContract {
   >;
 
   paused: TypedContractMethod<[], [boolean], "view">;
+
+  pendingEvents: TypedContractMethod<
+    [_tokenId: BigNumberish, _index: BigNumberish],
+    [bigint],
+    "view"
+  >;
 
   pendingEventsLength: TypedContractMethod<
     [_tokenId: BigNumberish],
@@ -554,9 +614,17 @@ export interface ArianeeEvent extends BaseContract {
     "nonpayable"
   >;
 
+  rewards: TypedContractMethod<[_eventId: BigNumberish], [bigint], "view">;
+
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
+    "view"
+  >;
+
+  tokenEventsList: TypedContractMethod<
+    [_tokenId: BigNumberish, _index: BigNumberish],
+    [bigint],
     "view"
   >;
 
@@ -652,6 +720,12 @@ export interface ArianeeEvent extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "idToPendingEvents"
+  ): TypedContractMethod<[_tokenId: BigNumberish], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "idToTokenEventIndex"
+  ): TypedContractMethod<[_eventId: BigNumberish], [bigint], "view">;
+  getFunction(
     nameOrSignature: "initialize"
   ): TypedContractMethod<
     [
@@ -672,6 +746,13 @@ export interface ArianeeEvent extends BaseContract {
   getFunction(
     nameOrSignature: "paused"
   ): TypedContractMethod<[], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "pendingEvents"
+  ): TypedContractMethod<
+    [_tokenId: BigNumberish, _index: BigNumberish],
+    [bigint],
+    "view"
+  >;
   getFunction(
     nameOrSignature: "pendingEventsLength"
   ): TypedContractMethod<[_tokenId: BigNumberish], [bigint], "view">;
@@ -697,8 +778,18 @@ export interface ArianeeEvent extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "rewards"
+  ): TypedContractMethod<[_eventId: BigNumberish], [bigint], "view">;
+  getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "tokenEventsList"
+  ): TypedContractMethod<
+    [_tokenId: BigNumberish, _index: BigNumberish],
+    [bigint],
+    "view"
+  >;
   getFunction(
     nameOrSignature: "trustedForwarder"
   ): TypedContractMethod<[], [string], "view">;

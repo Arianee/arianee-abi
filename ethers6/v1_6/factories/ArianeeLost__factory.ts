@@ -306,6 +306,19 @@ const _abi = [
   },
   {
     type: "function",
+    name: "smartAsset",
+    inputs: [],
+    outputs: [
+      {
+        name: "",
+        type: "address",
+        internalType: "contract IArianeeSmartAsset",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
     name: "supportsInterface",
     inputs: [
       {

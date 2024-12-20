@@ -29,9 +29,17 @@ export interface ArianeeStoreInterface extends Interface {
       | "ArianeeStoreStorageV0Location"
       | "DEFAULT_ADMIN_ROLE"
       | "acceptEvent"
+      | "acceptedToken"
+      | "ariaUSDExchange"
+      | "arianeeEvent"
+      | "arianeeMessage"
+      | "arianeeProjectAddress"
+      | "arianeeUpdate"
+      | "authorizedExchangeAddress"
       | "buyCredit"
       | "createEvent"
       | "createMessage"
+      | "creditHistory"
       | "creditPriceUSD"
       | "dispatchRewardsAtFirstTransfer"
       | "getCreditPrice"
@@ -41,8 +49,10 @@ export interface ArianeeStoreInterface extends Interface {
       | "hydrateToken"
       | "initialize"
       | "isTrustedForwarder"
+      | "nonFungibleRegistry"
       | "paused"
       | "percentOfDispatch"
+      | "protocolInfraAddress"
       | "readMessage"
       | "readUpdateSmartAsset"
       | "refuseEvent"
@@ -51,6 +61,7 @@ export interface ArianeeStoreInterface extends Interface {
       | "requestToken(uint256,bytes32,bool,address,bytes)"
       | "reserveToken"
       | "revokeRole"
+      | "rewardsHistory"
       | "setAriaUSDExchange"
       | "setArianeeProjectAddress"
       | "setAuthorizedExchangeAddress"
@@ -92,6 +103,34 @@ export interface ArianeeStoreInterface extends Interface {
     values: [BigNumberish, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "acceptedToken",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "ariaUSDExchange",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeEvent",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeMessage",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeProjectAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "arianeeUpdate",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "authorizedExchangeAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "buyCredit",
     values: [BigNumberish, BigNumberish, AddressLike]
   ): string;
@@ -102,6 +141,10 @@ export interface ArianeeStoreInterface extends Interface {
   encodeFunctionData(
     functionFragment: "createMessage",
     values: [BigNumberish, BigNumberish, BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "creditHistory",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "creditPriceUSD",
@@ -161,10 +204,18 @@ export interface ArianeeStoreInterface extends Interface {
     functionFragment: "isTrustedForwarder",
     values: [AddressLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "nonFungibleRegistry",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "paused", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "percentOfDispatch",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "protocolInfraAddress",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "readMessage",
@@ -204,6 +255,10 @@ export interface ArianeeStoreInterface extends Interface {
   encodeFunctionData(
     functionFragment: "revokeRole",
     values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "rewardsHistory",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "setAriaUSDExchange",
@@ -264,6 +319,34 @@ export interface ArianeeStoreInterface extends Interface {
     functionFragment: "acceptEvent",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "acceptedToken",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "ariaUSDExchange",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeEvent",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeMessage",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeProjectAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "arianeeUpdate",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "authorizedExchangeAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "buyCredit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "createEvent",
@@ -271,6 +354,10 @@ export interface ArianeeStoreInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "createMessage",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "creditHistory",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -300,9 +387,17 @@ export interface ArianeeStoreInterface extends Interface {
     functionFragment: "isTrustedForwarder",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "nonFungibleRegistry",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "percentOfDispatch",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "protocolInfraAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -334,6 +429,10 @@ export interface ArianeeStoreInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "rewardsHistory",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "setAriaUSDExchange",
     data: BytesLike
@@ -627,6 +726,20 @@ export interface ArianeeStore extends BaseContract {
     "nonpayable"
   >;
 
+  acceptedToken: TypedContractMethod<[], [string], "view">;
+
+  ariaUSDExchange: TypedContractMethod<[], [bigint], "view">;
+
+  arianeeEvent: TypedContractMethod<[], [string], "view">;
+
+  arianeeMessage: TypedContractMethod<[], [string], "view">;
+
+  arianeeProjectAddress: TypedContractMethod<[], [string], "view">;
+
+  arianeeUpdate: TypedContractMethod<[], [string], "view">;
+
+  authorizedExchangeAddress: TypedContractMethod<[], [string], "view">;
+
   buyCredit: TypedContractMethod<
     [_creditType: BigNumberish, _quantity: BigNumberish, _to: AddressLike],
     [void],
@@ -655,6 +768,8 @@ export interface ArianeeStore extends BaseContract {
     [void],
     "nonpayable"
   >;
+
+  creditHistory: TypedContractMethod<[], [string], "view">;
 
   creditPriceUSD: TypedContractMethod<
     [_creditType: BigNumberish],
@@ -728,6 +843,8 @@ export interface ArianeeStore extends BaseContract {
     "view"
   >;
 
+  nonFungibleRegistry: TypedContractMethod<[], [string], "view">;
+
   paused: TypedContractMethod<[], [boolean], "view">;
 
   percentOfDispatch: TypedContractMethod<
@@ -735,6 +852,8 @@ export interface ArianeeStore extends BaseContract {
     [bigint],
     "view"
   >;
+
+  protocolInfraAddress: TypedContractMethod<[], [string], "view">;
 
   readMessage: TypedContractMethod<
     [_messageId: BigNumberish, _rewardsReceiver: AddressLike],
@@ -796,6 +915,8 @@ export interface ArianeeStore extends BaseContract {
     [void],
     "nonpayable"
   >;
+
+  rewardsHistory: TypedContractMethod<[], [string], "view">;
 
   setAriaUSDExchange: TypedContractMethod<
     [_ariaUSDExchange: BigNumberish],
@@ -881,6 +1002,27 @@ export interface ArianeeStore extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "acceptedToken"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "ariaUSDExchange"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "arianeeEvent"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "arianeeMessage"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "arianeeProjectAddress"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "arianeeUpdate"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "authorizedExchangeAddress"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "buyCredit"
   ): TypedContractMethod<
     [_creditType: BigNumberish, _quantity: BigNumberish, _to: AddressLike],
@@ -912,6 +1054,9 @@ export interface ArianeeStore extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "creditHistory"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "creditPriceUSD"
   ): TypedContractMethod<[_creditType: BigNumberish], [bigint], "view">;
@@ -982,11 +1127,17 @@ export interface ArianeeStore extends BaseContract {
     nameOrSignature: "isTrustedForwarder"
   ): TypedContractMethod<[forwarder: AddressLike], [boolean], "view">;
   getFunction(
+    nameOrSignature: "nonFungibleRegistry"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "paused"
   ): TypedContractMethod<[], [boolean], "view">;
   getFunction(
     nameOrSignature: "percentOfDispatch"
   ): TypedContractMethod<[_actorIndex: BigNumberish], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "protocolInfraAddress"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "readMessage"
   ): TypedContractMethod<
@@ -1056,6 +1207,9 @@ export interface ArianeeStore extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "rewardsHistory"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "setAriaUSDExchange"
   ): TypedContractMethod<
