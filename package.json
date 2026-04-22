@@ -1,6 +1,6 @@
 {
   "name": "@arianee/arianee-abi",
-  "version": "0.37.1",
+  "version": "0.37.2",
   "description": "abi definition of Arianee and typescript declaration files",
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,7 @@
     "_generateEthers6_v1_6": "typechain --target ethers-v6 --out-dir ./ethers6/v1_6 './abi/json/V1_6/*.json'",
     "minify": "node ./minify.js",
     "build": "npm run generate && npm run minify",
-    "prepublish": "tsc"
+    "prepack": "tsc"
   },
   "author": "",
   "license": "ISC",
